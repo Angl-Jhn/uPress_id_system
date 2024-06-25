@@ -159,6 +159,9 @@ if(isset($_SESSION["isLogin"]) == 1){
             case "login":
                 require_once("controller/loginController.php");
                 break;
+            case "request-id":
+                    require_once("controller/accountController.php");
+                    break;
             default:
                 include_once("view/shared/body-content.php");
             break;
