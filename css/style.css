@@ -6634,28 +6634,33 @@ textarea.form-control-lg {
   margin: 0;
   padding: 0; }
 
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth; }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   padding-top: 66px;
   height: 100%; }
 
 .navbar {
   background-color: #c9000c; }
 
-.navbar-nav, .nav-link {
+.navbar-nav,
+.nav-link {
   gap: 5%;
   font-size: 1.05rem !important; }
 
-.navbar-nav, a.nav-link {
+.navbar-nav,
+a.nav-link {
   color: #f8f9fa; }
 
-.navbar-brand, #nav-logo {
+.navbar-brand,
+#nav-logo {
   max-height: 50px;
   /* Adjust based on your navbar height */
   width: auto; }
@@ -6691,7 +6696,7 @@ body {
   margin: 0; }
 
 footer {
-  background: linear-gradient(to right, #4F1212, #c9000c);
+  background: linear-gradient(to right, #4f1212, #c9000c);
   margin: 0;
   padding: 45px 0; }
 
@@ -6701,7 +6706,7 @@ footer {
   align-items: center; }
 
 .single-box p#text-content {
-  color: #BF0000;
+  color: #bf0000;
   font-weight: 800;
   margin: 0;
   text-align: center; }
@@ -6732,7 +6737,7 @@ footer {
   max-width: fit-content;
   border-radius: 28px;
   color: #fff;
-  padding: .25rem; }
+  padding: 0.25rem; }
 
 .form-container .nav .nav-link {
   color: #fff;
@@ -6740,11 +6745,11 @@ footer {
   width: 100px;
   text-align: center;
   --bs-nav-link-padding-x: 0;
-  --bs-nav-link-padding-y: .25em; }
+  --bs-nav-link-padding-y: 0.25em; }
 
 .form-container .nav .nav-link:hover {
-  background-color: #BF0000;
-  transition: background-color .5s, border-color .5s ease-in-out; }
+  background-color: #bf0000;
+  transition: background-color 0.5s, border-color 0.5s ease-in-out; }
 
 .form-container .nav .active {
   background-color: #990000 !important; }
@@ -6756,7 +6761,8 @@ a {
 ul {
   list-style: none; }
 
-p.lead#upressFR, p.lead#effectDate {
+p.lead#upressFR,
+p.lead#effectDate {
   font-size: 14px;
   margin-bottom: 0;
   font-weight: 500; }
@@ -6767,7 +6773,7 @@ p.lead#upressFR, p.lead#effectDate {
 
 .form-box .form-progress {
   position: relative;
-  padding: 0 .5em;
+  padding: 0 0.5em;
   min-width: 250px; }
 
 .form-progress ul.progress-steps {
@@ -6819,7 +6825,7 @@ p.lead#upressFR, p.lead#effectDate {
 
 .form-box form {
   width: 100%;
-  padding-inline: .2em;
+  padding-inline: 0.2em;
   background-color: #fff; }
 
 form > div {
@@ -6828,14 +6834,14 @@ form > div {
 
 form > div p {
   color: #495057;
-  margin-bottom: .8em; }
+  margin-bottom: 0.8em; }
 
 form > div > div:not(.checkbox) {
   display: flex;
   flex-direction: column;
-  margin-bottom: .8em; }
+  margin-bottom: 0.8em; }
 
-input[type=radio] {
+input[type="radio"] {
   font-size: 18px; }
 
 form :where(input:not(.form-check-input), select) {
@@ -6850,14 +6856,6 @@ form label {
   font-size: 15px;
   margin-bottom: 0.4em;
   font-weight: 600; }
-
-form .grouping {
-  display: flex; }
-
-form .grouping input {
-  max-width: 70px;
-  text-align: center;
-  margin-right: 1em; }
 
 form .checkbox input {
   height: auto; }
@@ -6877,12 +6875,12 @@ form > div.active {
 .group-btn [class*="btn-"] {
   background-color: #c9000c;
   color: #fff;
-  padding: .6em 1.5em;
-  border: 4px solid #BF0000;
+  padding: 0.6em 1.5em;
+  border: 4px solid #bf0000;
   border-radius: 30px;
   cursor: pointer;
-  -webkit-transition: background-color .3s, border-color .3s ease-out;
-  transition: background-color .3s, border-color .3s ease-out; }
+  -webkit-transition: background-color 0.3s, border-color 0.3s ease-out;
+  transition: background-color 0.3s, border-color 0.3s ease-out; }
 
 .group-btn [class*="btn-"]:disabled {
   background-color: #adb5bd;
@@ -6912,7 +6910,7 @@ form > div.active {
     font-size: 1.15em !important;
     padding-inline: 0.6rem !important; }
   .body-bg .body-content {
-    padding-left: .8rem !important; } }
+    padding-left: 0.8rem !important; } }
 
 @media (min-width: 577px) and (max-width: 768px) {
   .navbar-brand {
@@ -6931,7 +6929,7 @@ form > div.active {
     flex-direction: column;
     gap: 0; }
   .form-progress ul.progress-steps li:not(:last-child)::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 19px;
     top: 30px;
@@ -6956,7 +6954,7 @@ form > div.active {
     flex-direction: column;
     gap: 0; }
   .form-progress ul.progress-steps li:not(:last-child)::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 20px;
     top: 30px;
