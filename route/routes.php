@@ -35,6 +35,8 @@ if(isset($_SESSION["isLogin"]) == 1){
             case "edit-account";
                 require_once("controller/accountController.php");
                 break;
+            case "del-account";
+                require_once("controller/accountController.php");
             case "my-profile";
                 require_once("view/admin/page-profile.php");
                 break;

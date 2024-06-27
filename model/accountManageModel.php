@@ -9,7 +9,7 @@ class AccountManageModel{
         // var_dump("test");
 
         try {
-            $stmt = $db->prepare("
+            $stmt = $db->prepare("`
                 INSERT INTO
                 account (username, password, firstName, middleName, lastName, nameExt, role, accountPhoto)
                 VALUES  (:uname, :pw, :fname, :mname, :lname, :nameExt, :role, :accountPhoto)
@@ -38,33 +38,65 @@ class AccountManageModel{
             return false;
         }
     }
-    function updateAccount( $id,$uname,$pw,$fname,$lname,$nameExt,$role,$img){
+    function getAccount() {
         $conn = new PDOModel();
         $db = $conn->getDb();
-        if($img == NULL){    
-            $stmt = $db->prepare("UPDATE `account` SET `uname`=:username, `pw`=:password, 
-            `fname`=:firstName, `lname`=:lastName, `nameExt`=:nameExt, `role`=:role, 
-            `img`=:accountPhoto,");
-        } else {
-            $stmt = $db->prepare("UPDATE `account` SET `uname`=:username, `pw`=:password, 
-            `fname`=:firstName, `lname`=:lastName, `nameExt`=:nameExt, `role`=:role, 
-            `img`=:accountPhoto WHERE `id`=:id");
-            $stmt->bindParam(':accountPhoto', $img);
+
+        $res = $db->prepare("SELECT * FROM account WHERE deletedAt IS NULL AND status = '0' ORDER BY `role` DESC");
+        $res->execute();
+        while($row = $res->fetch(PDO::FETCH_ASSOC)) {
+            $fetch_acc[$row['id']]=$row;
         }
-        $stmt->bindParam(':username', $uname);
-        $stmt->bindParam(':password', $pw);
-        $stmt->bindParam(':firstName', $fname);
-        $stmt->bindParam(':lastName', $lname);
-        $stmt->bindParam(':nameExt', $nameExt);
-        $stmt->bindParam(':role', $role);
-        $stmt->execute();
-
+        return ($res->rowCount() > 0) ? $fetch_acc :0;
     }
-    function deleteAccount( $id ) {
+    function updateAccount($id,$uname,$pw,$fname,$mname,$lname,$nameExt,$role,$img){
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+        
+        try {
+            $stmt = $db->prepare("
+                UPDATE account 
+                SET username = :uname, password = :pw, firstName = :fname, middleName = :mname, lastName = :lname, 
+                nameExt = :nameExt, role = :role, accountPhoto = :accountPhoto 
+                WHERE id = :id
+                ");
+            // bind the parameters
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(':uname', $uname);
+            $stmt->bindParam(':pw', $pw);
+            $stmt->bindParam(':fname', $fname);
+            $stmt->bindParam(':mname', $mname);
+            $stmt->bindParam(':lname', $lname);
+            $stmt->bindParam(':nameExt', $nameExt);
+            $stmt->bindParam(':role', $role);
+            $stmt->bindParam(':accountPhoto', $img);
+            
+            // execute statement
+            return $stmt->execute();
+
+        } catch (PDOException $e) {
+            // Handle any errors
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+    function softDeleteAccount($id) {
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+    
+        // Update the deleted_at timestamp to mark soft deletion
+        // $stmt = $db->prepare("UPDATE account SET deletedAt = NOW(), status = 1 WHERE id = :id");
+        $stmt = $db->prepare("UPDATE account SET deletedAt = NOW() WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+
+    function reactivateAccount($id) {
         $conn = new PDOModel();
         $db = $conn->getDb();
 
-        $stmt = $db->prepare("UPDATE `account` SET `status`=1 WHERE `id`=:id");
+        // Reactivate the account by setting deleted_at to NULL
+        $stmt = $db->prepare("UPDATE account SET deletedaT = NULL WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }

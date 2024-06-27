@@ -1,6 +1,6 @@
             <?php
-            include_once("././model/accountModel.php");
-            $obj = new accountModel();
+            include_once("././model/accountManageModel.php");
+            $obj = new AccountManageModel();
             $getAcc = $obj->getAccount();
             ?>
 
@@ -13,31 +13,31 @@
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Account</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="post" id="addAccount">
+                        <form action="/add-account" method="post" id="addAccount">
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Username</label>
-                                    <input type="text" name="uname" id="uname" class="form-control"
+                                    <input type="text" name="uname" id="username" class="form-control"
                                         placeholder="e.g. admin?">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Password</label>
-                                    <input type="password" name="pw" id="pw" class="form-control"
+                                    <input type="password" name="pw" id="password" class="form-control"
                                         placeholder="********">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">First name</label>
-                                    <input type="text" name="fname" id="fname" class="form-control"
+                                    <input type="text" name="fname" id="firstName" class="form-control"
                                         placeholder="e.g. Sanicare">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Middle name</label>
-                                    <input type="text" name="mname" id="mname" class="form-control"
+                                    <input type="text" name="mname" id="middleName" class="form-control"
                                         placeholder="e.g. Plastic">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Last name</label>
-                                    <input type="text" name="lname" id="lname" class="form-control"
+                                    <input type="text" name="lname" id="lastName" class="form-control"
                                         placeholder="e.g. Stem">
                                 </div>
                                 <div class="mb-3">
@@ -65,7 +65,7 @@
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" name="add" class="btn btn-primary">Add Account</button>
                             </div>
-                        </form>1
+                        </form>
                     </div>
                 </div>
             </div>
@@ -78,58 +78,59 @@
                             <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Account</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form action="post" id="editAccount">
-                            <input type="hidden" name="id" id="id">
+                        <form id="editAccountForm" action="/edit-account" method="post">
                             <div class="modal-body">
+                                <input type="hidden" id="id" name="id">
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Username</label>
-                                    <input type="text" name="uname" id="edit_uname" class="form-control"
-                                        placeholder="e.g. admin?">
+                                    <label for="edit_uname">Username</label>
+                                    <input type="text" id="edit_uname" name="uname" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Password</label>
-                                    <input type="password" name="pw" id="edit_pw" class="form-control"
-                                        placeholder="********">
+                                    <label for="edit_pw">Password</label>
+                                    <input type="password" id="edit_pw" name="pw" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">First name</label>
-                                    <input type="text" name="fname" id="edit_fname" class="form-control"
-                                        placeholder="e.g. Sanicare">
+                                    <label for="edit_fname">First Name</label>
+                                    <input type="text" id="edit_fname" name="fname" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Middle name</label>
-                                    <input type="text" name="mname" id="edit_mname" class="form-control"
-                                        placeholder="e.g. Plastic">
+                                    <label for="edit_mname">Middle Name</label>
+                                    <input type="text" id="edit_mname" name="mname" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Last name</label>
-                                    <input type="text" name="lname" id="edit_lname" class="form-control"
-                                        placeholder="e.g. Stem">
+                                    <label for="edit_lname">Last Name</label>
+                                    <input type="text" id="edit_lname" name="lname" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Name Ext.</label>
-                                    <input type="text" name="nameExt" id="edit_nameExt" class="form-control"
-                                        placeholder="e.g. Sr./Jr.">
+                                    <label for="edit_nameExt">Name Extension</label>
+                                    <input type="text" id="edit_nameExt" name="nameExt" class="form-control">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Role</label>
-                                    <select class="form-control js-example-basic-single" name="role" id="edit_role"
-                                        style="width: 100%;">
-                                        <option value="">Select Role</option>
+                                    <label for="edit_role">Role</label>
+                                    <select id="edit_role" name="role" class="form-control js-example-basic-single">
                                         <option value="admin">Admin</option>
-                                        <option value="super_admin">Super Admin</option>
+                                        <option value="user">User</option>
+                                        <!-- Add other roles as needed -->
                                     </select>
                                 </div>
+                                <!-- <div class="mb-3">
+                                    <label for="edit_accountPhoto">Account Photo</label>
+                                    <input type="file" id="edit_accountPhoto" name="accountPhoto[]"
+                                        class="form-control">
+                                </div> -->
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Insert photo</label>
-                                    <input class="form-control" name="accountPhoto[]" id="edit_accountPhoto" type="file"
-                                        id="formFile">
+                                    <label for="edit_accountPhoto">Account Photo</label>
+                                    <div class="current-photo mb-2">
+                                        <img id="currentPhoto" src="uploads/account/<?= $item['accountPhoto']; ?>"
+                                            style="max-height: 60px; max-width: 60px;">
+                                    </div>
+                                    <input type="file" id="edit_accountPhoto" name="accountPhoto[]"
+                                        class="form-control">
                                 </div>
                             </div>
-
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="save" class="btn btn-primary">Save Account</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
                             </div>
                         </form>
                     </div>
@@ -189,26 +190,29 @@
                                                     }
                                                 ?>
                                                 <span
-                                                    class="badge text-bg-<?= $item['status'] == 'active' ? 'success' : 'danger' ?>"><?= $item['status'] == 'active' ? 'Active' : 'Inactive' ?></span>
+                                                    class="badge text-bg-<?= $item['status'] == 'active' ? 'success' : 'danger' ?>">
+                                                    <?= $item['status'] == 'active' ? 'Active' : 'Inactive' ?>
+                                                </span>
                                             </td>
                                             <td><?= $item['createdAt'] ?></td>
                                             <td>
                                                 <div class="row">
                                                     <div class="col">
                                                         <button type="button" class="btn btn-success edit-btn"
-                                                            data-id="<?= $item['id'] ?>"
-                                                            data-username="<?= $item['username'] ?>"
-                                                            data-password="<?= $item['password'] ?>"
-                                                            data-fname="<?= $item['firstName'] ?>"
-                                                            data-mname="<?= $item['middleName'] ?>"
-                                                            data-lname="<?= $item['lastName'] ?>"
-                                                            data-nameext="<?= $item['nameExt'] ?>"
-                                                            data-role="<?= $item['role'] ?>"
-                                                            data-photo="<?= $item['accountPhoto'] ?>"
+                                                            data-id="<?= $item['id']; ?>"
+                                                            data-username="<?= $item['username']; ?>"
+                                                            data-password="<?= $item['password']; ?>"
+                                                            data-firstname="<?= $item['firstName']; ?>"
+                                                            data-middlename="<?= $item['middleName']; ?>"
+                                                            data-lastname="<?= $item['lastName']; ?>"
+                                                            data-nameext="<?= $item['nameExt']; ?>"
+                                                            data-role="<?= $item['role']; ?>"
+                                                            data-accountphoto="<?= $item['accountPhoto']; ?>"
                                                             data-bs-toggle="modal" data-bs-target="#editAccountModal">
                                                             <i class="fa-solid fa-pen-to-square"
                                                                 style="padding: 0;"></i>
                                                         </button>
+
                                                         <button type="button" class="btn btn-danger delete-btn"
                                                             data-id="<?= $item['id'] ?>">
                                                             <i class="fa-solid fa-trash" style="padding: 0;"></i>
@@ -235,11 +239,18 @@
                 </div>
             </main>
             <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+
             <script>
 $(document).ready(function() {
-    $('.js-example-basic-single').select2({
+    $('#addAccountModal .js-example-basic-single').select2({
         placeholder: 'Select An Option',
-        dropdownParent: '#addAccountModal'
+        dropdownParent: $('#addAccountModal')
+    });
+
+    // Initialize Select2 for Edit Account Modal
+    $('#editAccountModal .js-example-basic-single').select2({
+        placeholder: 'Select An Option',
+        dropdownParent: $('#editAccountModal')
     });
     var table = $('#user').DataTable({
         // dom: 'Bfrtip',
@@ -283,9 +294,9 @@ $(document).ready(function() {
             }
         });
     });
-    $('#editAccount').on('submit', function(e) {
+    $('#editAccountForm').on('submit', function(e) {
         e.preventDefault();
-        var formData = new FormData(this);
+        var formData = new FormData($('#editAccountForm')[0]);
         formData.append("type", "save"); // Add the additional field
         console.log(formData);
         $.ajax({
@@ -297,7 +308,7 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response);
                 alert('Updated successfully');
-                location.reload(); //refresh page
+                // location.reload(); //refresh page
             },
             error: function(error) {
                 console.log(error);
@@ -306,36 +317,63 @@ $(document).ready(function() {
         });
     });
 
-    $('#user').on('click', '.edit-btn', function() {
+    $('.edit-btn').click(function() {
+        // Fetch data attributes from the clicked edit button
         var id = $(this).data('id');
         var username = $(this).data('username');
         var password = $(this).data('password');
-        var fname = $(this).data('fname');
-        var mname = $(this).data('mname');
-        var lname = $(this).data('lname');
-        var nameExt = $(this).data('nameext');
+        var firstname = $(this).data('firstname');
+        var middlename = $(this).data('middlename');
+        var lastname = $(this).data('lastname');
+        var nameext = $(this).data('nameext');
         var role = $(this).data('role');
-        var photo = $(this).data('photo');
+        var accountphoto = $(this).data('accountphoto');
 
-        console.log('ID:', id);
-        console.log('Username:', username);
-        console.log('Password:', password);
-        console.log('First Name:', fname);
-        console.log('Middle Name:', mname);
-        console.log('Last Name:', lname);
-        console.log('Name Ext:', nameExt);
-        console.log('Role:', role);
-        console.log('Photo:', photo);
-
-        $('#editAccount #id').val(id);
-        $('#editAccount #edit_uname').val(username);
-        $('#editAccount #edit_pw').val(password);
-        $('#editAccount #edit_fname').val(fname);
-        $('#editAccount #edit_mname').val(mname);
-        $('#editAccount #edit_lname').val(lname);
-        $('#editAccount #edit_nameExt').val(nameExt);
-        $('#editAccount #edit_role').val(role).trigger('change'); // Trigger change for select2
-        $('#editAccount #edit_accountPhoto').val(photo);
+        var currentPhoto = "uploads/account/" + accountPhoto;
+        $('#currentPhoto').attr('src', currentPhoto);
+        // Populate the edit modal fields with fetched data
+        $('#id').val(id);
+        $('#edit_uname').val(username);
+        $('#edit_pw').val(password);
+        $('#edit_fname').val(firstname);
+        $('#edit_mname').val(middlename);
+        $('#edit_lname').val(lastname);
+        $('#edit_nameExt').val(nameext);
+        $('#edit_role').val(role).trigger('change'); // Trigger change to update Select2
+        // You might need to handle the account photo display separately
     });
+    $('.delete-btn').click(function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+
+        if (confirm('Are you sure you want to delete this account?')) {
+            var formData = new FormData();
+            var formData = new FormData($('#editAccountForm')[0]);
+            formData.append('id', id);
+            formData.append('type', 'delete');
+            $.ajax({
+                url: 'del-account',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    console.log(response);
+                    var res = JSON.parse(response);
+                    if (res.success) {
+                        alert('Account deleted successfully');
+                        location.reload(); // Reload the page to reflect changes
+                    } else {
+                        alert('Failed to delete account: ' + res
+                            .message); // Log the specific error message
+                    }
+                },
+                error: function() {
+                    alert('Error occurred while deleting the account');
+                }
+            });
+        }
+    });
+
 });
             </script>

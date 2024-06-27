@@ -3,6 +3,7 @@ include_once("model/accountManageModel.php");
 $newAcc = new AccountManageModel();
 
 if(isset($_POST["type"])) {
+    
     if(isset($_POST["type"]) == 'add'){
         var_dump("Test");
         $uname = htmlentities($_POST["uname"]);
@@ -68,9 +69,8 @@ if(isset($_POST["type"])) {
             $_SESSION['message'] = "Account Creation Failed!!";
         }
             
-    }elseif($_POST["type"] == 'save'){
+    } elseif($_POST["type"] == 'save'){
         // Handling edit account functionality
-
         // Example of handling edit functionality:
         $id = $_POST['id'];
         $uname = htmlentities($_POST["uname"]);
@@ -128,14 +128,24 @@ if(isset($_POST["type"])) {
             echo json_encode($errors);
         }
         if ($status == true) {
-            $updateAcc = $newAcc->updateAccount($id, $uname, $pw, $fname, $middleName, $lastName, $nameExt, $role, $img);
+            $updateAcc = $newAcc->updateAccount($id, $uname, $pw, $fname, $mname, $lname, $nameExt, $role, $img);
             if($updateAcc){
                 echo json_encode(array('status' => 'success', 'message' => 'Account Updated Successfully!'));
             }else {
                 echo json_encode(array('status' => 'error', 'message' => 'Account Update Failed!!'));
             }
         }
+    } elseif ($_POST["type"] == 'delete') {
+        $id = $_POST['id'];
+        $delAcc = $newAcc->softDeleteAccount($id);  
+
+        if($delAcc){
+            echo json_encode(['success' => true, 'message' => 'Account Deleted Successfully']);
+        } else {
+            echo json_encode(array('success' => false, 'message' => 'Failed to delete account'));
+        }
+        
     }
-};
+}
     
 ?>
