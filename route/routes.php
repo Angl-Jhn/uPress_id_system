@@ -1,5 +1,4 @@
 <?php
-
 $requestUrl = $_SERVER['REQUEST_URI'];
 $segments = explode('/', $requestUrl);
 $segmentPage = explode('?', $segments[0]);
@@ -8,17 +7,27 @@ array_shift($segments);
 $_SESSION["navTitle"] = $segments[0];
 
 if(isset($_SESSION["isLogin"]) == 1){
-    if($_SESSION["role"] == "super_admin"){
-        $acctype = "Super Admin";
-        include_once("view/admin/dash-header.php");
-        include_once("view/admin/dash-sidenav-bar.php");
-        
+    if($_SESSION["role"] == "admin"){
+        $acctype = "Admin";
+        if(isset($_POST['ignoreHeaderFooter']) != 1){
+            include_once("view/admin/dash-header.php");
+            include_once("view/admin/dash-sidenav-bar.php");
+        }
         switch($segments[0]){
             case "dashboard":
                 require_once("view/admin/dashboard.php");
                 break;
             case "transaction":
                 require_once("view/admin/transactions.php");
+                $page_name = "Client Transactions";
+                break;
+            case "add-student":
+                require_once("controller/transactionController.php");
+                break;
+            case "edit-student":
+                break;
+            case "del-client":
+                require_once("controller/transactionController.php");
                 break;
             case "student-layout":
                 require_once("view/admin/student.php");
@@ -55,10 +64,12 @@ if(isset($_SESSION["isLogin"]) == 1){
                 break;
             
         }
-        include_once("view/admin/dash-footer.php");
+        if(isset($_POST["ignoreHeaderFooter"]) != 1){
+            include_once("view/admin/dash-footer.php");
+        }
     } else {
-        if($_SESSION["role"] == "admin"){
-            $acctype = "Admin";
+        if($_SESSION["role"] == "operator"){
+            $acctype = "Operator";
             include_once("view/admin/dash-header.php");
             include_once("view/admin/dash-sidenav-bar.php");
             

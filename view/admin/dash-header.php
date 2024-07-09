@@ -1,7 +1,5 @@
 <?php
-
 // var_dump($_SESSION["navTitle"]);
-
 ?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">

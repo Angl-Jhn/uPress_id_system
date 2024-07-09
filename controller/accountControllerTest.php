@@ -7,8 +7,11 @@ if (isset($_POST["type"])) {
         case 'add':
             handleAddAccount($newAcc);
             break;
-        case 'save':
-            handleSaveAccount($newAcc);
+        case 'viewUser':
+            handleViewAccount($newAcc);
+            break;
+        case 'updateUser':
+            handleUpdateAccount($newAcc);
             break;
         case 'delete':
             handleDeleteAccount($newAcc);
@@ -16,7 +19,7 @@ if (isset($_POST["type"])) {
     }
 }
 
-function handleAddAccount($accountModel) {
+function handleUpdateAccount($accountModel){
     $uname = htmlentities($_POST["uname"]);
     $pw = htmlentities($_POST["pw"]);
     $fname = htmlentities($_POST["fname"]);
@@ -25,43 +28,62 @@ function handleAddAccount($accountModel) {
     $nameExt = htmlentities($_POST["nameExt"]);
     $role = htmlentities($_POST["role"]);
     $img = uploadImage('accountPhoto');
-
-    $addAcc = $accountModel->addAccount($uname, $pw, $fname, $middleName, $lastName, $nameExt, $role, $img);
-
-    if ($addAcc) {
-        setSessionMessage(true, "Account Created Successfully!", "Account Creation Failed!!");
+    $id = $_POST["accId"];
+    
+    $updateAcc = $accountModel->updateAccount($id,$uname, $pw, $fname, $middleName, $lastName, $nameExt, $role, $img);  
+    
+    if ($updateAcc) {
+        echo json_encode(['message'=>'succesfully updated the user '.$uname,'status'=>'success']);
     } else {
-        setSessionMessage(false, "Account Created Successfully!", "Account Creation Failed!!");
+        echo json_encode(['message'=>'failed to update user '.$uname,'status'=>'error']);
     }
     
-
 }
 
-function handleSaveAccount($accountModel) {
-    $id = $_POST['id'];
-    $uname = htmlentities($_POST["uname"]);
-    $pw = htmlentities($_POST["pw"]);
-    $fname = htmlentities($_POST["fname"]);
-    $middleName = htmlentities($_POST["mname"]);
-    $lastName = htmlentities($_POST["lname"]);
-    $nameExt = htmlentities($_POST["nameExt"]);
-    $role = htmlentities($_POST["role"]);
-    $img = uploadImage('accountPhoto');
-
-    if ($img !== false) {
-        $updateAcc = $accountModel->updateAccount($id, $uname, $pw, $fname, $middleName, $lastName, $nameExt, $role, $img);
-        setSessionMessage($updateAcc, "Account Updated Successfully!", "Account Update Failed!!");
+function handleViewAccount($accountModel){
+    $id = $_POST["accId"];
+    $result = $accountModel->getAccountById($id);
+    if($result){
+        echo json_encode($result);
     }
 }
+
+function handleAddAccount($accountModel) {
+    header('Content-Type: application/json');
+    // For debugging
+    error_log('Inside handleAddAccount function');
+
+    try {
+        $uname = htmlentities($_POST["uname"]);
+        $pw = htmlentities($_POST["pw"]);
+        $fname = htmlentities($_POST["fname"]);
+        $middleName = htmlentities($_POST["mname"]);
+        $lastName = htmlentities($_POST["lname"]);
+        $nameExt = htmlentities($_POST["nameExt"]);
+        $role = htmlentities($_POST["role"]);
+        $img = uploadImage('accountPhoto');
+
+        $addAcc = $accountModel->addAccount($uname, $pw, $fname, $middleName, $lastName, $nameExt, $role, $img);
+
+        if ($addAcc) {
+            echo json_encode(['message' => 'Successfully created user ' .$uname. 'as ' .$role, 'status' => 'success']);
+        } else {
+            echo json_encode(['message' => 'Failed to create the user ' .$uname. 'as ' .$role, 'status' => 'error']);
+        }
+    } catch (Exception $e) {
+        echo json_encode(['message' => 'Server error: ' . $e->getMessage(), 'status' => 'error']);
+    }
+}
+
 
 function handleDeleteAccount($accountModel) {
     $id = $_POST['id'];
     $deleteAcc = $accountModel->softDeleteAccount($id);
-    setSessionMessage($deleteAcc, "Account Deleted Successfully!", "Account Deletion Failed!!");
-}
-
-function setSessionMessage($success, $successMessage, $failureMessage) {
-    $_SESSION['message'] = $success ? $successMessage : $failureMessage;
+    if($deleteAcc){
+        echo json_encode(['message'=>'Successfully deleted the user'.$id,'status'=>'success']);
+    } else {
+        echo json_encode(['message'=>'Failed to delete user'.$id,'status'=>'error']);
+    }
 }
 
 function uploadImage($fieldName) {
@@ -95,7 +117,7 @@ function uploadImage($fieldName) {
     }
 
     if (!empty($errors)) {
-        echo json_encode($errors);
+        
         return false;
     }
 

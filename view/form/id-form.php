@@ -18,7 +18,7 @@
         <div class="tab-pane fade show active" id="pills-student" role="tabpanel" aria-labelledby="student"
             tabindex="0">
             <div class="row p-0 m-0">
-                <div class="col-lg-7 col-md-12 py-1">
+                <div class=" col-md-12 py-1">
                     <div id="page" class="site">
                         <div class="form-box">
                             <div class="form-progress text-center">
@@ -44,7 +44,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <form id="studentForm" action="post">
+                            <form id="studentForm" method="post" enctype="multipart/form-data">
                                 <div class="form-one form-step active">
                                     <h3>Student Info</h3>
                                     <p>Enter your basic information correctly</p>
@@ -174,7 +174,7 @@
                     </div>
                 </div>
                 <!-- id layout -->
-                <div class="col-lg-5 col-md-12 py-1 px-5 text-center">
+                <!-- <div class="col-lg-5 col-md-12 py-1 px-5 text-center">
                     <h2 class="pb-4">ID Layout</h2>
                     <div class="row flex-row">
                         <div class="col-md-6">
@@ -186,7 +186,7 @@
                                 alt="Student ID Back">
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 

@@ -11,7 +11,7 @@ $theme-colors-rgb: (
   "warning": to-rgb($warning),
   "danger": to-rgb($danger),
   "light": to-rgb($light),
-  "dark": to-rgb($dark)
+  "dark": to-rgb($dark),
 ) !default;
 // Define $theme-colors-text
 $theme-colors-text: (
@@ -22,17 +22,18 @@ $theme-colors-text: (
   "warning": #ffc107,
   "danger": #dc3545,
   "light": #f8f9fa,
-  "dark": #343a40
+  "dark": #343a40,
 );
 $theme-colors-bg-subtle: (
-  "primary": #007bff, // Example color values
+  "primary": #007bff,
+  // Example color values
   "secondary": #6c757d,
   "success": #28a745,
   "info": #17a2b8,
   "warning": #ffc107,
   "danger": #dc3545,
   "light": #f8f9fa,
-  "dark": #343a40
+  "dark": #343a40,
 );
 $theme-colors-border-subtle: (
   "primary": #007bff,
@@ -42,40 +43,43 @@ $theme-colors-border-subtle: (
   "warning": #ffc107,
   "danger": #dc3545,
   "light": #f8f9fa,
-  "dark": #343a40
+  "dark": #343a40,
 );
 // Define $theme-colors-text-dark
 $theme-colors-text-dark: (
-  "primary": #007bff, // Example color values
+  "primary": #007bff,
+  // Example color values
   "secondary": #6c757d,
   "success": #28a745,
   "info": #17a2b8,
   "warning": #ffc107,
   "danger": #dc3545,
   "light": #f8f9fa,
-  "dark": #343a40
+  "dark": #343a40,
 );
 // Define $theme-colors-bg-subtle-dark
 $theme-colors-bg-subtle-dark: (
-  "primary": #007bff, // Example color values
+  "primary": #007bff,
+  // Example color values
   "secondary": #6c757d,
   "success": #28a745,
   "info": #17a2b8,
   "warning": #ffc107,
   "danger": #dc3545,
   "light": #f8f9fa,
-  "dark": #343a40
+  "dark": #343a40,
 );
 // Define $theme-colors-border-subtle-dark
 $theme-colors-border-subtle-dark: (
-  "primary": #007bff, // Example color values
+  "primary": #007bff,
+  // Example color values
   "secondary": #6c757d,
   "success": #28a745,
   "info": #17a2b8,
   "warning": #ffc107,
   "danger": #dc3545,
   "light": #f8f9fa,
-  "dark": #343a40
+  "dark": #343a40,
 );
 
 // Define gutter sizes
@@ -85,7 +89,7 @@ $gutters: (
   "2": 0.5rem,
   "3": 1rem,
   "4": 1.5rem,
-  "5": 3rem
+  "5": 3rem,
 );
 
 $utilities-border-colors: (
@@ -96,7 +100,7 @@ $utilities-border-colors: (
   "warning": $warning,
   "danger": $danger,
   "light": $light,
-  "dark": $dark
+  "dark": $dark,
 );
 
 $utilities-border-subtle: (
@@ -107,7 +111,7 @@ $utilities-border-subtle: (
   "warning": lighten($warning, 10%),
   "danger": lighten($danger, 10%),
   "light": lighten($light, 10%),
-  "dark": lighten($dark, 10%)
+  "dark": lighten($dark, 10%),
 );
 
 $negative-spacers: (
@@ -115,7 +119,7 @@ $negative-spacers: (
   "-2": -0.5rem,
   "-3": -1rem,
   "-4": -1.5rem,
-  "-5": -3rem
+  "-5": -3rem,
 );
 
 $utilities-text-colors: (
@@ -126,7 +130,7 @@ $utilities-text-colors: (
   "warning": $warning,
   "danger": $danger,
   "light": $light,
-  "dark": $dark
+  "dark": $dark,
 );
 
 $utilities-text-emphasis-colors: (
@@ -137,13 +141,13 @@ $utilities-text-emphasis-colors: (
   "warning": $warning,
   "danger": $danger,
   "light": $light,
-  "dark": $dark
+  "dark": $dark,
 );
 
 $utilities-links-underline: (
   "always": underline,
   "hover": hover-underline,
-  "none": none
+  "none": none,
 );
 
 $utilities-bg-colors: (
@@ -154,7 +158,7 @@ $utilities-bg-colors: (
   "warning": $warning,
   "danger": $danger,
   "light": $light,
-  "dark": $dark
+  "dark": $dark,
 );
 
 $utilities-bg-subtle: (
@@ -165,7 +169,7 @@ $utilities-bg-subtle: (
   "warning": lighten($warning, 10%),
   "danger": lighten($danger, 10%),
   "light": lighten($light, 10%),
-  "dark": lighten($dark, 10%)
+  "dark": lighten($dark, 10%),
 );
 
 // Include remainder of required parts
@@ -188,34 +192,39 @@ $utilities-bg-subtle: (
 
 // Your custom styles
 // body
-*{
+* {
   margin: 0;
   padding: 0;
 }
-*,::before,::after{
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
-html{
+html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   padding-top: 66px;
   height: 100%;
 }
-// body end 
+// body end
 // navbar
 .navbar {
   background-color: #c9000c;
 }
-.navbar-nav, .nav-link {
+.navbar-nav,
+.nav-link {
   gap: 5%;
   font-size: 1.05rem !important;
 }
-.navbar-nav, a.nav-link {
+.navbar-nav,
+a.nav-link {
   color: #f8f9fa;
-} 
-.navbar-brand, #nav-logo {
+}
+.navbar-brand,
+#nav-logo {
   max-height: 50px; /* Adjust based on your navbar height */
   width: auto;
   // margin-right: 5px;
@@ -232,12 +241,12 @@ body {
   // font-size: 1em !important;
   // padding-inline: 0.6rem !important;
   border-color: beige !important;
-} 
+}
 // navbar end
 // body & bg
-.body-bg{
+.body-bg {
   background-image: url("../assets/bg/hero-page-bg.svg");
-  height: calc(100vh - 67px);  
+  height: calc(100vh - 67px);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -246,13 +255,13 @@ body {
   align-items: center;
 }
 
-.upress-text-area{
+.upress-text-area {
   background: #990000;
   color: #fff;
   font-size: 21px;
   font-weight: 400;
 }
-.upress-text-area p{
+.upress-text-area p {
   margin: 0;
 }
 
@@ -260,7 +269,7 @@ body {
 // body & bg end
 // footer content & background
 footer {
-  background: linear-gradient(to right, #4F1212,#c9000c);
+  background: linear-gradient(to right, #4f1212, #c9000c);
   margin: 0;
   padding: 45px 0;
 }
@@ -270,27 +279,27 @@ footer {
   align-items: center;
 }
 .single-box p#text-content {
-  color: #BF0000;
+  color: #bf0000;
   font-weight: 800;
   margin: 0;
   text-align: center;
 }
-.single-box p#contact-content{
+.single-box p#contact-content {
   color: #fff;
   line-height: 1.5;
   font-weight: 500;
 }
-.single-box h3{
+.single-box h3 {
   color: #fff;
   font-weight: 700;
 }
-.single-box ul{
+.single-box ul {
   padding: 0;
 }
 .single-box li {
   text-align: center;
 }
-.single-box ul li a{
+.single-box ul li a {
   color: #fff;
   line-height: 1.8;
   font-weight: 700;
@@ -304,7 +313,7 @@ footer {
   max-width: fit-content;
   border-radius: 28px;
   color: #fff;
-  padding: .25rem;
+  padding: 0.25rem;
 }
 .form-container .nav .nav-link {
   color: #fff;
@@ -312,26 +321,26 @@ footer {
   width: 100px;
   text-align: center;
   --bs-nav-link-padding-x: 0;
-  --bs-nav-link-padding-y: .25em;
+  --bs-nav-link-padding-y: 0.25em;
 }
 .form-container .nav .nav-link:hover {
-  background-color: #BF0000;
-  transition: background-color .5s, border-color .5s ease-in-out;
+  background-color: #bf0000;
+  transition: background-color 0.5s, border-color 0.5s ease-in-out;
 }
 .form-container .nav .active {
   background-color: #990000 !important;
 }
 
-
 // stepper
-a{
+a {
   text-decoration: none;
   /* color: inherit; */
 }
-ul{
+ul {
   list-style: none;
 }
-p.lead#upressFR,p.lead#effectDate{
+p.lead#upressFR,
+p.lead#effectDate {
   font-size: 14px;
   margin-bottom: 0;
   font-weight: 500;
@@ -341,9 +350,9 @@ p.lead#upressFR,p.lead#effectDate{
   flex-direction: column;
 }
 
-.form-box .form-progress{
+.form-box .form-progress {
   position: relative;
-  padding: 0 .5em;
+  padding: 0 0.5em;
   min-width: 250px;
 }
 .form-progress ul.progress-steps {
@@ -352,12 +361,12 @@ p.lead#upressFR,p.lead#effectDate{
   align-items: center;
   justify-content: center;
   gap: 2em;
-  position: sticky; 
-  top: 170px; 
+  position: sticky;
+  top: 170px;
   z-index: 99;
 }
 
-.form-progress ul.progress-steps li{
+.form-progress ul.progress-steps li {
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -399,7 +408,7 @@ p.lead#upressFR,p.lead#effectDate{
 // form
 .form-box form {
   width: 100%;
-  padding-inline: .2em;
+  padding-inline: 0.2em;
   background-color: #fff;
 }
 
@@ -409,14 +418,14 @@ form > div {
 }
 form > div p {
   color: $gray-700;
-  margin-bottom: .8em;
+  margin-bottom: 0.8em;
 }
 form > div > div:not(.checkbox) {
   display: flex;
   flex-direction: column;
-  margin-bottom: .8em;
+  margin-bottom: 0.8em;
 }
-input[type=radio] {
+input[type="radio"] {
   font-size: 18px;
 }
 form :where(input:not(.form-check-input), select) {
@@ -463,27 +472,26 @@ form > div.active {
 .group-btn [class*="btn-"] {
   background-color: #c9000c;
   color: #fff;
-  padding: .6em 1.5em;
-  border: 4px solid #BF0000;
+  padding: 0.6em 1.5em;
+  border: 4px solid #bf0000;
   border-radius: 30px;
   cursor: pointer;
-  -webkit-transition: background-color .3s, border-color .3s ease-out;
-  transition: background-color .3s, border-color .3s ease-out;
+  -webkit-transition: background-color 0.3s, border-color 0.3s ease-out;
+  transition: background-color 0.3s, border-color 0.3s ease-out;
 }
 .group-btn [class*="btn-"]:disabled {
   background-color: $gray-500;
   border-color: $gray-300;
   cursor: not-allowed;
 }
-.group-btn [class*="btn-"]:hover:not(:disabled)  {
+.group-btn [class*="btn-"]:hover:not(:disabled) {
   background-color: #990000;
   border-color: #c9000c;
-} 
+}
 ::placeholder {
   color: $gray-500;
 }
 // stepper end
-
 
 // media queries
 @media (max-width: 576px) {
@@ -506,11 +514,11 @@ form > div.active {
     padding-inline: 0.6rem !important;
   }
   .body-bg .body-content {
-    padding-left: .8rem !important;
+    padding-left: 0.8rem !important;
   }
 }
 
-@media (min-width: 577px) and (max-width: 768px){
+@media (min-width: 577px) and (max-width: 768px) {
   .navbar-brand {
     font-size: 1.15rem !important;
   }
@@ -521,7 +529,7 @@ form > div.active {
     gap: 2em;
   }
 }
-@media (min-width: 769px) and (max-width: 992px){
+@media (min-width: 769px) and (max-width: 992px) {
   .navbar-brand {
     font-size: 1.2rem !important;
   }
@@ -534,7 +542,7 @@ form > div.active {
     gap: 0;
   }
   .form-progress ul.progress-steps li:not(:last-child)::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 19px;
     top: 30px;
@@ -550,10 +558,10 @@ form > div.active {
     position: relative;
     top: auto;
     font-size: inherit;
-   }
-   .form-progress ul.progress-steps li p span {
-     display: block;
-   }
+  }
+  .form-progress ul.progress-steps li p span {
+    display: block;
+  }
 }
 
 @media (min-width: 993px) {
@@ -567,9 +575,9 @@ form > div.active {
   .form-progress ul.progress-steps {
     flex-direction: column;
     gap: 0;
-  }  
+  }
   .form-progress ul.progress-steps li:not(:last-child)::before {
-    content: ''; 
+    content: "";
     position: absolute;
     left: 20px;
     top: 30px;
@@ -585,13 +593,12 @@ form > div.active {
   }
 
   .form-progress ul li p {
-   position: relative;
-   top: auto;
-   font-size: inherit;
+    position: relative;
+    top: auto;
+    font-size: inherit;
   }
   .form-progress ul.progress-steps li p span {
     display: block;
   }
-  
 }
 // media end
