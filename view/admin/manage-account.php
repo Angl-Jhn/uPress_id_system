@@ -7,12 +7,12 @@
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                     <div class="row text-start py-3 px-2">
-                        <div class="col-md-8 col-12 align-items-center d-flex justify-content-start">
+                        <!-- <div class="col-md-8 col-12 align-items-center d-flex justify-content-start">
                             <div class="card-header">
                                 <h2>Account Management</h2>
                             </div>
-                        </div>
-                        <div class="col-md-4 col-12 align-items-center d-flex justify-content-end">
+                        </div> -->
+                        <div class="col-md-12 col-12 align-items-center d-flex justify-content-end">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#addAccountModal">
                                 <i class="fa-solid fa-circle-plus"></i> Account

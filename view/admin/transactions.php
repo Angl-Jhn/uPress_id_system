@@ -12,10 +12,14 @@
                                 <h2>Client Transactions</h2>
                             </div>
                         </div> -->
-                        <div class="col-md-12 col-12 align-items-center d-flex justify-content-end">
+                        <div class="col-md-12 col-12 align-items-center d-flex justify-content-end gap-3">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#StudentModal">
                                 <i class="fa-solid fa-circle-plus"></i> Student
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#EmployeeModal">
+                                <i class="fa-solid fa-circle-plus"></i> Employee
                             </button>
                         </div>
                         <div class="col-md-12 col-12 align-items-center py-4 px-0 text-center d-flex justify-content-center"
@@ -69,16 +73,34 @@
                                                             data-id="<?= $item['client_id']; ?>" data-bs-toggle="modal"
                                                             data-bs-target="#view">
                                                             <i class="fa-solid fa-eye" style="padding: 0;"></i>
-                                                            <!-- edit -->
+                                                            <!-- view -->
                                                         </button>
+                                                        <?php
+                                                        if($item['clientType'] == 'student') {
+                                                        ?>
                                                         <button type="button"
                                                             class="btn btn-success btn-cirlce btn-sm edit-btn2"
                                                             data-id="<?= $item['client_id']; ?>" data-bs-toggle="modal"
-                                                            data-bs-target="#editAccountModal">
+                                                            data-bs-target="#editStudentModal">
                                                             <i class="fa-solid fa-pen-to-square"
                                                                 style="padding: 0;"></i>
                                                             <!-- edit -->
                                                         </button>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                        <button type="button"
+                                                            class="btn btn-success btn-cirlce btn-sm edit-btn2"
+                                                            data-id="<?= $item['client_id']; ?>" data-bs-toggle="modal"
+                                                            data-bs-target="#editEmployeeModal">
+                                                            <i class="fa-solid fa-pen-to-square"
+                                                                style="padding: 0;"></i>
+                                                            <!-- edit -->
+                                                        </button>
+                                                        <?php
+                                                        }
+                                                        ?>
+
                                                         <button type="button"
                                                             class="btn btn-danger btn-cirlce btn-sm delete-btn2"
                                                             data-id="<?= $item['client_id']; ?>">
@@ -260,12 +282,152 @@
                 </div>
             </div>
             <!-- edit modal -->
-            <div class="modal fade" id="editAccountModal" tabindex="-1" aria-labelledby="editAccountModalLabel"
+            <div class="modal fade" id="editStudentModal" tabindex="-1" aria-labelledby="editStudentModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-2" id="staticBackdropLabel">Student Info</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="post" id="editStudent" enctype="multipart/form-data">
+                            <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="hidden" id="editformId" name="clientID">
+                                            <!-- Radio Buttons -->
+                                            <div
+                                                class="container-fluid d-flex flex-row justify-content-center align-content-center m-0 py-2 gap-2">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="formType"
+                                                        value="New" id="editType" checked onclick="text(0)">
+                                                    <label class="form-check-label ps-2" for="new">New</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="formType"
+                                                        value="Replacement" id="editType" onclick="text(1)">
+                                                    <label class="form-check-label ps-2" for="rep">Replacement</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="formType"
+                                                        value="Lost" id="editType" onclick="text(2)">
+                                                    <label class="form-check-label ps-2" for="lost">Lost</label>
+                                                </div>
+                                            </div>
+                                            <!-- Radio Buttons End -->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h3>Enter your basic information correctly</h3>
+                                            <div class="mb-3">
+                                                <label for="">Student Number</label>
+                                                <input type="text" name="studnum" id="edit-studId" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">WMSU Email</label>
+                                                <input type="text" name="wmsuEmail" id="edit-wmsuEmail" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">First Name</label>
+                                                <input type="text" name="firstName" id="edit-fname" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Middle Name</label>
+                                                <input type="text" name="middleName" id="edit-mname">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Family Name</label>
+                                                <input type="text" name="familyName" id="edit-famname" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Name Ext.</label>
+                                                <input type="text" name="nameExt" id="edit-ext">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Program/Strand</label>
+                                                <select class="js-example-theme-single" name="programs"
+                                                    id="edit-select-program">
+                                                    <option value="">Select a program</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h3>In Case of Emergency Please Notify:</h3>
+                                            <div class="mb-3">
+                                                <label for="">First Name</label>
+                                                <input type="text" name="firstNameEmg" id="edit-fnameEmg" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Middle Name</label>
+                                                <input type="text" name="middleNameEmg" id="edit-mnameEmg" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Family Name</label>
+                                                <input type="text" name="familyNameEmg" id="edit-famnameEmg" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Name Ext.</label>
+                                                <input type="text" name="nameExtEmg" id="edit-extEmg" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Address</label>
+                                                <input type="text" name="address" id="edit-addEmg" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Contact Number</label>
+                                                <input type="number" name="contactNumber" id="edit-contactEmg" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h3>Attachments</h3>
+                                            <div class="mb-1">
+                                                <label for="user-pic" class="form-label">2x2 Picture</label>
+                                                <input class="form-control" name="userPhoto[]" type="file"
+                                                    id="userPhoto">
+                                            </div>
+                                            <div class="mb-1">
+                                                <label for="signature" class="form-label">Signature</label>
+                                                <input class="form-control" name="signature[]" type="file"
+                                                    id="signature">
+                                            </div>
+                                            <div class="mb-1">
+                                                <label for="CoR" class="form-label">Certificate of Registration</label>
+                                                <input class="form-control" name="cor[]" type="file" id="cor">
+                                            </div>
+                                            <div class="stud-replacement mb-1">
+                                                <label for="frontID" class="form-label">Old ID - Front</label>
+                                                <input class="form-control" name="oldId[]" type="file" id="frontId">
+                                            </div>
+                                            <div class="stud-replacement mb-1">
+                                                <label for="backID" class="form-label">Old ID - Back</label>
+                                                <input class="form-control" name="oldIdBack[]" type="file" id="backId">
+                                            </div>
+                                            <div class="stud-affidavit mb-1">
+                                                <label for="affidavit" class="form-label">Affidavit of Loss</label>
+                                                <input class="form-control" name="aol[]" type="file" id="affidavit">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" name="addStud" id="add" class="btn btn-primary">Add
+                                    Student</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-2" id="staticBackdropLabel">Employee Info</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form method="post" id="editStudent" enctype="multipart/form-data">
