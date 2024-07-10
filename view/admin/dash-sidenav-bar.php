@@ -23,7 +23,7 @@
                         <a href="?" class="sidebar-link collapsed" data-bs-target="#layouts" data-bs-toggle="collapse"
                             aria-expanded="false">
                             <i class="fa-regular fa-id-badge"></i>
-                            ID Layout
+                            ID Layout Management
                         </a>
                         <ul id="layouts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
@@ -41,21 +41,16 @@
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="settings" class="sidebar-link">
-                            <i class="fa-solid fa-sliders"></i>
-                            ID Settings
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
                         <a href="manage-accounts" class="sidebar-link">
                             <i class="fa-solid fa-user-tie"></i>
                             Account Management
                         </a>
                     </li>
-                    <li class="sidebar-item mb-3">
-                        <a href="my-profile" class="sidebar-link">
-                            <i class="fa-solid fa-user-tie"></i>
-                            <?= $acctype; ?> Profile
+
+                    <li class="sidebar-item">
+                        <a href="settings" class="sidebar-link">
+                            <i class="fa-solid fa-sliders"></i>
+                            Settings
                         </a>
                     </li>
                     <li class="sidebar-item">
