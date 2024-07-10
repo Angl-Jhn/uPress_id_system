@@ -17,5 +17,6 @@
                     <p style="color: black; text-align: center; position: relative; z-index: 1; font-size: 14px; font-weight: 900; transform: translate(0%, -1600%)">GILDA D. ESTRADA</p>
                     <p style="color: black; text-align: center; position: relative; z-index: 1; font-size: 10px; transform: translate(0%, -2330%)">San Roque Gil S. Estrada Compound Z.C.</p>
                     <p style="color: black; text-align: center; position: relative; z-index: 1; font-size: 12px; font-weight: 900; transform: translate(0%, -2000%)">0906-164-8925</p>
+                    <img src="../../assets/id_layouts/signature.png" style="position: relative; z-index: 2; transform: translate(0%, -530%); max-width:100px; max-height:50px; display: block; margin: auto;">
                 </div>
             </main>
