@@ -77,13 +77,13 @@
                 <div class="navbar-collapse navbar">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-2">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-4">
                                 Welcome, <?= $_SESSION['role']; ?>
                             </a>
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-1">
+                            <!-- <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-1">
                                 <img src="../../uploads/account/<?=$_SESSION['accountPhoto'];?>"
                                     class="avatar img-fluid rounded-circle" alt="photo">
-                            </a>
+                            </a> -->
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a href="my-profile" class="dropdown-item">
                                     <?= $acctype; ?> Profile

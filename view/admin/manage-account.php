@@ -47,7 +47,7 @@
                                             </td>
                                             <td style="max-width: 80px; overflow: hidden; text-overflow: ellipsis;"
                                                 title="<?= $item['password'] ?>">
-                                                <?= strlen($item['password']) > 15 ? substr($item['password'], 0, 15) . '...' : $item['password'] ?>
+                                                <?= strlen($item['password']) > 6 ? substr($item['password'], 0, 6) . '...' : $item['password'] ?>
                                             </td>
                                             <td style="max-width: 60px; overflow: hidden; text-overflow: ellipsis;"
                                                 title="<?= $item['firstName']." ".$item['middleName']." ".$item['lastName']." ".$item['nameExt'] ?>">

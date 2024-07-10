@@ -916,11 +916,11 @@ $(document).ready(function() {
 $(document).on('click', '.delete-btn2', function(e) {
     e.preventDefault();
     var id = $(this).data('client_id');
-
+    console.log(id)
     if (confirm('Are you sure you want to delete this client?')) {
         var formData = new FormData();
         formData.append('id', id);
-        formData.append('type2', 'delete');
+        formData.append('type', 'delete');
         $.ajax({
             url: '/del-client',
             type: 'POST',
@@ -929,7 +929,7 @@ $(document).on('click', '.delete-btn2', function(e) {
             contentType: false,
             success: function(response) {
                 console.log(response);
-                var res = response;
+                var res = JSON.parse(response);
                 if (res.success) {
                     alert(res.message);
                     row.remove();

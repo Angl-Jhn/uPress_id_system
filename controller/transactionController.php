@@ -76,7 +76,7 @@ function handleViewClients($id,$objModel){
 }
 
 function handleDeleteClient($objModel) {
-    $id = $_POST['client_id'];
+    $id = $_POST['clientID'];
     $deleteAcc = $objModel->softDeleteClient($id);
     if($deleteAcc){
         echo json_encode(['message'=>'Successfully deleted client '.$id,'status'=>'success']);

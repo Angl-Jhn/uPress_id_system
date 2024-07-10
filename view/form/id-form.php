@@ -174,26 +174,13 @@
                     </div>
                 </div>
                 <!-- id layout -->
-                <!-- <div class="col-lg-5 col-md-12 py-1 px-5 text-center">
-                    <h2 class="pb-4">ID Layout</h2>
-                    <div class="row flex-row">
-                        <div class="col-md-6">
-                            <img src="../../assets/custom/id-layout/front-student.svg" class="img-fluid"
-                                alt="Student ID Front">
-                        </div>
-                        <div class="col-md-6">
-                            <img src="../../assets/custom/id-layout/back-student.svg" class="img-fluid"
-                                alt="Student ID Back">
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
 
         <!-- employee tab -->
         <div class="tab-pane fade" id="pills-employee" role="tabpanel" aria-labelledby="employee" tabindex="0">
             <div class="row p-0 m-0">
-                <div class="col-lg-7 col-md-12 py-1">
+                <div class="col-md-12 py-1">
                     <div id="page" class="site">
                         <div class="form-box">
                             <div class="form-progress text-center">
@@ -289,11 +276,6 @@
                                     <div class="birth">
                                         <label for="">Date of Birth</label>
                                         <input type="date" name="dateofbirth" id="dateofbirth" required>
-                                        <!-- <div class="grouping">
-                                            <input type="text" pattern="[0-9]*" name="day" placeholder="DD">
-                                            <input type="text" pattern="[0-9]*" name="month" placeholder="MM">
-                                            <input type="text" pattern="[0-9]*" name="year" placeholder="YYYY">
-                                        </div> -->
                                     </div>
                                     <div>
                                         <label for="">Contact Number</label>
@@ -380,19 +362,6 @@
                     </div>
                 </div>
                 <!-- id layout -->
-                <!-- <div class="col-lg-5 col-md-12 py-1 px-5 text-center">
-                    <h2 class="pb-4">ID Layout</h2>
-                    <div class="row flex-row">
-                        <div class="col-md-6">
-                            <img src="../../assets/custom/id-layout/front-student.svg" class="img-fluid"
-                                alt="Student ID Front">
-                        </div>
-                        <div class="col-md-6">
-                            <img src="../../assets/custom/id-layout/back-student.svg" class="img-fluid"
-                                alt="Student ID Back">
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
