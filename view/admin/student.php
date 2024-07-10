@@ -14,5 +14,8 @@
                     <p style="color: black; text-align: center; position: relative; z-index: 1; font-size: 5px; font-weight: bold; transform: translate(-6.4%, -1930%)">2025-2026</p>
                     <p style="color: black; text-align: center; position: relative; z-index: 1; font-size: 5px; font-weight: bold; transform: translate(-6.4%, -2020%)">2026-2027</p>
                     <p style="color: black; text-align: center; position: relative; z-index: 1; font-size: 5px; font-weight: bold; transform: translate(-6.4%, -2110%)">2027-2028</p>
+                    <p style="color: black; text-align: center; position: relative; z-index: 1; font-size: 14px; font-weight: 900; transform: translate(0%, -1600%)">GILDA D. ESTRADA</p>
+                    <p style="color: black; text-align: center; position: relative; z-index: 1; font-size: 10px; transform: translate(0%, -2330%)">San Roque Gil S. Estrada Compound Z.C.</p>
+                    <p style="color: black; text-align: center; position: relative; z-index: 1; font-size: 12px; font-weight: 900; transform: translate(0%, -2000%)">0906-164-8925</p>
                 </div>
             </main>
