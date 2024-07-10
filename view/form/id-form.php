@@ -380,7 +380,7 @@
                     </div>
                 </div>
                 <!-- id layout -->
-                <div class="col-lg-5 col-md-12 py-1 px-5 text-center">
+                <!-- <div class="col-lg-5 col-md-12 py-1 px-5 text-center">
                     <h2 class="pb-4">ID Layout</h2>
                     <div class="row flex-row">
                         <div class="col-md-6">
@@ -392,7 +392,7 @@
                                 alt="Student ID Back">
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

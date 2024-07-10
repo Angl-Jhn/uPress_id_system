@@ -39,7 +39,6 @@ class StudentModel{
             // variable res as lastinsertid
             $res = $db->lastInsertId();
             if($res){
-                var_dump($cor);
                 $stmt1 = $db->prepare("
                     INSERT INTO student (clientIDStudent, studentNum, collegeProgram, COR, oldIDFront, oldIDBack, affidavitOfLoss) 
                     VALUES (:clientIDstud, :studnum, :programs, :cor, :oldId, :oldIdBack, :aol)

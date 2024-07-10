@@ -9,24 +9,31 @@ $clients = new TransactionManageModel();
 // $delClient = $obj->softDeleteClient($id);
 
 if(isset($_POST["type"])){
-    if($_POST["type"] == "student"){
-        switch($_POST["type2"]) {
+    //if($_POST["type"] == "student"){
+        switch($_POST["type"]) {
             case 'addStud':
                 handleAddStud($Stud);
                 break;
             case 'viewClients':
-                handleViewClients($clients);
+                /*if($_POST["selectedType"] == "student"){
+                    var_dump("student");
+                } else {
+                    var_dump("employee");
+                }*/
+                
+                handleViewClients($_POST["clientID"],$clients);
                 break;
             case 'delete':
                 handleDeleteClient($clients);
                 break;
+
             
         }
-    }
+    //}
 }
 function handleAddStud($objModel){
     // var_dump($objModel);
-    $type = $_POST["type"];
+    $type = "student";
     $formtype = $_POST["formType"];
     $studId = $_POST["studnum"];
     $wmsuEmail = $_POST["wmsuEmail"];
@@ -41,12 +48,12 @@ function handleAddStud($objModel){
     $emgNameExt = $_POST["nameExtEmg"];
     $emgAddress = $_POST["address"];
     $emgContact = $_POST["contactNumber"];
-    $photo = uploadImage('userPhoto');
-    $signature = uploadImage('signature');
-    $cor = uploadImage('cor');
-    $oldId = uploadImage('oldId');
-    $oldIdBack = uploadImage('oldIdBack');
-    $aol = uploadImage('aol');
+    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
+    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
+    $cor = uploadImage('cor') ? uploadImage('cor'): "";
+    $oldId = uploadImage('oldId') ? uploadImage('oldId'):"";
+    $oldIdBack = uploadImage('oldIdBack')?uploadImage('oldIdBack'):"";
+    $aol = uploadImage('aol') ? uploadImage('aol'):"";
 
     $res1 = $objModel->requestId(
         $type, $formtype, $studId, $wmsuEmail, $firstname, $middlename, $familyname, $nameExt,
@@ -60,12 +67,12 @@ function handleAddStud($objModel){
 
 }
 
-function handleViewClients($objModel){
-    $id = $_POST("client_id");
-    $result = $objModel->getAll($id);
+function handleViewClients($id,$objModel){
+    $result = $objModel->getAccountById($id);
     if($result){
         echo json_encode($result);
     }
+
 }
 
 function handleDeleteClient($objModel) {
@@ -109,7 +116,6 @@ function uploadImage($fieldName) {
     }
 
     if (!empty($errors)) {
-        echo json_encode($errors);
         return false;
     }
 

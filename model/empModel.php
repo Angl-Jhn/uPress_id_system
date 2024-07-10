@@ -38,7 +38,6 @@ class EmployeeModel{
             // variable res as lastinsertid
             $res = $db->lastInsertId();
             if($res){
-                 var_dump($res);
                 $stmt1 = $db->prepare("
                     INSERT INTO 
                     employee (clientIDEmp, empNum, plantillaPos, designation, residentialAddress, birthDate, contactNum, civilStatus, bloodType, hrmoScanned, hrmoNew, affidavitOfLoss) 
