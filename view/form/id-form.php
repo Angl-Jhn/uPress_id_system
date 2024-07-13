@@ -226,7 +226,7 @@
                                     </div>
                                     <div class="group-btn">
                                         <button type="button" class="btn-prev" disabled>Back</button>
-                                        <button type="button" class="btn-next">Next Step</button>
+                                        <button type="button" class="btn-next">Next</button>
                                         <button type="submit" class="btn-submit" disabled>Submit</button>
                                     </div>
                                 </form>
@@ -469,7 +469,7 @@
                                     </div>
                                     <div class="group-btn">
                                         <button type="button" class="btn-prev" disabled>Back</button>
-                                        <button type="button" class="btn-next">Next Step</button>
+                                        <button type="button" class="btn-next">Next</button>
                                         <button type="submit" class="btn-submit" disabled>Submit</button>
                                     </div>
                                 </form>

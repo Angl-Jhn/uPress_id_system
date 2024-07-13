@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (active === 1) {
-        $(".btn-prev").hide();
         prevButton.disabled = true;
         $(".btn-submit").hide();
         submitButton.disabled = true;

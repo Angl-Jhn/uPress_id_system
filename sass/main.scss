@@ -486,9 +486,9 @@ form > div.active {
 .group-btn [class*="btn-"] {
   background-color: #c9000c;
   color: #fff;
-  padding: 0.6em 1.5em;
-  border: 4px solid #bf0000;
-  border-radius: 30px;
+  padding: 0.2em 1.2em;
+  border: 4px solid #c9000c; //bf0000
+  border-radius: 50px;
   cursor: pointer;
   -webkit-transition: background-color 0.3s, border-color 0.3s ease-out;
   transition: background-color 0.3s, border-color 0.3s ease-out;
@@ -500,7 +500,7 @@ form > div.active {
 }
 .group-btn [class*="btn-"]:hover:not(:disabled) {
   background-color: #990000;
-  border-color: #c9000c;
+  border-color: #990000;
 }
 ::placeholder {
   color: $gray-500;
