@@ -80,9 +80,9 @@ function handleDeleteAccount($accountModel) {
     $id = $_POST['id'];
     $deleteAcc = $accountModel->softDeleteAccount($id);
     if($deleteAcc){
-        echo json_encode(['message'=>'Successfully deleted the user'.$id,'status'=>'success']);
+        echo json_encode(['message' => "Successfully deleted the user $id",'status'=>'success']);
     } else {
-        echo json_encode(['message'=>'Failed to delete user'.$id,'status'=>'error']);
+        echo json_encode(['message' => "Failed to delete user $id",'status'=>'error']);
     }
 }
 

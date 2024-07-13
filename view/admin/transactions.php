@@ -7,11 +7,11 @@
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                     <div class="row text-start py-3 px-2">
-                        <!-- <div class="col-md-8 col-12 align-items-center d-flex justify-content-start">
+                        <div class="col-md-8 col-12 align-items-center d-flex justify-content-start">
                             <div class="card-header">
                                 <h2>Client Transactions</h2>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="col-md-12 col-12 align-items-center d-flex justify-content-end gap-3">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#StudentModal">

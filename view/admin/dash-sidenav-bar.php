@@ -70,10 +70,10 @@
                 <button class="btn" id="sidebar-toggle" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="card-header px-2">
-                    <!-- <h2><?= $page_name; ?></h2> -->
+                <!-- <div class="card-header px-2">
+                    <h2><?= $page_name; ?></h2>
                     <h2>default</h2>
-                </div>
+                </div> -->
                 <div class="navbar-collapse navbar">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">

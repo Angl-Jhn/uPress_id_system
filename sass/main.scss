@@ -311,13 +311,13 @@ footer {
 .form-container .nav-box {
   background-color: #570000;
   max-width: fit-content;
-  border-radius: 28px;
+  border-radius: 15px;
   color: #fff;
   padding: 0.25rem;
 }
 .form-container .nav .nav-link {
   color: #fff;
-  border-radius: 30px;
+  border-radius: 12px;
   width: 100px;
   text-align: center;
   --bs-nav-link-padding-x: 0;
@@ -351,7 +351,11 @@ p.lead#effectDate {
 }
 
 .form-box .form-progress {
-  position: relative;
+  // position: relative;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  justify-content: start;
   padding: 0 0.5em;
   min-width: 250px;
 }
@@ -361,9 +365,9 @@ p.lead#effectDate {
   align-items: center;
   justify-content: center;
   gap: 2em;
-  position: sticky;
-  top: 170px;
-  z-index: 99;
+  // position: sticky;
+  // top: 170px;
+  // z-index: 99;
 }
 
 .form-progress ul.progress-steps li {
@@ -412,9 +416,17 @@ p.lead#effectDate {
   background-color: #fff;
 }
 
-form > div {
-  max-width: 450px;
-  margin: 0 auto;
+form .form-layout {
+  height: auto;
+  padding-block: 0.5rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 1rem;
+}
+
+form input,
+form select {
+  width: 100%;
 }
 form > div p {
   color: $gray-700;
@@ -465,9 +477,11 @@ form > div.active {
 // buttons
 .group-btn {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1em;
-  margin-block: 2em;
+  justify-content: center;
+  flex-direction: row;
+  // flex-wrap: wrap;
+  gap: 0.5em;
+  margin-block: 0.5em;
 }
 .group-btn [class*="btn-"] {
   background-color: #c9000c;
@@ -516,6 +530,9 @@ form > div.active {
   .body-bg .body-content {
     padding-left: 0.8rem !important;
   }
+  .form-progress ul.progress-steps li {
+    margin-bottom: 1em;
+  }
 }
 
 @media (min-width: 577px) and (max-width: 768px) {
@@ -527,6 +544,9 @@ form > div.active {
     padding-top: 1em;
     padding-left: 0;
     gap: 2em;
+  }
+  .form-progress ul.progress-steps li {
+    margin-bottom: 1em;
   }
 }
 @media (min-width: 769px) and (max-width: 992px) {

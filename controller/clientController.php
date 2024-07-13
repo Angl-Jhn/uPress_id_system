@@ -178,9 +178,6 @@ if($_POST["type"] == "student"){
             $civilStatus,$bloodType,$emgfname,$emgMname,$emgLname,$emgNameExt,$emgAddress,$emgContact,$photo,$signature,
             $hrmoScanned,$hrmoNew,$aol
         );
-        /*if($res){
-            var_dump($res); 
-        }*/
     }
 }
 }
