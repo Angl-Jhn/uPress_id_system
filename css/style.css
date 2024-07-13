@@ -6884,7 +6884,7 @@ form > div.active {
   justify-content: center;
   flex-direction: row;
   gap: 0.5em;
-  margin-block: 0.5em; }
+  margin-top: 0.5em; }
 
 .group-btn [class*="btn-"] {
   background-color: #c9000c;
