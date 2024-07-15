@@ -233,7 +233,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- id layout -->
                 </div>
             </div>
 
@@ -476,7 +475,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- id layout -->
                 </div>
             </div>
         </div>

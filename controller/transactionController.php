@@ -14,13 +14,10 @@ if(isset($_POST["type"])){
             case 'addStud':
                 handleAddStud($Stud);
                 break;
+            case 'addEmploy':
+                handleAddEmploy($Employ);
+                break;    
             case 'viewClients':
-                /*if($_POST["selectedType"] == "student"){
-                    var_dump("student");
-                } else {
-                    var_dump("employee");
-                }*/
-                
                 handleViewClients($_POST["clientID"],$clients);
                 break;
             case 'delete':
@@ -58,6 +55,47 @@ function handleAddStud($objModel){
     $res1 = $objModel->requestId(
         $type, $formtype, $studId, $wmsuEmail, $firstname, $middlename, $familyname, $nameExt,
             $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol
+    );
+    if ($res1) {
+        echo json_encode(['message'=>'Successfully added '.$firstname.' '.$familyname,'status'=>'success']);
+    } else {
+        echo json_encode(['message'=>'Failed to add'.$firstname.' '.$familyname,'status'=>'error']);
+    }
+
+}
+function handleAddEmploy($objModel){
+    // var_dump($objModel);
+    $type = "employee";
+    $formtype = $_POST["formType"];
+    $idNumber = $_POST["idNumber"];
+    $wmsuEmail = $_POST["wmsuEmail"];
+    $firstname = $_POST["firstName"];
+    $middlename = $_POST["middleName"];
+    $familyname = $_POST["familyName"];
+    $nameExt = $_POST["nameExt"];
+    $rankPos = $_POST["rankPos"];
+    $designation = $_POST["designation"];
+    $residentialAddress = $_POST["residentialAddress"];
+    $dateofbirth = $_POST["dateofbirth"];
+    $contactNum = $_POST["contactNum"];
+    $civilStatus = $_POST["civilStatus"];
+    $bloodType = $_POST["bloodType"];
+    $emgfname = $_POST["firstNameEmg"];
+    $emgMname = $_POST["middleNameEmg"];
+    $emgLname = $_POST["familyNameEmg"];
+    $emgNameExt = $_POST["nameExtEmg"];
+    $emgAddress = $_POST["address"];
+    $emgContact = $_POST["contactNumber"];
+    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
+    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
+    $hrmoscanned = uploadImage('hrmoscanned') ? uploadImage('hrmoscanned'): "";
+    $hrmoNew = uploadImage('hrmoNew') ? uploadImage('hrmoNew'):"";
+    $aol = uploadImage('aol') ? uploadImage('aol'):"";
+
+    $res1 = $objModel->requestId(
+        $type, $formtype, $idNumber, $wmsuEmail, $firstname, $middlename, $familyname, $nameExt,
+            $rankPos, $designation, $residentialAddress, $dateofbirth, $contactNum, $civilStatus, $bloodType,
+            $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $hrmoscanned, $hrmoNew, $aol
     );
     if ($res1) {
         echo json_encode(['message'=>'Successfully added '.$firstname.' '.$familyname,'status'=>'success']);

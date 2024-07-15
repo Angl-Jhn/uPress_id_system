@@ -13,11 +13,11 @@
                             </div>
                         </div>
                         <div class="col-md-12 col-12 align-items-center d-flex justify-content-end gap-3">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary addbtn1" data-bs-toggle="modal"
                                 data-bs-target="#StudentModal">
                                 <i class="fa-solid fa-circle-plus"></i> Student
                             </button>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary addbtn2" data-bs-toggle="modal"
                                 data-bs-target="#EmployeeModal">
                                 <i class="fa-solid fa-circle-plus"></i> Employee
                             </button>
@@ -81,7 +81,7 @@
                                                         <button type="button"
                                                             class="btn btn-success btn-cirlce btn-sm edit-btn2"
                                                             data-id="<?= $item['client_id']; ?>" data-type="student"
-                                                            data-bs-toggle="modal" data-bs-target="#editStudentModal">
+                                                            data-bs-toggle="modal" data-bs-target="#StudentModal">
                                                             <i class="fa-solid fa-pen-to-square"
                                                                 style="padding: 0;"></i>
                                                             <!-- edit -->
@@ -92,7 +92,7 @@
                                                         <button type="button"
                                                             class="btn btn-success btn-cirlce btn-sm edit-btn2"
                                                             data-id="<?= $item['client_id']; ?>" data-type="employee"
-                                                            data-bs-toggle="modal" data-bs-target="#editEmployeeModal">
+                                                            data-bs-toggle="modal" data-bs-target="#EmployeeModal">
                                                             <i class="fa-solid fa-pen-to-square"
                                                                 style="padding: 0;"></i>
                                                             <!-- edit -->
@@ -170,38 +170,33 @@
                                             <h3>Enter your basic information correctly</h3>
                                             <div class="mb-3">
                                                 <label for="">Student Number</label>
-                                                <input type="text" name="studnum" id="studId"
-                                                    placeholder="e.g. 2021-00398" required>
+                                                <input type="text" name="studnum" id="studId" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">WMSU Email</label>
-                                                <input type="text" name="wmsuEmail" id="wmsuEmail"
-                                                    placeholder="e.g. qb202100398@wmsu.edu.ph" required>
+                                                <input type="text" name="wmsuEmail" id="wmsuEmail" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">First Name</label>
-                                                <input type="text" name="firstName" id="fname"
-                                                    placeholder="e.g. Angelo John" required>
+                                                <input type="text" name="firstName" id="fname" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Middle Name</label>
-                                                <input type="text" name="middleName" id="mname"
-                                                    placeholder="e.g. Sinsuan">
+                                                <input type="text" name="middleName" id="mname">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Family Name</label>
-                                                <input type="text" name="familyName" id="famname"
-                                                    placeholder="e.g. Landiao" required>
+                                                <input type="text" name="familyName" id="famname" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExt" id="ext" placeholder="e.g. Sr./Jr.">
+                                                <input type="text" name="nameExt" id="ext" placeholder="Sr./Jr.">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Program/Strand</label>
                                                 <select class="js-example-theme-single" name="programs"
                                                     id="select-program">
-                                                    <option value="">Select a program</option>
+                                                    <option value=""></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -209,34 +204,28 @@
                                             <h3>In Case of Emergency Please Notify:</h3>
                                             <div class="mb-3">
                                                 <label for="">First Name</label>
-                                                <input type="text" name="firstNameEmg" id="fnameEmg"
-                                                    placeholder="e.g. Jazelle Anne" required>
+                                                <input type="text" name="firstNameEmg" id="fnameEmg" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Middle Name</label>
-                                                <input type="text" name="middleNameEmg" id="mnameEmg"
-                                                    placeholder="e.g. Sinsuan" required>
+                                                <input type="text" name="middleNameEmg" id="mnameEmg" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Family Name</label>
-                                                <input type="text" name="familyNameEmg" id="famnameEmg"
-                                                    placeholder="e.g. Landiao" required>
+                                                <input type="text" name="familyNameEmg" id="famnameEmg" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExtEmg" id="extEmg"
-                                                    placeholder="e.g. Sr./Jr." required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Address</label>
-                                                <input type="text" name="address" id="addEmg"
-                                                    placeholder="e.g. House #, Street name, Brgy/Subdivision, Town/City"
+                                                <input type="text" name="nameExtEmg" id="extEmg" placeholder="Sr./Jr."
                                                     required>
                                             </div>
                                             <div class="mb-3">
+                                                <label for="">Address</label>
+                                                <input type="text" name="address" id="addEmg" required>
+                                            </div>
+                                            <div class="mb-3">
                                                 <label for="">Contact Number</label>
-                                                <input type="number" name="contactNumber" id="contactEmg"
-                                                    placeholder="e.g. 09xxxxxxxxx" required>
+                                                <input type="number" name="contactNumber" id="contactEmg" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -289,7 +278,7 @@
                             <h1 class="modal-title fs-2" id="staticBackdropLabel">Employee Info</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="post" id="addStudent" enctype="multipart/form-data">
+                        <form method="post" id="addEmployee" enctype="multipart/form-data">
                             <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
                                 <div class="container-fluid">
                                     <div class="row">
@@ -321,74 +310,60 @@
                                             <h3>Enter your basic information correctly</h3>
                                             <div>
                                                 <label for="">ID Number</label>
-                                                <input type="number" name="idNumber" id="idNumber"
-                                                    placeholder="e.g. 2021-??" required>
+                                                <input type="number" name="idNumber" id="idNumber" required>
                                             </div>
                                             <div>
-                                                <label for="">WMSU Email</label>
-                                                <input type="text" name="wmsuEmail" id="wmsuEmail"
-                                                    placeholder="e.g. qb202100398@wmsu.edu.ph" required>
+                                                <label for="">Email</label>
+                                                <input type="text" name="wmsuEmail" id="wmsuEmail" required>
                                             </div>
                                             <div>
                                                 <label for="">First Name</label>
-                                                <input type="text" name="firstName" id="firstName"
-                                                    placeholder="e.g. Angelo John" required>
+                                                <input type="text" name="firstName" id="fname" required>
                                             </div>
                                             <div>
                                                 <label for="">Middle Name</label>
-                                                <input type="text" name="middleName" id="middleName"
-                                                    placeholder="e.g. Sinsuan">
+                                                <input type="text" name="middleName" id="mname">
                                             </div>
                                             <div>
                                                 <label for="">Family Name</label>
-                                                <input type="text" name="familyName" id="familyName"
-                                                    placeholder="e.g. Landiao" required>
+                                                <input type="text" name="familyName" id="famname" required>
                                             </div>
                                             <div>
                                                 <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExt" id="nameExt"
-                                                    placeholder="e.g. Sr./Jr.">
+                                                <input type="text" name="nameExt" id="ext" placeholder="Sr./Jr.">
                                             </div>
                                             <div>
                                                 <label for="">Academic Rank/Plantilla Position</label>
-                                                <input type="text" name="academicRank" id="academicRank"
-                                                    placeholder="e.g. san juan" required>
+                                                <input type="text" name="rankPos" id="rankPos" required>
                                             </div>
                                             <div>
                                                 <label for="">Unit/Office/College/Department</label>
-                                                <input type="text" name="designation" id="designation"
-                                                    placeholder="e.g. san juan ambot" required>
+                                                <input type="text" name="designation" id="designation" required>
                                             </div>
                                             <div>
                                                 <label for="">Residential Address</label>
                                                 <input type="text" name="residentialAddress" id="residentialAddress"
-                                                    placeholder="e.g. san juan ambot" required>
+                                                    required>
                                             </div>
                                             <div class="birth">
                                                 <label for="">Date of Birth</label>
                                                 <input type="date" name="dateofbirth" id="dateofbirth" required>
-                                                <!-- <div class="grouping">
-                                            <input type="text" pattern="[0-9]*" name="day" placeholder="DD">
-                                            <input type="text" pattern="[0-9]*" name="month" placeholder="MM">
-                                            <input type="text" pattern="[0-9]*" name="year" placeholder="YYYY">
-                                        </div> -->
                                             </div>
                                             <div>
                                                 <label for="">Contact Number</label>
-                                                <input type="number" name="contactNumber" id="contactNumber"
-                                                    placeholder="09XXXXXXXX" required>
+                                                <input type="number" name="contactNum" id="contactNum" required>
                                             </div>
                                             <div>
                                                 <label for="">Civil Status</label>
                                                 <select class="js-example-theme-single" name="civilStatus"
                                                     id="civilStatus">
-                                                    <option value="">Single</option>
+                                                    <option value=""></option>
                                                 </select>
                                             </div>
                                             <div>
                                                 <label for="">Blood Type</label>
                                                 <select class="js-example-theme-single" name="bloodType" id="bloodType">
-                                                    <option value="">A</option>
+                                                    <option value=""></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -396,34 +371,28 @@
                                             <h3>In Case of Emergency Please Notify:</h3>
                                             <div class="mb-3">
                                                 <label for="">First Name</label>
-                                                <input type="text" name="firstNameEmg" id="fnameEmg"
-                                                    placeholder="e.g. Jazelle Anne" required>
+                                                <input type="text" name="firstNameEmg" id="fnameEmg" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Middle Name</label>
-                                                <input type="text" name="middleNameEmg" id="mnameEmg"
-                                                    placeholder="e.g. Sinsuan" required>
+                                                <input type="text" name="middleNameEmg" id="mnameEmg" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Family Name</label>
-                                                <input type="text" name="familyNameEmg" id="famnameEmg"
-                                                    placeholder="e.g. Landiao" required>
+                                                <input type="text" name="familyNameEmg" id="famnameEmg" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExtEmg" id="extEmg"
-                                                    placeholder="e.g. Sr./Jr." required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Address</label>
-                                                <input type="text" name="address" id="addEmg"
-                                                    placeholder="e.g. House #, Street name, Brgy/Subdivision, Town/City"
+                                                <input type="text" name="nameExtEmg" id="extEmg" placeholder="Sr./Jr."
                                                     required>
                                             </div>
                                             <div class="mb-3">
+                                                <label for="">Address</label>
+                                                <input type="text" name="address" id="addEmg" required>
+                                            </div>
+                                            <div class="mb-3">
                                                 <label for="">Contact Number</label>
-                                                <input type="number" name="contactNumber" id="contactEmg"
-                                                    placeholder="e.g. 09*******" required>
+                                                <input type="number" name="contactNumber" id="contactEmg" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -459,316 +428,8 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="addStud" id="add" class="btn btn-primary">Add
-                                    Student</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- edit modal -->
-            <div class="modal fade" id="editStudentModal" tabindex="-1" aria-labelledby="editStudentModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-2" id="staticBackdropLabel">Student Info</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form method="post" id="editStudent" enctype="multipart/form-data">
-                            <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <input type="hidden" id="editformId" name="clientID">
-                                            <!-- Radio Buttons -->
-                                            <div
-                                                class="container-fluid d-flex flex-row justify-content-center align-content-center m-0 py-2 gap-2">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="formType"
-                                                        value="New" id="editType" checked onclick="text(0)">
-                                                    <label class="form-check-label ps-2" for="new">New</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="formType"
-                                                        value="Replacement" id="editType" onclick="text(1)">
-                                                    <label class="form-check-label ps-2" for="rep">Replacement</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="formType"
-                                                        value="Lost" id="editType" onclick="text(2)">
-                                                    <label class="form-check-label ps-2" for="lost">Lost</label>
-                                                </div>
-                                            </div>
-                                            <!-- Radio Buttons End -->
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <h3>Enter your basic information correctly</h3>
-                                            <div class="mb-3">
-                                                <label for="">Student Number</label>
-                                                <input type="text" name="studnum" id="edit-studId" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">WMSU Email</label>
-                                                <input type="text" name="wmsuEmail" id="edit-wmsuEmail" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">First Name</label>
-                                                <input type="text" name="firstName" id="edit-fname" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Middle Name</label>
-                                                <input type="text" name="middleName" id="edit-mname">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Family Name</label>
-                                                <input type="text" name="familyName" id="edit-famname" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExt" id="edit-ext">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Program/Strand</label>
-                                                <select class="js-example-theme-single" name="programs"
-                                                    id="edit-select-program">
-                                                    <option value="">Select a program</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h3>In Case of Emergency Please Notify:</h3>
-                                            <div class="mb-3">
-                                                <label for="">First Name</label>
-                                                <input type="text" name="firstNameEmg" id="edit-fnameEmg" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Middle Name</label>
-                                                <input type="text" name="middleNameEmg" id="edit-mnameEmg" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Family Name</label>
-                                                <input type="text" name="familyNameEmg" id="edit-famnameEmg" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExtEmg" id="edit-extEmg" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Address</label>
-                                                <input type="text" name="address" id="edit-addEmg" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Contact Number</label>
-                                                <input type="number" name="contactNumber" id="edit-contactEmg" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h3>Attachments</h3>
-                                            <div class="mb-1">
-                                                <label for="user-pic" class="form-label">2x2 Picture</label>
-                                                <input class="form-control" name="userPhoto[]" type="file"
-                                                    id="userPhoto">
-                                            </div>
-                                            <div class="mb-1">
-                                                <label for="signature" class="form-label">Signature</label>
-                                                <input class="form-control" name="signature[]" type="file"
-                                                    id="signature">
-                                            </div>
-                                            <div class="mb-1">
-                                                <label for="CoR" class="form-label">Certificate of Registration</label>
-                                                <input class="form-control" name="cor[]" type="file" id="cor">
-                                            </div>
-                                            <div class="stud-replacement mb-1">
-                                                <label for="frontID" class="form-label">Old ID - Front</label>
-                                                <input class="form-control" name="oldId[]" type="file" id="frontId">
-                                            </div>
-                                            <div class="stud-replacement mb-1">
-                                                <label for="backID" class="form-label">Old ID - Back</label>
-                                                <input class="form-control" name="oldIdBack[]" type="file" id="backId">
-                                            </div>
-                                            <div class="stud-affidavit mb-1">
-                                                <label for="affidavit" class="form-label">Affidavit of Loss</label>
-                                                <input class="form-control" name="aol[]" type="file" id="affidavit">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="addStud" id="add" class="btn btn-primary">Add
-                                    Student</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-2" id="staticBackdropLabel">Employee Info</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form method="post" id="editStudent" enctype="multipart/form-data">
-                            <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <input type="hidden" id="editformId" name="clientID">
-                                            <!-- Radio Buttons -->
-                                            <div
-                                                class="container-fluid d-flex flex-row justify-content-center align-content-center m-0 py-2 gap-2">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="formType"
-                                                        value="New" id="editType" checked onclick="text(0)">
-                                                    <label class="form-check-label ps-2" for="new">New</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="formType"
-                                                        value="Replacement" id="editType" onclick="text(1)">
-                                                    <label class="form-check-label ps-2" for="rep">Replacement</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="formType"
-                                                        value="Lost" id="editType" onclick="text(2)">
-                                                    <label class="form-check-label ps-2" for="lost">Lost</label>
-                                                </div>
-                                            </div>
-                                            <!-- Radio Buttons End -->
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <h3>Enter your basic information correctly</h3>
-                                            <div>
-                                                <label for="">ID Number</label>
-                                                <input type="number" name="idNumber" id="edit-idNumber" required>
-                                            </div>
-                                            <div>
-                                                <label for="">WMSU Email</label>
-                                                <input type="text" name="wmsuEmail" id="edit-wmsuEmail" required>
-                                            </div>
-                                            <div>
-                                                <label for="">First Name</label>
-                                                <input type="text" name="firstName" id="edit-fname" required>
-                                            </div>
-                                            <div>
-                                                <label for="">Middle Name</label>
-                                                <input type="text" name="middleName" id="edit-mname">
-                                            </div>
-                                            <div>
-                                                <label for="">Family Name</label>
-                                                <input type="text" name="familyName" id="edit-famname" required>
-                                            </div>
-                                            <div>
-                                                <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExt" id="edit-ext">
-                                            </div>
-                                            <div>
-                                                <label for="">Academic Rank/Plantilla Position</label>
-                                                <input type="text" name="plantillaPos" id="edit-plantillaPos" required>
-                                            </div>
-                                            <div>
-                                                <label for="">Unit/Office/College/Department</label>
-                                                <input type="text" name="designation" id="edit-designation" required>
-                                            </div>
-                                            <div>
-                                                <label for="">Residential Address</label>
-                                                <input type="text" name="residentialAddress"
-                                                    id="edit-residentialAddress" required>
-                                            </div>
-                                            <div class="birth">
-                                                <label for="">Date of Birth</label>
-                                                <input type="date" name="dateofbirth" id="edit-dateofbirth" required>
-                                            </div>
-                                            <div>
-                                                <label for="">Contact Number</label>
-                                                <input type="number" name="contactNumber" id="edit-contactNumber"
-                                                    required>
-                                            </div>
-                                            <div>
-                                                <label for="">Civil Status</label>
-                                                <select class="js-example-theme-single" name="civilStatus"
-                                                    id="edit-civilStatus">
-                                                    <option value="">Single</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for="">Blood Type</label>
-                                                <select class="js-example-theme-single" name="bloodType"
-                                                    id="edit-bloodType">
-                                                    <option value="">A</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h3>In Case of Emergency Please Notify:</h3>
-                                            <div class="mb-3">
-                                                <label for="">First Name</label>
-                                                <input type="text" name="firstNameEmg" id="edit-fnameEmg" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Middle Name</label>
-                                                <input type="text" name="middleNameEmg" id="edit-mnameEmg" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Family Name</label>
-                                                <input type="text" name="familyNameEmg" id="edit-famnameEmg" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExtEmg" id="edit-extEmg" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Address</label>
-                                                <input type="text" name="address" id="edit-addEmg" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Contact Number</label>
-                                                <input type="number" name="contactNumber" id="edit-contactEmg" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h3>Attachments</h3>
-                                            <div class="mb-3">
-                                                <label for="formFile1" class="form-label">2x2 Picture</label>
-                                                <input class="form-control" type="file" id="userPhoto"
-                                                    name="userPhoto[]">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="formFile2" class="form-label">Signature</label>
-                                                <input class="form-control" type="file" id="signature"
-                                                    name="signature[]">
-                                            </div>
-                                            <div class="hrmo mb-3">
-                                                <label for="formFile3" class="form-label">Scanned Copy of HRMO
-                                                    Form</label>
-                                                <input class="form-control" type="file" id="hrmoScanned"
-                                                    name="hrmoScanned[]">
-                                            </div>
-                                            <div class="hrmo-lost mb-3">
-                                                <label for="formFile4" class="form-label">New HRMO Form</label>
-                                                <input class="form-control" type="file" id="hrmoNew" name="hrmoNew[]">
-                                            </div>
-                                            <div class="emp-affidavit mb-3">
-                                                <label for="emp-affidavit" class="form-label">Affidavit of Loss</label>
-                                                <input class="form-control" type="file" id="aol" name="aol[]">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="addStud" id="add" class="btn btn-primary">Add
-                                    Student</button>
+                                <button type="submit" name="addEmploy" id="add" class="btn btn-primary">Add
+                                    Employee</button>
                             </div>
                         </form>
                     </div>
@@ -798,12 +459,21 @@ $(document).ready(function() {
     //     dropdownParent: $('#editAccountModal')
     // });
 
+    // clear modals
+    $(document).on('click', '.addbtn1', function() {
+        $('#StudentModal').find('input, select, textarea').val('');
+    });
+    $(document).on('click', '.addbtn2', function() {
+        $('#EmployeeModal').find('input, select, textarea').val('');
+    });
+
     $(document).on('submit', '#addStudent', function(e) {
         e.preventDefault();
         var formdata = new FormData(this);
         formdata.append("type", "addStud");
-        //formdata.append("type2", "addStud");
         formdata.append("ignoreHeaderFooter", 1);
+
+        $('#StudentModal').find('input, select, textarea').val('');
 
         $.ajax({
             type: 'post',
@@ -829,14 +499,14 @@ $(document).ready(function() {
             }
         });
     });
-    $("#editStudent").on("submit", function(e) {
+    $(document).on('submit', '#addEmployee', function(e) {
         e.preventDefault();
         var formData = new FormData(this);
-        formData.append("type2", "updateClient");
+        formData.append("type", "addEmploy");
         formData.append("ignoreHeaderFooter", 1);
-        /*$.ajax({
+        $.ajax({
             type: 'POST',
-            url: "",
+            url: "/add-employee",
             data: formData,
             contentType: false,
             processData: false,
@@ -848,7 +518,7 @@ $(document).ready(function() {
                 }
                 console.log(response);
             }
-        })*/
+        })
     });
 
     $(document).on('click', '.edit-btn2', function(e) {
@@ -872,42 +542,46 @@ $(document).ready(function() {
             success: function(response) {
                 var res = JSON.parse(response);
                 console.log(res);
-                // student
-                $("#edit-studId").val(res.studentNum);
-                $("#editStudentModal #edit-wmsuEmail").val(res.wmsuEmail);
-                $("#editStudentModal #edit-fname").val(res.firstName);
-                $("#editStudentModal #edit-mname").val(res.middleName);
-                $("#editStudentModal #edit-famname").val(res.lastName);
-                $("#editStudentModal #edit-ext").val(res.nameExt);
-                $("#editStudentModal #edit-select-program").val(res.collegeProgram);
-                $("#editStudentModal #edit-fnameEmg").val(res.emergencyFirstName);
-                $("#editStudentModal #edit-mnameEmg").val(res.emergencyMiddleName);
-                $("#editStudentModal #edit-famnameEmg").val(res.emergencyLastName);
-                $("#editStudentModal #edit-extEmg").val(res.emergencyNameExt);
-                $("#editStudentModal #edit-addEmg").val(res.emergencyAddress);
-                $("#editStudentModal #edit-contactEmg").val(res.emergencyContactNum);
-                // employee
-                $("#edit-idNumber").val(res.empNum);
-                $("#editEmployeeModal #edit-wmsuEmail").val(res.wmsuEmail);
-                $("#editEmployeeModal #edit-fname").val(res.firstName);
-                $("#editEmployeeModal #edit-mname").val(res.middleName);
-                $("#editEmployeeModal #edit-famname").val(res.lastName);
-                $("#editEmployeeModal #edit-ext").val(res.nameExt);
-                $("#editEmployeeModal #edit-select-program").val(res.collegeProgram);
-                $("#editEmployeeModal #edit-fnameEmg").val(res.emergencyFirstName);
-                $("#editEmployeeModal #edit-mnameEmg").val(res.emergencyMiddleName);
-                $("#editEmployeeModal #edit-famnameEmg").val(res.emergencyLastName);
-                $("#editEmployeeModal #edit-extEmg").val(res.emergencyNameExt);
-                $("#editEmployeeModal #edit-addEmg").val(res.emergencyAddress);
-                $("#editEmployeeModal #edit-contactEmg").val(res.emergencyContactNum);
 
-                $("#edit-plantillaPos").val(res.plantillaPos);
-                $("#edit-designation").val(res.designation);
-                $("#edit-residentialAddress").val(res.residentialAddress);
-                $("#edit-dateofbirth").val(res.birthDate);
-                $("#edit-contactNumber").val(res.contactNum);
-                $("#edit-civilStatus").val(res.civilStatus);
-                $("#edit-bloodType").val(res.bloodType);
+                // student
+                $("#studId").val(res.studentNum);
+                $("#StudentModal #wmsuEmail").val(res.wmsuEmail);
+                $("#StudentModal #fname").val(res.firstName);
+                $("#StudentModal #mname").val(res.middleName);
+                $("#StudentModal #famname").val(res.lastName);
+                $("#StudentModal #ext").val(res.nameExt);
+                $("#StudentModal #select-program").val(res.collegeProgram);
+                $("#StudentModal #fnameEmg").val(res.emergencyFirstName);
+                $("#StudentModal #mnameEmg").val(res.emergencyMiddleName);
+                $("#StudentModal #famnameEmg").val(res.emergencyLastName);
+                $("#StudentModal #extEmg").val(res.emergencyNameExt);
+                $("#StudentModal #addEmg").val(res.emergencyAddress);
+                $("#StudentModal #contactEmg").val(res.emergencyContactNum);
+
+                // employee
+                $("#idNumber").val(res.empNum);
+                $("#EmployeeModal #wmsuEmail").val(res.wmsuEmail);
+                $("#EmployeeModal #fname").val(res.firstName);
+                $("#EmployeeModal #mname").val(res.middleName);
+                $("#EmployeeModal #famname").val(res.lastName);
+                $("#EmployeeModal #ext").val(res.nameExt);
+                $("#EmployeeModal #select-program").val(res.collegeProgram);
+                $("#EmployeeModal #fnameEmg").val(res.emergencyFirstName);
+                $("#EmployeeModal #mnameEmg").val(res.emergencyMiddleName);
+                $("#EmployeeModal #famnameEmg").val(res.emergencyLastName);
+                $("#EmployeeModal #extEmg").val(res.emergencyNameExt);
+                $("#EmployeeModal #addEmg").val(res.emergencyAddress);
+                $("#EmployeeModal #contactEmg").val(res.emergencyContactNum);
+
+                $("#rankPos").val(res.plantillaPos);
+                $("#designation").val(res.designation);
+                $("#residentialAddress").val(res.residentialAddress);
+                $("#dateofbirth").val(res.birthDate);
+                $("#contactNum").val(res.contactNum);
+                $("#civilStatus").val(res.civilStatus);
+                $("#bloodType").val(res.bloodType);
+
+
             }
         });
     });
