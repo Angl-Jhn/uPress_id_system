@@ -247,7 +247,7 @@
             <script>
 $(document).ready(function() {
     $("#addAccountModal .js-example-basic-single").select2({
-        placeholder: "Select An Option",
+        placeholder: "Select Role",
         allowClear: true,
         dropdownParent: $('#addAccountModal')
     });
@@ -356,6 +356,8 @@ $(document).ready(function() {
                 $("#editNameExt").val(res.nameExt);
                 $("#editrole").val(res.role);
                 $("#editId").val(res.id);
+
+                $('#editrole').trigger('change');
             }
         });
     });
