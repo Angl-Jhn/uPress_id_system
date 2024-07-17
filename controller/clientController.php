@@ -174,7 +174,7 @@ if($_POST["type"] == "student"){
     }
     if ($status == true) {
         $res = $client1->requestId(
-            $type,$formtype,$idNumber,$wmsuEmail,$firstname,$middlename,$familyname,$nameExt,$academicRank,$designation,$resAddress,$DoB,$contact,
+            $type,$formtype,$idNumber,$email,$firstname,$middlename,$familyname,$nameExt,$academicRank,$plantillaPos,$designation,$resAddress,$DoB,$contact,
             $civilStatus,$bloodType,$emgfname,$emgMname,$emgLname,$emgNameExt,$emgAddress,$emgContact,$photo,$signature,
             $hrmoScanned,$hrmoNew,$aol
         );

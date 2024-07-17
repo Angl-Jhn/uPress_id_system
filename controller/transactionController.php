@@ -9,28 +9,26 @@ $clients = new TransactionManageModel();
 // $delClient = $obj->softDeleteClient($id);
 
 if(isset($_POST["type"])){
-    //if($_POST["type"] == "student"){
-        switch($_POST["type"]) {
-            case 'addStud':
-                handleAddStud($Stud);
-                break;
-            case 'addEmploy':
-                handleAddEmploy($Employ);
-                break;    
-            case 'viewClients':
-                handleViewClients($_POST["clientID"],$clients);
-                break;
-            case 'delete':
-                handleDeleteClient($clients);
-                break;
+    switch($_POST["type"]) {
+        case 'Student':
+            handleAddStud($Stud);
+        break;
+        case 'Employee':
+            handleAddEmploy($Employ);
+            break;    
+        case 'viewClients':
+            handleViewClients($_POST["clientID"],$clients);
+            break;
+        case 'delete':
+            handleDeleteClient($clients);
+            break;
 
-            
-        }
-    //}
+        
+    }
 }
 function handleAddStud($objModel){
     // var_dump($objModel);
-    $type = "student";
+    $type = $_POST["type"];
     $formtype = $_POST["formType"];
     $studId = $_POST["studnum"];
     $wmsuEmail = $_POST["wmsuEmail"];
@@ -65,15 +63,16 @@ function handleAddStud($objModel){
 }
 function handleAddEmploy($objModel){
     // var_dump($objModel);
-    $type = "employee";
-    $formtype = $_POST["formType"];
+    $type = $_POST["type"];
+    $formType = $_POST["formType"];
     $idNumber = $_POST["idNumber"];
-    $wmsuEmail = $_POST["wmsuEmail"];
+    $email = $_POST["email"];
     $firstname = $_POST["firstName"];
     $middlename = $_POST["middleName"];
     $familyname = $_POST["familyName"];
     $nameExt = $_POST["nameExt"];
-    $rankPos = $_POST["rankPos"];
+    $academicRank = $_POST["academicRank"];
+    $plantillaPos = $_POST["plantillaPos"];
     $designation = $_POST["designation"];
     $residentialAddress = $_POST["residentialAddress"];
     $dateofbirth = $_POST["dateofbirth"];
@@ -88,19 +87,19 @@ function handleAddEmploy($objModel){
     $emgContact = $_POST["contactNumber"];
     $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
     $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
-    $hrmoscanned = uploadImage('hrmoscanned') ? uploadImage('hrmoscanned'): "";
+    $hrmoscanned = uploadImage('hrmoScanned') ? uploadImage('hrmoScanned'): "";
     $hrmoNew = uploadImage('hrmoNew') ? uploadImage('hrmoNew'):"";
     $aol = uploadImage('aol') ? uploadImage('aol'):"";
 
     $res1 = $objModel->requestId(
-        $type, $formtype, $idNumber, $wmsuEmail, $firstname, $middlename, $familyname, $nameExt,
-            $rankPos, $designation, $residentialAddress, $dateofbirth, $contactNum, $civilStatus, $bloodType,
+        $type, $formType, $idNumber, $email, $firstname, $middlename, $familyname, $nameExt,
+            $academicRank, $plantillaPos, $designation, $residentialAddress, $dateofbirth, $contactNum, $civilStatus, $bloodType,
             $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $hrmoscanned, $hrmoNew, $aol
     );
     if ($res1) {
-        echo json_encode(['message'=>'Successfully added '.$firstname.' '.$familyname,'status'=>'success']);
+        echo json_encode(['message'=>"Successfully added ".$firstname.' '.$familyname,'status'=>'success']);
     } else {
-        echo json_encode(['message'=>'Failed to add'.$firstname.' '.$familyname,'status'=>'error']);
+        echo json_encode(['message'=>"Failed to add ".$firstname.' '.$familyname,'status'=>'error']);
     }
 
 }

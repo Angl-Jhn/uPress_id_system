@@ -30,7 +30,7 @@
                                     <thead class="table-dark">
                                         <th scope="col">Client ID</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Role</th>
+                                        <th scope="col">Type</th>
                                         <th scope="col">Transaction Type</th>
                                         <th scope="col">Date</th>
                                         <th scope="col">Status</th>
@@ -135,7 +135,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-2" id="staticBackdropLabel">Student Info</h1>
+                            <h1 class="modal-title fs-2" id="staticBackdropLabel">Add Student</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form method="post" id="addStudent" enctype="multipart/form-data">
@@ -167,14 +167,14 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <h3>Enter your basic information correctly</h3>
+                                            <h3>Student data</h3>
                                             <div class="mb-3">
                                                 <label for="">Student Number</label>
-                                                <input type="text" name="studnum" id="studId" required>
+                                                <input type="text" name="studnum" id="studnum" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="">WMSU Email</label>
-                                                <input type="text" name="wmsuEmail" id="wmsuEmail" required>
+                                                <label for="">Email</label>
+                                                <input type="text" name="email" id="email" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">First Name</label>
@@ -194,14 +194,14 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Program/Strand</label>
-                                                <select class="js-example-theme-single" name="programs"
+                                                <select class="js-example-basic-single" name="programs"
                                                     id="select-program">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <h3>In Case of Emergency Please Notify:</h3>
+                                            <h3>Emergency data</h3>
                                             <div class="mb-3">
                                                 <label for="">First Name</label>
                                                 <input type="text" name="firstNameEmg" id="fnameEmg" required>
@@ -275,7 +275,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-2" id="staticBackdropLabel">Employee Info</h1>
+                            <h1 class="modal-title fs-2" id="staticBackdropLabel">Add Employee</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form method="post" id="addEmployee" enctype="multipart/form-data">
@@ -307,14 +307,14 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <h3>Enter your basic information correctly</h3>
+                                            <h3>Employee data</h3>
                                             <div>
                                                 <label for="">ID Number</label>
                                                 <input type="number" name="idNumber" id="idNumber" required>
                                             </div>
                                             <div>
                                                 <label for="">Email</label>
-                                                <input type="text" name="wmsuEmail" id="wmsuEmail" required>
+                                                <input type="text" name="email" id="email" required>
                                             </div>
                                             <div>
                                                 <label for="">First Name</label>
@@ -333,8 +333,44 @@
                                                 <input type="text" name="nameExt" id="ext" placeholder="Sr./Jr.">
                                             </div>
                                             <div>
-                                                <label for="">Academic Rank/Plantilla Position</label>
-                                                <input type="text" name="rankPos" id="rankPos" required>
+                                                <label for="">Academic Rank</label>
+                                                <select class="academicRank-basic-single" name="academicRank"
+                                                    id="academicRank">
+                                                    <option value=""></option>
+                                                    <optgroup label="Instructor">
+                                                        <option value="Instructor-1">Instructor I</option>
+                                                        <option value="Instructor-2">Instructor II</option>
+                                                        <option value="Instructor-3">Instructor III</option>
+                                                    </optgroup>
+                                                    <optgroup label="Assistant Professor">
+                                                        <option value="Asst-Prof-1">Assistant Professor I</option>
+                                                        <option value="Asst-Prof-2">Assistant Professor II</option>
+                                                        <option value="Asst-Prof-3">Assistant Professor III</option>
+                                                        <option value="Asst-Prof-4">Assistant Professor IV</option>
+                                                    </optgroup>
+                                                    <optgroup label="Associate Professor">
+                                                        <option value="Assoc-Prof-1">Associate Professor I</option>
+                                                        <option value="Assoc-Prof-2">Associate Professor II</option>
+                                                        <option value="Assoc-Prof-3">Associate Professor III</option>
+                                                        <option value="Assoc-Prof-4">Associate Professor IV</option>
+                                                        <option value="Assoc-Prof-5">Associate Professor V</option>
+                                                    </optgroup>
+                                                    <optgroup label="Professor">
+                                                        <option value="Professor-1">Professor I</option>
+                                                        <option value="Professor-2">Professor II</option>
+                                                        <option value="Professor-3">Professor III</option>
+                                                        <option value="Professor-4">Professor IV</option>
+                                                        <option value="Professor-5">Professor V</option>
+                                                        <option value="Professor-6">Professor VI</option>
+                                                    </optgroup>
+                                                    <optgroup label="University Professor">
+                                                        <option value="University-Prof">University Professor</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label for="">Plantilla Position</label>
+                                                <input type="text" name="plantillaPos" id="plantillaPos">
                                             </div>
                                             <div>
                                                 <label for="">Unit/Office/College/Department</label>
@@ -355,27 +391,42 @@
                                             </div>
                                             <div>
                                                 <label for="">Civil Status</label>
-                                                <select class="js-example-theme-single" name="civilStatus"
-                                                    id="civilStatus">
+                                                <select class="civilstatus-basic-single" name="civilStatus"
+                                                    id="civilStatus" required>
                                                     <option value=""></option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Married">Married</option>
+                                                    <option value="Widowed">Widowed</option>
+                                                    <option value="Divorced">Divorced</option>
+                                                    <option value="Separated">Separated</option>
+                                                    <option value="Annulled">Annulled</option>
                                                 </select>
                                             </div>
                                             <div>
                                                 <label for="">Blood Type</label>
-                                                <select class="js-example-theme-single" name="bloodType" id="bloodType">
+                                                <select class="bloodtype-basic-single" name="bloodType" id="bloodType"
+                                                    required>
                                                     <option value=""></option>
+                                                    <option value="A+">A+</option>
+                                                    <option value="A+">A-</option>
+                                                    <option value="B+">B+</option>
+                                                    <option value="B-">B-</option>
+                                                    <option value="AB+">AB+</option>
+                                                    <option value="AB-">AB-</option>
+                                                    <option value="O+">O+</option>
+                                                    <option value="O-">O-</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <h3>In Case of Emergency Please Notify:</h3>
+                                            <h3>Emergency data</h3>
                                             <div class="mb-3">
                                                 <label for="">First Name</label>
                                                 <input type="text" name="firstNameEmg" id="fnameEmg" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Middle Name</label>
-                                                <input type="text" name="middleNameEmg" id="mnameEmg" required>
+                                                <input type="text" name="middleNameEmg" id="mnameEmg">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Family Name</label>
@@ -383,8 +434,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExtEmg" id="extEmg" placeholder="Sr./Jr."
-                                                    required>
+                                                <input type="text" name="nameExtEmg" id="extEmg" placeholder="Sr./Jr.">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Address</label>
@@ -448,32 +498,41 @@ $(document).ready(function() {
             }
         }
     });
-
-    // $('#addAccountModal .js-example-basic-single').select2({
-    //     placeholder: 'Select An Option',
-    //     dropdownParent: $('#addAccountModal')
-    // });
-    // // Initialize Select2 for Edit Account Modal
-    // $('#editAccountModal .js-example-basic-single').select2({
-    //     placeholder: 'Select An Option',
-    //     dropdownParent: $('#editAccountModal')
-    // });
-
+    $("#StudentModal .js-example-basic-single").select2({
+        placeholder: "Select Program",
+        allowClear: true,
+        dropdownParent: $('#StudentModal')
+    });
+    $("#EmployeeModal .civilstatus-basic-single").select2({
+        placeholder: "Select status",
+        allowClear: true,
+        dropdownParent: $('#EmployeeModal')
+    });
+    $("#EmployeeModal .bloodtype-basic-single").select2({
+        placeholder: "Select blood type",
+        allowClear: true,
+        dropdownParent: $('#EmployeeModal')
+    });
+    $("#EmployeeModal .academicRank-basic-single").select2({
+        placeholder: "Select academic rank",
+        allowClear: true,
+        dropdownParent: $('#EmployeeModal')
+    });
     // clear modals
     $(document).on('click', '.addbtn1', function() {
         $('#StudentModal').find('input, select, textarea').val('');
+        $('#new').prop('checked', true);
     });
     $(document).on('click', '.addbtn2', function() {
         $('#EmployeeModal').find('input, select, textarea').val('');
+        $('#new').prop('checked', true);
     });
 
     $(document).on('submit', '#addStudent', function(e) {
         e.preventDefault();
         var formdata = new FormData(this);
-        formdata.append("type", "addStud");
+        formdata.append("type", "Student");
         formdata.append("ignoreHeaderFooter", 1);
-
-        $('#StudentModal').find('input, select, textarea').val('');
 
         $.ajax({
             type: 'post',
@@ -502,8 +561,9 @@ $(document).ready(function() {
     $(document).on('submit', '#addEmployee', function(e) {
         e.preventDefault();
         var formData = new FormData(this);
-        formData.append("type", "addEmploy");
+        formData.append("type", "Employee");
         formData.append("ignoreHeaderFooter", 1);
+
         $.ajax({
             type: 'POST',
             url: "/add-employee",
@@ -515,10 +575,17 @@ $(document).ready(function() {
                 if (res.status == 'success') {
                     alert(res.message);
                     location.reload();
+                } else {
+                    alert(res.message);
                 }
-                console.log(response);
+                $('#addEmployee').find('input').val('');
+                $('#addEmployee').find('select').val('');
+            },
+            error: function(error) {
+                console.log(error);
+                alert('Error submitting form');
             }
-        })
+        });
     });
 
     $(document).on('click', '.edit-btn2', function(e) {
@@ -542,15 +609,22 @@ $(document).ready(function() {
             success: function(response) {
                 var res = JSON.parse(response);
                 console.log(res);
-
+                if (res.formType === 'New') {
+                    $('#new').prop('checked', true); // Check the New radio button
+                } else if (res.formType === 'Replacement') {
+                    $('#rep').prop('checked', true); // Check the Replacement radio button
+                } else if (res.formType === 'Lost') {
+                    $('#lost').prop('checked', true); // Check the Lost radio button
+                }
                 // student
-                $("#studId").val(res.studentNum);
-                $("#StudentModal #wmsuEmail").val(res.wmsuEmail);
+                $("#studnum").val(res.studentNum);
+                $("#StudentModal #email").val(res.email);
                 $("#StudentModal #fname").val(res.firstName);
                 $("#StudentModal #mname").val(res.middleName);
                 $("#StudentModal #famname").val(res.lastName);
                 $("#StudentModal #ext").val(res.nameExt);
                 $("#StudentModal #select-program").val(res.collegeProgram);
+                $("#StudentModal #select-program").trigger('change');
                 $("#StudentModal #fnameEmg").val(res.emergencyFirstName);
                 $("#StudentModal #mnameEmg").val(res.emergencyMiddleName);
                 $("#StudentModal #famnameEmg").val(res.emergencyLastName);
@@ -559,13 +633,12 @@ $(document).ready(function() {
                 $("#StudentModal #contactEmg").val(res.emergencyContactNum);
 
                 // employee
-                $("#idNumber").val(res.empNum);
-                $("#EmployeeModal #wmsuEmail").val(res.wmsuEmail);
+                $("#EmployeeModal #idNumber").val(res.empNum);
+                $("#EmployeeModal #email").val(res.email);
                 $("#EmployeeModal #fname").val(res.firstName);
                 $("#EmployeeModal #mname").val(res.middleName);
                 $("#EmployeeModal #famname").val(res.lastName);
                 $("#EmployeeModal #ext").val(res.nameExt);
-                $("#EmployeeModal #select-program").val(res.collegeProgram);
                 $("#EmployeeModal #fnameEmg").val(res.emergencyFirstName);
                 $("#EmployeeModal #mnameEmg").val(res.emergencyMiddleName);
                 $("#EmployeeModal #famnameEmg").val(res.emergencyLastName);
@@ -573,14 +646,17 @@ $(document).ready(function() {
                 $("#EmployeeModal #addEmg").val(res.emergencyAddress);
                 $("#EmployeeModal #contactEmg").val(res.emergencyContactNum);
 
-                $("#rankPos").val(res.plantillaPos);
-                $("#designation").val(res.designation);
-                $("#residentialAddress").val(res.residentialAddress);
-                $("#dateofbirth").val(res.birthDate);
-                $("#contactNum").val(res.contactNum);
-                $("#civilStatus").val(res.civilStatus);
-                $("#bloodType").val(res.bloodType);
-
+                $("#EmployeeModal #academicRank").val(res.academicRank);
+                $("#EmployeeModal #academicRank").trigger('change');
+                $("#EmployeeModal #plantillaPos").val(res.plantillaPos);
+                $("#EmployeeModal #designation").val(res.designation);
+                $("#EmployeeModal #residentialAddress").val(res.residentialAddress);
+                $("#EmployeeModal #dateofbirth").val(res.birthDate);
+                $("#EmployeeModal #contactNum").val(res.contactNum);
+                $("#EmployeeModal #civilStatus").val(res.civilStatus);
+                $("#EmployeeModal #civilStatus").trigger('change');
+                $("#EmployeeModal #bloodType").val(res.bloodType);
+                $("#EmployeeModal #bloodType").trigger('change');
 
             }
         });
