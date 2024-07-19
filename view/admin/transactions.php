@@ -662,6 +662,44 @@ $(document).ready(function() {
         });
     });
 });
+notfinal
+$(document).on('submit', '#StudentModal, #EmployeeModal', function(e) {
+    e.preventDefault();
+
+    var formData = new FormData(this);
+    var formType = $(this).closest('.modal').attr('id'); // Determine the form type based on modal ID
+
+    if (formType === 'StudentModal') {
+        formData.append("type", "Student");
+    } else if (formType === 'EmployeeModal') {
+        formData.append("type", "Employee");
+    }
+
+    formData.append("ignoreHeaderFooter", 1);
+
+    $.ajax({
+        type: 'POST',
+        url: '/save-user', // Adjust this URL to your actual endpoint
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            var res = JSON.parse(response);
+            if (res.status === 'success') {
+                alert(res.message);
+                $('#' + formType).modal('hide'); // Close the modal if saving is successful
+                location.reload(); // Reload the page or perform other actions as needed
+            } else {
+                alert(res.message);
+            }
+        },
+        error: function(error) {
+            console.log(error);
+            alert('Error saving form');
+        }
+    });
+});
+
 
 $(document).on('click', '.delete-btn2', function(e) {
     e.preventDefault();
