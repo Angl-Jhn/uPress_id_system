@@ -31,7 +31,7 @@ function handleAddStud($objModel){
     $type = $_POST["type"];
     $formtype = $_POST["formType"];
     $studId = $_POST["studnum"];
-    $wmsuEmail = $_POST["wmsuEmail"];
+    $email = $_POST["email"];
     $firstname = $_POST["firstName"];
     $middlename = $_POST["middleName"];
     $familyname = $_POST["familyName"];
@@ -51,7 +51,7 @@ function handleAddStud($objModel){
     $aol = uploadImage('aol') ? uploadImage('aol'):"";
 
     $res1 = $objModel->requestId(
-        $type, $formtype, $studId, $wmsuEmail, $firstname, $middlename, $familyname, $nameExt,
+        $type, $formtype, $studId, $email, $firstname, $middlename, $familyname, $nameExt,
             $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol
     );
     if ($res1) {
