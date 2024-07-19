@@ -2,7 +2,7 @@
 include_once("connection/PDOModel.php");
 @session_start();
 class EmployeeModel{
-    function requestId($type,$formType,$idNumber,$wmsuEmail,$fname,$mdname,$lname,$nameExt,$academicRank,$designation,$resAddress,$DoB,$contact,$civilStatus,$bloodType,$emgfname,$emgMname,$emgLname,$emgNameExt,$emgAddress,$emgContact,$photo,$signature,$hrmoScanned,$hrmoNew,$aol) {
+    function requestId($type,$formType,$idNumber,$email,$fname,$mdname,$lname,$nameExt,$academicRank,$plantillaPos,$designation,$resAddress,$DoB,$contact,$civilStatus,$bloodType,$emgfname,$emgMname,$emgLname,$emgNameExt,$emgAddress,$emgContact,$photo,$signature,$hrmoScanned,$hrmoNew,$aol) {
         $conn = new PDOModel();
         $db = $conn->getDb();
 
@@ -10,14 +10,14 @@ class EmployeeModel{
             // Prepare the SQL statement
             $stmt = $db->prepare("
                 INSERT INTO 
-                clients (clientType, formType, wmsuEmail, firstName, middleName, lastName, nameExt, emergencyFirstName, emergencyMiddleName, emergencyLastName, emergencyNameExt, emergencyAddress, emergencyContactNum, clientSignature, clientPhoto)
-                VALUES (:clientType, :formType, :wmsuEmail, :firstName, :middleName, :lastName, :nameExt, :emergencyfname, :emergencymname, :emergencylname, :emergencyNameExt, :emergencyaddress, :emergencycontact, :signature, :photo)
+                clients (clientType, formType, email, firstName, middleName, lastName, nameExt, emergencyFirstName, emergencyMiddleName, emergencyLastName, emergencyNameExt, emergencyAddress, emergencyContactNum, clientSignature, clientPhoto)
+                VALUES (:clientType, :formType, :email, :firstName, :middleName, :lastName, :nameExt, :emergencyfname, :emergencymname, :emergencylname, :emergencyNameExt, :emergencyaddress, :emergencycontact, :signature, :photo)
             ");
 
             // Bind the parameters
             $stmt->bindParam(':clientType', $type);
             $stmt->bindParam(':formType', $formType);
-            $stmt->bindParam(':wmsuEmail', $wmsuEmail);
+            $stmt->bindParam(':email', $email);
             $stmt->bindParam(':firstName', $fname);
             $stmt->bindParam(':middleName', $mdname);
             $stmt->bindParam(':lastName', $lname);
@@ -38,19 +38,19 @@ class EmployeeModel{
             // variable res as lastinsertid
             $res = $db->lastInsertId();
             if($res){
-                 var_dump($res);
                 $stmt1 = $db->prepare("
                     INSERT INTO 
-                    employee (clientIDEmp, empNum, plantillaPos, designation, residentialAddress, birthDate, contactNum, civilStatus, bloodType, hrmoScanned, hrmoNew, affidavitOfLoss) 
-                    VALUES (:clientIDEmp, :idNumber, :academicRank, :designation, :residentialAddress, :dateofbirth, :contactNumber, :civilStatus, :bloodType, :hrmoScanned, :hrmoNew, :aol)
+                    employee (clientIDEmp, empNum, academicRank, plantillaPos, designation, residentialAddress, birthDate, contactNum, civilStatus, bloodType, hrmoScanned, hrmoNew, affidavitOfLoss) 
+                    VALUES (:clientIDEmp, :idNumber, :academicRank, :plantillaPos, :designation, :residentialAddress, :birthDate, :contactNum, :civilStatus, :bloodType, :hrmoScanned, :hrmoNew, :aol)
                 ");
                 $stmt1->bindParam(':clientIDEmp', $res);
                 $stmt1->bindParam(':idNumber', $idNumber);
                 $stmt1->bindParam(':academicRank', $academicRank);
+                $stmt1->bindParam(':plantillaPos', $plantillaPos);
                 $stmt1->bindParam(':designation', $designation);
                 $stmt1->bindParam(':residentialAddress', $resAddress);
-                $stmt1->bindParam(':dateofbirth', $DoB);
-                $stmt1->bindParam(':contactNumber', $contact);
+                $stmt1->bindParam(':birthDate', $DoB);
+                $stmt1->bindParam(':contactNum', $contact);
                 $stmt1->bindParam(':civilStatus', $civilStatus);
                 $stmt1->bindParam(':bloodType', $bloodType);
                 $stmt1->bindParam(':hrmoScanned', $hrmoScanned);

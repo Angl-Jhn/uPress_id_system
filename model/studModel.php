@@ -2,7 +2,7 @@
 include_once("connection/PDOModel.php");
 @session_start();
 class StudentModel{
-    function requestId($type,$formType,$studId,$wmsuEmail,$fname,$mdname,$lname,$nameExt,$program,
+    function requestId($type,$formType,$studId,$email,$fname,$mdname,$lname,$nameExt,$program,
         $emgfname,$emgMname,$emgLname,$emgNameExt,$emgAddress,$emgContact,$photo,$signature,$cor,$oldId,$oldIdBack,$aol) {
         $conn = new PDOModel();
         $db = $conn->getDb();
@@ -11,14 +11,14 @@ class StudentModel{
             // Prepare the SQL statement
             $stmt = $db->prepare("
                 INSERT INTO 
-                clients (clientType, formType, wmsuEmail, firstName, middleName, lastName, nameExt, emergencyFirstName, emergencyMiddleName, emergencyLastName, emergencyNameExt, emergencyAddress, emergencyContactNum, clientSignature, clientPhoto)
-                VALUES (:clientType, :formType, :wmsuEmail, :firstName, :middleName, :lastName, :nameExt, :emergencyfname, :emergencymname, :emergencylname, :emergencyNameExt, :emergencyaddress, :emergencycontact, :signature, :photo)
+                clients (clientType, formType, email, firstName, middleName, lastName, nameExt, emergencyFirstName, emergencyMiddleName, emergencyLastName, emergencyNameExt, emergencyAddress, emergencyContactNum, clientSignature, clientPhoto)
+                VALUES (:clientType, :formType, :email, :firstName, :middleName, :lastName, :nameExt, :emergencyfname, :emergencymname, :emergencylname, :emergencyNameExt, :emergencyaddress, :emergencycontact, :signature, :photo)
             ");
 
             // Bind the parameters
             $stmt->bindParam(':clientType', $type);
             $stmt->bindParam(':formType', $formType);
-            $stmt->bindParam(':wmsuEmail', $wmsuEmail);
+            $stmt->bindParam(':email', $email);
             $stmt->bindParam(':firstName', $fname);
             $stmt->bindParam(':middleName', $mdname);
             $stmt->bindParam(':lastName', $lname);
@@ -39,7 +39,6 @@ class StudentModel{
             // variable res as lastinsertid
             $res = $db->lastInsertId();
             if($res){
-                var_dump($cor);
                 $stmt1 = $db->prepare("
                     INSERT INTO student (clientIDStudent, studentNum, collegeProgram, COR, oldIDFront, oldIDBack, affidavitOfLoss) 
                     VALUES (:clientIDstud, :studnum, :programs, :cor, :oldId, :oldIdBack, :aol)

@@ -24,7 +24,11 @@ if(isset($_SESSION["isLogin"]) == 1){
             case "add-student":
                 require_once("controller/transactionController.php");
                 break;
-            case "edit-student":
+            case "add-employee":
+                require_once("controller/transactionController.php");
+                break;
+            case "edit-users":
+                require_once("controller/transactionController.php");
                 break;
             case "del-client":
                 require_once("controller/transactionController.php");

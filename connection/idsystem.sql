@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2024 at 09:18 AM
+-- Generation Time: Jul 09, 2024 at 01:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -36,10 +36,20 @@ CREATE TABLE `account` (
   `lastName` varchar(255) NOT NULL,
   `nameExt` varchar(55) DEFAULT NULL,
   `role` varchar(255) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` varchar(255) NOT NULL,
-  `accountPhoto` text NOT NULL
+  `createdAt` date NOT NULL DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL,
+  `accountPhoto` text NOT NULL,
+  `deletedAt` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`id`, `username`, `password`, `firstName`, `middleName`, `lastName`, `nameExt`, `role`, `createdAt`, `status`, `accountPhoto`, `deletedAt`) VALUES
+(1, 'admin', '123456', 'Angelo', '', 'John', '', 'admin', '2024-07-08', 0, 'wallpaperflare.com_wallpaper1720443705.jpg', NULL),
+(2, 'adminOp', '$2y$10$SGMoDH5J9Nfb1fUrvhyWyuXtNPMbgrqbTyBgqzdyC0kCoyLimvUlq', 'Ethyl', 'Test', 'Operator', 'SR', 'operator', '2024-07-08', 0, 'wp9369051-your-name-4k-pc-wallpapers1720443865.jpg', NULL),
+(3, 'test', '$2y$10$VJX2GdDW2eHQvHpsCLQvcOb6JB45HvkrMV/UmhX/o.abRj3UiPOPe', 'test', '', 'test', '', 'operator', '2024-07-09', 0, 'wp9369051-your-name-4k-pc-wallpapers1720462183.jpg', '2024-07-08 18:11:45');
 
 -- --------------------------------------------------------
 
@@ -50,6 +60,8 @@ CREATE TABLE `account` (
 CREATE TABLE `clients` (
   `id` int(11) NOT NULL,
   `clientType` varchar(255) NOT NULL,
+  `formType` varchar(255) NOT NULL,
+  `wmsuEmail` varchar(255) NOT NULL,
   `firstName` varchar(255) NOT NULL,
   `middleName` varchar(255) DEFAULT NULL,
   `lastName` varchar(255) NOT NULL,
@@ -60,9 +72,22 @@ CREATE TABLE `clients` (
   `emergencyNameExt` varchar(55) DEFAULT NULL,
   `emergencyAddress` varchar(255) NOT NULL,
   `emergencyContactNum` int(11) NOT NULL,
-  `clientSignature` text NOT NULL,
-  `clientPhoto` text NOT NULL
+  `clientSignature` text DEFAULT NULL,
+  `clientPhoto` text DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `createdAt` date NOT NULL DEFAULT current_timestamp(),
+  `deletedAt` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `clients`
+--
+
+INSERT INTO `clients` (`id`, `clientType`, `formType`, `wmsuEmail`, `firstName`, `middleName`, `lastName`, `nameExt`, `emergencyFirstName`, `emergencyMiddleName`, `emergencyLastName`, `emergencyNameExt`, `emergencyAddress`, `emergencyContactNum`, `clientSignature`, `clientPhoto`, `status`, `createdAt`, `deletedAt`) VALUES
+(1, 'student', 'New', 'qwdq@wmsu.com', 'akdk', 'asfas', 'fasf', 'fasf', 'asfas', 'fasf', 'fassf', 'fasf', 'fasf', 12312, 'wp9109485-programmer-4k-wallpapers1720443928.jpg', 'wp9369051-your-name-4k-pc-wallpapers1720443928.jpg', 0, '2024-07-08', NULL),
+(2, 'student', 'New', 'qwdq@wmsu.com', 'akdk', 'asfas', 'fasf', 'fasf', 'asfas', 'fasf', 'fassf', 'fasf', 'fasf', 12312, 'wp9109485-programmer-4k-wallpapers1720443928.jpg', 'wp9369051-your-name-4k-pc-wallpapers1720443928.jpg', 0, '2024-07-08', NULL),
+(3, 'employee', 'Replacement', 'klkn@wmsu.com', 'kasslk', 'nlkgdsnlgknlkgn', 'kalsnflk', 'nflsskn', 'fsdfnsln', 'flksn', 'lfn', 'lfm', 'nfm', 2131231, 'wp9369051-your-name-4k-pc-wallpapers1720443970.jpg', 'wallpaperflare.com_wallpaper1720443970.jpg', 0, '2024-07-08', NULL),
+(4, 'student', 'New', 'wdnkw@wmsu.com', 'kasdlk', 'ld', 'ndlk', 'ndlk', 'asdsaldnl', 'kdn', 'lsnd', 'sldn', 'sls', 312321, 'wp9369051-your-name-4k-pc-wallpapers1720448349.jpg', 'wp9369051-your-name-4k-pc-wallpapers1720448349.jpg', 0, '2024-07-08', NULL);
 
 -- --------------------------------------------------------
 
@@ -72,18 +97,26 @@ CREATE TABLE `clients` (
 
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL,
-  `clientIDEmployee` int(11) NOT NULL,
-  `idNumber` int(11) NOT NULL,
+  `clientIDEmp` int(11) NOT NULL,
+  `empNum` int(11) NOT NULL,
+  `plantillaPos` varchar(255) NOT NULL,
   `designation` varchar(255) NOT NULL,
-  `worksAt` varchar(255) NOT NULL,
   `residentialAddress` varchar(255) NOT NULL,
   `birthDate` date NOT NULL,
-  `contactNum` int(11) NOT NULL,
+  `contactNum` varchar(255) NOT NULL,
+  `civilStatus` varchar(255) NOT NULL,
   `bloodType` varchar(255) NOT NULL,
-  `employeeIDForm` text NOT NULL,
-  `affidavitOfLoss` text NOT NULL,
-  `lostIDForm` text NOT NULL
+  `hrmoScanned` text DEFAULT NULL,
+  `hrmoNew` text DEFAULT NULL,
+  `affidavitOfLoss` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`id`, `clientIDEmp`, `empNum`, `plantillaPos`, `designation`, `residentialAddress`, `birthDate`, `contactNum`, `civilStatus`, `bloodType`, `hrmoScanned`, `hrmoNew`, `affidavitOfLoss`) VALUES
+(1, 3, 123123, 'lfkn', 'sf', 'lkfn', '2656-03-02', '132131', '', '', 'wp9369051-your-name-4k-pc-wallpapers1720443970.jpg', '', '');
 
 -- --------------------------------------------------------
 
@@ -95,13 +128,21 @@ CREATE TABLE `student` (
   `id` int(11) NOT NULL,
   `clientIDStudent` int(11) NOT NULL,
   `studentNum` varchar(255) NOT NULL,
-  `collegeProgram` varchar(255) NOT NULL,
-  `certificateOfRegistration` text DEFAULT NULL,
-  `lostIDForm` text DEFAULT NULL,
+  `collegeProgram` varchar(255) DEFAULT NULL,
+  `COR` text DEFAULT NULL,
   `oldIDFront` text DEFAULT NULL,
   `oldIDBack` text DEFAULT NULL,
   `affidavitOfLoss` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`id`, `clientIDStudent`, `studentNum`, `collegeProgram`, `COR`, `oldIDFront`, `oldIDBack`, `affidavitOfLoss`) VALUES
+(1, 1, '2021212', '', 'wp9369051-your-name-4k-pc-wallpapers1720443928.jpg', '', '', ''),
+(2, 2, '2021212', '', 'wp9369051-your-name-4k-pc-wallpapers1720443928.jpg', '', '', ''),
+(3, 4, '123131', '', 'wp9369051-your-name-4k-pc-wallpapers1720448349.jpg', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -139,7 +180,7 @@ ALTER TABLE `clients`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `FOREIGN` (`clientIDEmployee`);
+  ADD UNIQUE KEY `clientIDEmp` (`clientIDEmp`);
 
 --
 -- Indexes for table `student`
@@ -164,25 +205,25 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `transactions`
@@ -198,7 +239,7 @@ ALTER TABLE `transactions`
 -- Constraints for table `employee`
 --
 ALTER TABLE `employee`
-  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`clientIDEmployee`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`clientIDEmp`) REFERENCES `clients` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student`

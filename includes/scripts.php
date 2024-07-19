@@ -1,11 +1,12 @@
 <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
-<script src="../../node_modules/select2/dist/js/select2.min.js"></script>
+
 
 <script src="../../node_modules/jszip/dist/jszip.js"></script>
 <script src="../../node_modules/pdfmake/build/pdfmake.js"></script>
 <script src="../../node_modules/pdfmake/build/vfs_fonts.js"></script>
+<script src="../../node_modules/select2/dist/js/select2.min.js"></script>
 <script src="../../node_modules/datatables.net/js/dataTables.js"></script>
 <script src="../../node_modules/datatables.net-bs5/js/dataTables.bootstrap5.js"></script>
 <script src="../../node_modules/datatables.net-buttons/js/dataTables.buttons.js"></script>
@@ -31,6 +32,7 @@ function text(x) {
         // student
         $('.stud-replacement').hide();
         $('.stud-affidavit').hide();
+        $('.stud-dsa').hide();
         // employee
         $('.hrmo').show();
         $('.hrmo-lost').hide();
@@ -39,6 +41,7 @@ function text(x) {
         // student
         $('.stud-replacement').show();
         $('.stud-affidavit').hide();
+        $('.stud-dsa').hide();
         // employee
         $('.hrmo').show();
         $('.hrmo-lost').hide();
@@ -47,6 +50,7 @@ function text(x) {
         // student
         $('.stud-replacement').hide();
         $('.stud-affidavit').show();
+        $('.stud-dsa').show();
         // employee
         $('.hrmo').hide();
         $('.hrmo-lost').show();
@@ -67,6 +71,7 @@ function clearViews() {
     // student
     $('.stud-replacement').hide();
     $('.stud-affidavit').hide();
+    $('.stud-dsa').hide();
     // employee
     $('.hrmo').show();
     $('.hrmo-lost').hide();

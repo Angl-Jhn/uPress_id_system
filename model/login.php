@@ -31,6 +31,7 @@ class loginModel {
             $_SESSION["role"] = $userRow['role'];
             $_SESSION["firstName"] = $userRow["firstName"];
             $_SESSION["lastName"] = $userRow["lastName"];
+            $_SESSION["accountPhoto"] = $userRow['accountPhoto'];
             
         } else {
             if (session_status() == PHP_SESSION_NONE) {

@@ -12,7 +12,7 @@
                                 <h2>Account Management</h2>
                             </div>
                         </div>
-                        <div class="col-md-4 col-12 align-items-center d-flex justify-content-end">
+                        <div class="col-md-12 col-12 align-items-center d-flex justify-content-end">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#addAccountModal">
                                 <i class="fa-solid fa-circle-plus"></i> Account
@@ -47,7 +47,7 @@
                                             </td>
                                             <td style="max-width: 80px; overflow: hidden; text-overflow: ellipsis;"
                                                 title="<?= $item['password'] ?>">
-                                                <?= strlen($item['password']) > 15 ? substr($item['password'], 0, 15) . '...' : $item['password'] ?>
+                                                <?= strlen($item['password']) > 6 ? substr($item['password'], 0, 6) . '...' : $item['password'] ?>
                                             </td>
                                             <td style="max-width: 60px; overflow: hidden; text-overflow: ellipsis;"
                                                 title="<?= $item['firstName']." ".$item['middleName']." ".$item['lastName']." ".$item['nameExt'] ?>">
@@ -160,7 +160,7 @@
                                     <label for="" class="form-label">Role</label>
                                     <select class="form-control js-example-basic-single" name="role" id="role" required
                                         style="width: 100%;">
-                                        <option value="">Select Role</option>
+                                        <option></option>
                                         <option value="admin">Admin</option>
                                         <option value="operator">Operator</option>
                                     </select>
@@ -181,8 +181,8 @@
                 </div>
             </div>
             <!-- edit modal -->
-            <div class="modal fade" id="editAccountModal" tabindex="-1" aria-labelledby="editAccountModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="editAccountModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="editAccountModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <form id="editAccountForm" method="post" action="" enctype="multipart/form-data">
@@ -220,9 +220,9 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="editRole" class="form-label">Role</label>
-                                    <select class="form-control js-example-basic-single" name="role" id="role" required
-                                        style="width: 100%;">
-                                        <option value="">Select Role</option>
+                                    <select class="form-control js-example-basic-single" name="role" id="editrole"
+                                        required style="width: 100%;">
+                                        <option></option>
                                         <option value="admin">Admin</option>
                                         <option value="operator">Operator</option>
                                     </select>
@@ -246,13 +246,14 @@
 
             <script>
 $(document).ready(function() {
-    $('#addAccountModal .js-example-basic-single').select2({
-        placeholder: 'Select An Option',
+    $("#addAccountModal .js-example-basic-single").select2({
+        placeholder: "Select Role",
+        allowClear: true,
         dropdownParent: $('#addAccountModal')
     });
-    // Initialize Select2 for Edit Account Modald
-    $('#editAccountModal .js-example-basic-single').select2({
-        placeholder: 'Select An Option',
+    $("#editAccountModal .js-example-basic-single").select2({
+        placeholder: "Select Role",
+        allowClear: true,
         dropdownParent: $('#editAccountModal')
     });
     var table = $('#user').DataTable({
@@ -266,8 +267,7 @@ $(document).ready(function() {
         }
     });
 });
-            </script>
-            <script>
+
 $(document).ready(function() {
     $('#addAccount').on('submit', function(e) {
         e.preventDefault();
@@ -354,8 +354,10 @@ $(document).ready(function() {
                 $("#editMname").val(res.middleName);
                 $("#editLname").val(res.lastName);
                 $("#editNameExt").val(res.nameExt);
-                $("#editRole").val(res.role);
+                $("#editrole").val(res.role);
                 $("#editId").val(res.id);
+
+                $('#editrole').trigger('change');
             }
         });
     });
@@ -363,6 +365,7 @@ $(document).ready(function() {
     $(document).on('click', '.delete-btn', function(e) {
         e.preventDefault();
         var id = $(this).data('id');
+        var row = $(this).closest('tr');
 
         if (confirm('Are you sure you want to delete this account?')) {
             var formData = new FormData();
@@ -375,7 +378,7 @@ $(document).ready(function() {
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     var res = response;
                     if (res.success) {
                         alert(res.message);

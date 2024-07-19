@@ -9,19 +9,21 @@ $clients = new TransactionManageModel();
 // $delClient = $obj->softDeleteClient($id);
 
 if(isset($_POST["type"])){
-    if($_POST["type"] == "student"){
-        switch($_POST["type2"]) {
-            case 'addStud':
-                handleAddStud($Stud);
-                break;
-            case 'viewClients':
-                handleViewClients($clients);
-                break;
-            case 'delete':
-                handleDeleteClient($clients);
-                break;
-            
-        }
+    switch($_POST["type"]) {
+        case 'Student':
+            handleAddStud($Stud);
+        break;
+        case 'Employee':
+            handleAddEmploy($Employ);
+            break;    
+        case 'viewClients':
+            handleViewClients($_POST["clientID"],$clients);
+            break;
+        case 'delete':
+            handleDeleteClient($clients);
+            break;
+
+        
     }
 }
 function handleAddStud($objModel){
@@ -29,7 +31,7 @@ function handleAddStud($objModel){
     $type = $_POST["type"];
     $formtype = $_POST["formType"];
     $studId = $_POST["studnum"];
-    $wmsuEmail = $_POST["wmsuEmail"];
+    $email = $_POST["email"];
     $firstname = $_POST["firstName"];
     $middlename = $_POST["middleName"];
     $familyname = $_POST["familyName"];
@@ -41,15 +43,15 @@ function handleAddStud($objModel){
     $emgNameExt = $_POST["nameExtEmg"];
     $emgAddress = $_POST["address"];
     $emgContact = $_POST["contactNumber"];
-    $photo = uploadImage('userPhoto');
-    $signature = uploadImage('signature');
-    $cor = uploadImage('cor');
-    $oldId = uploadImage('oldId');
-    $oldIdBack = uploadImage('oldIdBack');
-    $aol = uploadImage('aol');
+    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
+    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
+    $cor = uploadImage('cor') ? uploadImage('cor'): "";
+    $oldId = uploadImage('oldId') ? uploadImage('oldId'):"";
+    $oldIdBack = uploadImage('oldIdBack')?uploadImage('oldIdBack'):"";
+    $aol = uploadImage('aol') ? uploadImage('aol'):"";
 
     $res1 = $objModel->requestId(
-        $type, $formtype, $studId, $wmsuEmail, $firstname, $middlename, $familyname, $nameExt,
+        $type, $formtype, $studId, $email, $firstname, $middlename, $familyname, $nameExt,
             $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol
     );
     if ($res1) {
@@ -59,17 +61,59 @@ function handleAddStud($objModel){
     }
 
 }
+function handleAddEmploy($objModel){
+    // var_dump($objModel);
+    $type = $_POST["type"];
+    $formType = $_POST["formType"];
+    $idNumber = $_POST["idNumber"];
+    $email = $_POST["email"];
+    $firstname = $_POST["firstName"];
+    $middlename = $_POST["middleName"];
+    $familyname = $_POST["familyName"];
+    $nameExt = $_POST["nameExt"];
+    $academicRank = $_POST["academicRank"];
+    $plantillaPos = $_POST["plantillaPos"];
+    $designation = $_POST["designation"];
+    $residentialAddress = $_POST["residentialAddress"];
+    $dateofbirth = $_POST["dateofbirth"];
+    $contactNum = $_POST["contactNum"];
+    $civilStatus = $_POST["civilStatus"];
+    $bloodType = $_POST["bloodType"];
+    $emgfname = $_POST["firstNameEmg"];
+    $emgMname = $_POST["middleNameEmg"];
+    $emgLname = $_POST["familyNameEmg"];
+    $emgNameExt = $_POST["nameExtEmg"];
+    $emgAddress = $_POST["address"];
+    $emgContact = $_POST["contactNumber"];
+    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
+    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
+    $hrmoscanned = uploadImage('hrmoScanned') ? uploadImage('hrmoScanned'): "";
+    $hrmoNew = uploadImage('hrmoNew') ? uploadImage('hrmoNew'):"";
+    $aol = uploadImage('aol') ? uploadImage('aol'):"";
 
-function handleViewClients($objModel){
-    $id = $_POST("client_id");
-    $result = $objModel->getAll($id);
+    $res1 = $objModel->requestId(
+        $type, $formType, $idNumber, $email, $firstname, $middlename, $familyname, $nameExt,
+            $academicRank, $plantillaPos, $designation, $residentialAddress, $dateofbirth, $contactNum, $civilStatus, $bloodType,
+            $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $hrmoscanned, $hrmoNew, $aol
+    );
+    if ($res1) {
+        echo json_encode(['message'=>"Successfully added ".$firstname.' '.$familyname,'status'=>'success']);
+    } else {
+        echo json_encode(['message'=>"Failed to add ".$firstname.' '.$familyname,'status'=>'error']);
+    }
+
+}
+
+function handleViewClients($id,$objModel){
+    $result = $objModel->getAccountById($id);
     if($result){
         echo json_encode($result);
     }
+
 }
 
 function handleDeleteClient($objModel) {
-    $id = $_POST['client_id'];
+    $id = $_POST['clientID'];
     $deleteAcc = $objModel->softDeleteClient($id);
     if($deleteAcc){
         echo json_encode(['message'=>'Successfully deleted client '.$id,'status'=>'success']);
@@ -109,7 +153,6 @@ function uploadImage($fieldName) {
     }
 
     if (!empty($errors)) {
-        echo json_encode($errors);
         return false;
     }
 
