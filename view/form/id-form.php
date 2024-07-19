@@ -64,21 +64,21 @@
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="formType" value="New" id="new" checked
-                                                                    onclick="text(0)">
+                                                                    onclick="view(0)">
                                                                 <label class="form-check-label ps-2"
                                                                     for="new">New</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="formType" value="Replacement" id="rep"
-                                                                    onclick="text(1)">
+                                                                    onclick="view(1)">
                                                                 <label class="form-check-label ps-2"
                                                                     for="rep">Replacement</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="formType" value="Lost" id="lost"
-                                                                    onclick="text(2)">
+                                                                    onclick="view(2)">
                                                                 <label class="form-check-label ps-2"
                                                                     for="lost">Lost</label>
                                                             </div>
@@ -278,21 +278,21 @@
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="formType" value="New" id="new" checked
-                                                                    onclick="text(0)">
+                                                                    onclick="view(0)">
                                                                 <label class="form-check-label ps-2"
                                                                     for="new">New</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="formType" value="Replacement" id="rep"
-                                                                    onclick="text(1)">
+                                                                    onclick="view(1)">
                                                                 <label class="form-check-label ps-2"
                                                                     for="rep">Replacement</label>
                                                             </div>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio"
                                                                     name="formType" value="Lost" id="lost"
-                                                                    onclick="text(2)">
+                                                                    onclick="view(2)">
                                                                 <label class="form-check-label ps-2"
                                                                     for="lost">Lost</label>
                                                             </div>

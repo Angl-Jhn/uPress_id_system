@@ -6,8 +6,8 @@
 
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="row text-start py-3 px-2">
-                        <div class="col-md-8 col-12 align-items-center d-flex justify-content-start">
+                    <div class="row py-3 px-2">
+                        <div class="col-md-12 text-start">
                             <div class="card-header">
                                 <h2>Account Management</h2>
                             </div>
@@ -23,7 +23,7 @@
                             <div class="table-responsive">
                                 <table class="table caption-top table-striped table-hover" id="user"
                                     style="width: 100%;">
-                                    <thead class="table-dark">
+                                    <thead>
                                         <th scope="col">ID</th>
                                         <th scope="col">Username</th>
                                         <th scope="col">Password</th>
@@ -123,58 +123,69 @@
             <!-- Add Modal -->
             <div class="modal fade" id="addAccountModal" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Account</h1>
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Account Setup</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form method="post" action="" id="addAccount">
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Username</label>
-                                    <input type="text" name="uname" class="form-control" placeholder="admin" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Password</label>
-                                    <input type="password" name="pw" class="form-control" placeholder="********"
-                                        required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label">First name</label>
-                                    <input type="text" name="fname" class="form-control" placeholder="" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Middle name</label>
-                                    <input type="text" name="mname" class="form-control" placeholder="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Last name</label>
-                                    <input type="text" name="lname" class="form-control" placeholder="" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Name Ext.</label>
-                                    <input type="text" name="nameExt" class="form-control" placeholder="Sr / Jr">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Role</label>
-                                    <select class="form-control js-example-basic-single" name="role" id="role" required
-                                        style="width: 100%;">
-                                        <option></option>
-                                        <option value="admin">Admin</option>
-                                        <option value="operator">Operator</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Insert your photo</label>
-                                    <input class="form-control" type="file" name="accountPhoto[]" id="accountPhoto"
-                                        accept="image/*">
+                            <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Username</label>
+                                                <input type="text" name="uname" class="form-control" placeholder="admin"
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Password</label>
+                                                <input type="password" name="pw" class="form-control"
+                                                    placeholder="********" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">First name</label>
+                                                <input type="text" name="fname" class="form-control" placeholder=""
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Middle name</label>
+                                                <input type="text" name="mname" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Last name</label>
+                                                <input type="text" name="lname" class="form-control" placeholder=""
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Name Ext.</label>
+                                                <input type="text" name="nameExt" class="form-control"
+                                                    placeholder="Sr / Jr">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Role</label>
+                                                <select class="form-control js-example-basic-single" name="role"
+                                                    id="role" required style="width: 100%;">
+                                                    <option></option>
+                                                    <option value="admin">Admin</option>
+                                                    <option value="operator">Operator</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Insert photo</label>
+                                                <input class="form-control" type="file" name="accountPhoto[]"
+                                                    id="accountPhoto" accept="image/*">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="add" class="btn btn-primary">Add account</button>
+                                <button type="submit" name="add" class="btn btn-primary">Add</button>
                             </div>
                         </form>
                     </div>
@@ -183,61 +194,71 @@
             <!-- edit modal -->
             <div class="modal fade" id="editAccountModal" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="editAccountModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                     <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editAccountModalLabel">Account Modification</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
                         <form id="editAccountForm" method="post" action="" enctype="multipart/form-data">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editAccountModalLabel">Edit Account</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <input type="hidden" id="editId" name="accId">
-                                    <label for="editUname" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="editUname" name="uname" required>
+                            <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <input type="hidden" id="editId" name="accId">
+                                                <label for="editUname" class="form-label">Username</label>
+                                                <input type="text" class="form-control" id="editUname" name="uname"
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="editPw" class="form-label">Password</label>
+                                                <input type="password" class="form-control" id="editPw" name="pw"
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="editFname" class="form-label">First Name</label>
+                                                <input type="text" class="form-control" id="editFname" name="fname"
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="editMname" class="form-label">Middle Name</label>
+                                                <input type="text" class="form-control" id="editMname" name="mname">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="editLname" class="form-label">Last Name</label>
+                                                <input type="text" class="form-control" id="editLname" name="lname"
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="editNameExt" class="form-label">Name
+                                                    Extension</label>
+                                                <input type="text" class="form-control" id="editNameExt" name="nameExt">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="editRole" class="form-label">Role</label>
+                                                <select class="form-control js-example-basic-single" name="role"
+                                                    id="editrole" required style="width: 100%;">
+                                                    <option></option>
+                                                    <option value="admin">Admin</option>
+                                                    <option value="operator">Operator</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="editAccountPhoto" class="form-label">Account
+                                                    Photo</label>
+                                                <input type="file" class="form-control" id="editAccountPhoto"
+                                                    name="accountPhoto[]" accept="image/*">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="editPw" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="editPw" name="pw" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="editFname" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="editFname" name="fname" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="editMname" class="form-label">Middle Name</label>
-                                    <input type="text" class="form-control" id="editMname" name="mname">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="editLname" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="editLname" name="lname" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="editNameExt" class="form-label">Name
-                                        Extension</label>
-                                    <input type="text" class="form-control" id="editNameExt" name="nameExt">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="editRole" class="form-label">Role</label>
-                                    <select class="form-control js-example-basic-single" name="role" id="editrole"
-                                        required style="width: 100%;">
-                                        <option></option>
-                                        <option value="admin">Admin</option>
-                                        <option value="operator">Operator</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="editAccountPhoto" class="form-label">Account
-                                        Photo</label>
-                                    <input type="file" class="form-control" id="editAccountPhoto" name="accountPhoto[]"
-                                        accept="image/*">
-                                </div>
-                                <!-- <input type="hidden" name="type" value="save"> -->
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" name="save">Save changes</button>
+                                <button type="submit" class="btn btn-primary" name="save">Save</button>
                             </div>
                         </form>
                     </div>

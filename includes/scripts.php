@@ -23,10 +23,18 @@
 <!-- stepper script -->
 <script>
 $(document).ready(function() {
-    text(0);
+    view(0);
+
+    $('#teach').click(function() {
+        teachingnon(0);
+    });
+    $('#nonteach').click(function() {
+        teachingnon(1);
+    });
+    teachingnon($('#teach').is(':checked') ? 0 : 1);
 });
 
-function text(x) {
+function view(x) {
     clearViews();
     if (x == 0) {
         // student
@@ -46,7 +54,7 @@ function text(x) {
         $('.hrmo').show();
         $('.hrmo-lost').hide();
         $('.emp-affidavit').hide();
-    } else {
+    } else if (x == 2) {
         // student
         $('.stud-replacement').hide();
         $('.stud-affidavit').show();
@@ -57,15 +65,6 @@ function text(x) {
         $('.emp-affidavit').show();
     }
 };
-$('#new').click(function() {
-    text(0);
-});
-$('#rep').click(function() {
-    text(1);
-});
-$('#lost').click(function() {
-    text(2);
-});
 
 function clearViews() {
     // student
@@ -78,4 +77,29 @@ function clearViews() {
     $('.emp-affidavit').hide();
 
 }
+
+function teachingnon(x) {
+    if (x == 0) {
+        $('.acad-rank').show();
+        $('.plant-pos').hide();
+        $('#academicRank').attr('required', true);
+        $('#plantillaPos').removeAttr('required');
+        $('#plantillaPos').val('');
+    } else if (x == 1) {
+        $('.acad-rank').hide();
+        $('.plant-pos').show();
+        $('#academicRank').removeAttr('required');
+        $('#plantillaPos').attr('required', true);
+        $('#academicRank').val('');
+    }
+}
+// $('#new').click(function() {
+//     text(0);
+// });
+// $('#rep').click(function() {
+//     text(1);
+// });
+// $('#lost').click(function() {
+//     text(2);
+// });
 </script>

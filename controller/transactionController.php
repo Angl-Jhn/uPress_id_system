@@ -8,14 +8,20 @@ $clients = new TransactionManageModel();
 // $clients = $obj->getAll();
 // $delClient = $obj->softDeleteClient($id);
 
-if(isset($_POST["type"])){
-    switch($_POST["type"]) {
-        case 'Student':
+if(isset($_POST["submitType"])){
+    switch($_POST["submitType"]) {
+        case 'addStud':
             handleAddStud($Stud);
         break;
-        case 'Employee':
+        case 'updateStud':
+            // handleAddStud($Stud);
+        break;
+        case 'addEmploy':
             handleAddEmploy($Employ);
-            break;    
+            break;
+        case 'updateEmploy':
+            handleUpdateEmploy($Employ);
+            break;
         case 'viewClients':
             handleViewClients($_POST["clientID"],$clients);
             break;
@@ -102,6 +108,48 @@ function handleAddEmploy($objModel){
         echo json_encode(['message'=>"Failed to add ".$firstname.' '.$familyname,'status'=>'error']);
     }
 
+}
+
+function handleUpdateEmploy($objModel){
+    $type = $_POST["type"];
+    $formType = $_POST["formType"];
+    $idNumber = $_POST["idNumber"];
+    $email = $_POST["email"];
+    $firstname = $_POST["firstName"];
+    $middlename = $_POST["middleName"];
+    $familyname = $_POST["familyName"];
+    $nameExt = $_POST["nameExt"];
+    $academicRank = $_POST["academicRank"];
+    $plantillaPos = $_POST["plantillaPos"];
+    $designation = $_POST["designation"];
+    $residentialAddress = $_POST["residentialAddress"];
+    $dateofbirth = $_POST["dateofbirth"];
+    $contactNum = $_POST["contactNum"];
+    $civilStatus = $_POST["civilStatus"];
+    $bloodType = $_POST["bloodType"];
+    $emgfname = $_POST["firstNameEmg"];
+    $emgMname = $_POST["middleNameEmg"];
+    $emgLname = $_POST["familyNameEmg"];
+    $emgNameExt = $_POST["nameExtEmg"];
+    $emgAddress = $_POST["address"];
+    $emgContact = $_POST["contactNumber"];
+    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
+    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
+    $hrmoscanned = uploadImage('hrmoScanned') ? uploadImage('hrmoScanned'): "";
+    $hrmoNew = uploadImage('hrmoNew') ? uploadImage('hrmoNew'):"";
+    $aol = uploadImage('aol') ? uploadImage('aol'):"";
+    $id = $_POST["clientID"];
+
+    $res1 = $objModel->saveEmployee(
+        $id,$type, $formType, $idNumber, $email, $firstname, $middlename, $familyname, $nameExt,
+            $academicRank, $plantillaPos, $designation, $residentialAddress, $dateofbirth, $contactNum, $civilStatus, $bloodType,
+            $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $hrmoscanned, $hrmoNew, $aol
+    );
+    if ($res1) {
+        echo json_encode(['message'=>"Successfully updated ".$firstname.' '.$familyname,'status'=>'success']);
+    } else {
+        echo json_encode(['message'=>"Failed to update ".$firstname.' '.$familyname,'status'=>'error']);
+    }
 }
 
 function handleViewClients($id,$objModel){

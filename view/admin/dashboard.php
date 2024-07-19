@@ -1,9 +1,11 @@
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="mb-3 text-center">
-                        <h4>records</h4>
-                    </div>
-                    <div class="row">
+                    <div class="row py-3 px-2">
+                        <div class="col-md-12 text-start">
+                            <div class="card-header">
+                                <h2>records</h2>
+                            </div>
+                        </div>
                         <div class="col-12 col-md-4 d-flex">
                             <div class="card flex-fill border-0">
                                 <div class="card-body py-4">

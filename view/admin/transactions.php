@@ -6,8 +6,8 @@
 
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="row text-start py-3 px-2">
-                        <div class="col-md-8 col-12 align-items-center d-flex justify-content-start">
+                    <div class="row py-3 px-2">
+                        <div class="col-md-12 text-start">
                             <div class="card-header">
                                 <h2>Client Transactions</h2>
                             </div>
@@ -27,7 +27,7 @@
                             <div class="table-responsive">
                                 <table class="table caption-top table-striped table-hover" id="transactions"
                                     style="width: 100%;">
-                                    <thead class="table-dark">
+                                    <thead>
                                         <th scope="col">Client ID</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Type</th>
@@ -80,7 +80,7 @@
                                                         ?>
                                                         <button type="button"
                                                             class="btn btn-success btn-cirlce btn-sm edit-btn2"
-                                                            data-id="<?= $item['client_id']; ?>" data-type="student"
+                                                            data-id="<?= $item['client_id']; ?>" data-type="Student"
                                                             data-bs-toggle="modal" data-bs-target="#StudentModal">
                                                             <i class="fa-solid fa-pen-to-square"
                                                                 style="padding: 0;"></i>
@@ -91,7 +91,7 @@
                                                         ?>
                                                         <button type="button"
                                                             class="btn btn-success btn-cirlce btn-sm edit-btn2"
-                                                            data-id="<?= $item['client_id']; ?>" data-type="employee"
+                                                            data-id="<?= $item['client_id']; ?>" data-type="Employee"
                                                             data-bs-toggle="modal" data-bs-target="#EmployeeModal">
                                                             <i class="fa-solid fa-pen-to-square"
                                                                 style="padding: 0;"></i>
@@ -135,30 +135,29 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-2" id="staticBackdropLabel">Add Student</h1>
+                            <h1 class="modal-title fs-2" id="staticBackdropLabel"></h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="post" id="addStudent" enctype="multipart/form-data">
+                        <form method="post" id="studentForm" enctype="multipart/form-data">
                             <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 d-flex justify-content-center">
                                             <!-- Radio Buttons -->
-                                            <div
-                                                class="container-fluid d-flex flex-row justify-content-center align-content-center m-0 py-2 gap-2">
+                                            <div class="m-0 py-2 gap-2">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="New" id="new" checked onclick="text(0)">
+                                                        value="New" id="new" checked onclick="view(0)">
                                                     <label class="form-check-label ps-2" for="new">New</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="Replacement" id="rep" onclick="text(1)">
+                                                        value="Replacement" id="rep" onclick="view(1)">
                                                     <label class="form-check-label ps-2" for="rep">Replacement</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="Lost" id="lost" onclick="text(2)">
+                                                        value="Lost" id="lost" onclick="view(2)">
                                                     <label class="form-check-label ps-2" for="lost">Lost</label>
                                                 </div>
                                             </div>
@@ -208,7 +207,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Middle Name</label>
-                                                <input type="text" name="middleNameEmg" id="mnameEmg" required>
+                                                <input type="text" name="middleNameEmg" id="mnameEmg">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Family Name</label>
@@ -216,8 +215,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExtEmg" id="extEmg" placeholder="Sr./Jr."
-                                                    required>
+                                                <input type="text" name="nameExtEmg" id="extEmg" placeholder="Sr./Jr.">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Address</label>
@@ -263,8 +261,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="addStud" id="add" class="btn btn-primary">Add
-                                    Student</button>
+                                <button type="submit" name="" class="btn btn-primary"></button>
                             </div>
                         </form>
                     </div>
@@ -278,27 +275,26 @@
                             <h1 class="modal-title fs-2" id="staticBackdropLabel">Add Employee</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="post" id="addEmployee" enctype="multipart/form-data">
+                        <form method="post" id="employeeForm" enctype="multipart/form-data">
                             <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 d-flex justify-content-center">
                                             <!-- Radio Buttons -->
-                                            <div
-                                                class="container-fluid d-flex flex-row justify-content-center align-content-center m-0 py-2 gap-2">
+                                            <div class="m-0 py-2 gap-2">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="New" id="new" checked onclick="text(0)">
+                                                        value="New" id="new" checked onclick="view(0)">
                                                     <label class="form-check-label ps-2" for="new">New</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="Replacement" id="rep" onclick="text(1)">
+                                                        value="Replacement" id="rep" onclick="view(1)">
                                                     <label class="form-check-label ps-2" for="rep">Replacement</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="Lost" id="lost" onclick="text(2)">
+                                                        value="Lost" id="lost" onclick="view(2)">
                                                     <label class="form-check-label ps-2" for="lost">Lost</label>
                                                 </div>
                                             </div>
@@ -308,34 +304,47 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <h3>Employee data</h3>
-                                            <div>
+                                            <div class="mb-2">
                                                 <label for="">ID Number</label>
                                                 <input type="number" name="idNumber" id="idNumber" required>
                                             </div>
-                                            <div>
+                                            <div class="mb-2">
                                                 <label for="">Email</label>
                                                 <input type="text" name="email" id="email" required>
                                             </div>
-                                            <div>
+                                            <div class="mb-2">
                                                 <label for="">First Name</label>
                                                 <input type="text" name="firstName" id="fname" required>
                                             </div>
-                                            <div>
+                                            <div class="mb-2">
                                                 <label for="">Middle Name</label>
                                                 <input type="text" name="middleName" id="mname">
                                             </div>
-                                            <div>
+                                            <div class="mb-2">
                                                 <label for="">Family Name</label>
                                                 <input type="text" name="familyName" id="famname" required>
                                             </div>
-                                            <div>
+                                            <div class="mb-2">
                                                 <label for="">Name Ext.</label>
                                                 <input type="text" name="nameExt" id="ext" placeholder="Sr./Jr.">
                                             </div>
-                                            <div>
+                                            <div class="m-0 py-2 gap-2">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="teachingnon"
+                                                        id="teach" checked onclick="teachingnon(0)">
+                                                    <label class="form-check-label ps-2" for="teach">Teaching</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="teachingnon"
+                                                        id="nonteach" onclick="teachingnon(1)">
+                                                    <label class="form-check-label ps-2"
+                                                        for="nonteach">Non-Teaching</label>
+                                                </div>
+                                            </div>
+                                            <div class="acad-rank mb-2">
                                                 <label for="">Academic Rank</label>
                                                 <select class="academicRank-basic-single" name="academicRank"
-                                                    id="academicRank">
+                                                    id="academicRank" required>
                                                     <option value=""></option>
                                                     <optgroup label="Instructor">
                                                         <option value="Instructor-1">Instructor I</option>
@@ -368,28 +377,28 @@
                                                     </optgroup>
                                                 </select>
                                             </div>
-                                            <div>
+                                            <div class="plant-pos mb-2">
                                                 <label for="">Plantilla Position</label>
-                                                <input type="text" name="plantillaPos" id="plantillaPos">
+                                                <input type="text" name="plantillaPos" id="plantillaPos" required>
                                             </div>
-                                            <div>
+                                            <div class="mb-2">
                                                 <label for="">Unit/Office/College/Department</label>
                                                 <input type="text" name="designation" id="designation" required>
                                             </div>
-                                            <div>
+                                            <div class="mb-2">
                                                 <label for="">Residential Address</label>
                                                 <input type="text" name="residentialAddress" id="residentialAddress"
                                                     required>
                                             </div>
-                                            <div class="birth">
+                                            <div class="birth mb-2">
                                                 <label for="">Date of Birth</label>
                                                 <input type="date" name="dateofbirth" id="dateofbirth" required>
                                             </div>
-                                            <div>
+                                            <div class="mb-2">
                                                 <label for="">Contact Number</label>
                                                 <input type="number" name="contactNum" id="contactNum" required>
                                             </div>
-                                            <div>
+                                            <div class="mb-2">
                                                 <label for="">Civil Status</label>
                                                 <select class="civilstatus-basic-single" name="civilStatus"
                                                     id="civilStatus" required>
@@ -402,7 +411,7 @@
                                                     <option value="Annulled">Annulled</option>
                                                 </select>
                                             </div>
-                                            <div>
+                                            <div class="mb-2">
                                                 <label for="">Blood Type</label>
                                                 <select class="bloodtype-basic-single" name="bloodType" id="bloodType"
                                                     required>
@@ -420,27 +429,27 @@
                                         </div>
                                         <div class="col-md-4">
                                             <h3>Emergency data</h3>
-                                            <div class="mb-3">
+                                            <div class="mb-2">
                                                 <label for="">First Name</label>
                                                 <input type="text" name="firstNameEmg" id="fnameEmg" required>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-2">
                                                 <label for="">Middle Name</label>
                                                 <input type="text" name="middleNameEmg" id="mnameEmg">
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-2">
                                                 <label for="">Family Name</label>
                                                 <input type="text" name="familyNameEmg" id="famnameEmg" required>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-2">
                                                 <label for="">Name Ext.</label>
                                                 <input type="text" name="nameExtEmg" id="extEmg" placeholder="Sr./Jr.">
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-2">
                                                 <label for="">Address</label>
                                                 <input type="text" name="address" id="addEmg" required>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-2">
                                                 <label for="">Contact Number</label>
                                                 <input type="number" name="contactNumber" id="contactEmg" required>
                                             </div>
@@ -478,8 +487,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="addEmploy" id="add" class="btn btn-primary">Add
-                                    Employee</button>
+                                <button type="submit" name="" class="btn btn-primary"></button>
                             </div>
                         </form>
                     </div>
@@ -522,15 +530,33 @@ $(document).ready(function() {
     $(document).on('click', '.addbtn1', function() {
         $('#StudentModal').find('input, select, textarea').val('');
         $('#new').prop('checked', true);
+        $('#StudentModal h1').text('Generate Student ID');
+        $('#StudentModal button[type="submit"]').attr('name', 'addStud').text('Add Student');
     });
     $(document).on('click', '.addbtn2', function() {
         $('#EmployeeModal').find('input, select, textarea').val('');
         $('#new').prop('checked', true);
+        $('#EmployeeModal h1').text('Generate Employee ID');
+        $('#EmployeeModal button[type="submit"]').attr('name', 'addEmploy').text('Add Employee');
     });
 
-    $(document).on('submit', '#addStudent', function(e) {
+    $(document).on('click', '.edit-btn2', function(e) {
+        var clientType = $(this).data('type');
+
+        if (clientType === 'Student') {
+            $('#StudentModal h1').text('Modify Student ID');
+            $('#StudentModal button[type="submit"]').attr('name', 'updateStud').text('Save Student');
+        } else if (clientType === 'Employee') {
+            $('#EmployeeModal h1').text('Modify Employee ID');
+            $('#EmployeeModal button[type="submit"]').attr('name', 'updateEmploy').text(
+                'Save Employee');
+        }
+    });
+    // insert
+    $(document).on('submit', '#studentForm', function(e) {
         e.preventDefault();
         var formdata = new FormData(this);
+        formdata.append("submitType", "addStud");
         formdata.append("type", "Student");
         formdata.append("ignoreHeaderFooter", 1);
 
@@ -549,8 +575,8 @@ $(document).ready(function() {
                 } else {
                     alert(res.message);
                 }
-                $('#addStudent').find('input').val('');
-                $('#addStudent').find('select').val('');
+                $('#studentForm').find('input').val('');
+                $('#studentForm').find('select').val('');
             },
             error: function(error) {
                 console.log(error);
@@ -558,16 +584,17 @@ $(document).ready(function() {
             }
         });
     });
-    $(document).on('submit', '#addEmployee', function(e) {
+    $(document).on('submit', '#employeeForm', function(e) {
         e.preventDefault();
-        var formData = new FormData(this);
-        formData.append("type", "Employee");
-        formData.append("ignoreHeaderFooter", 1);
+        var formdata = new FormData(this);
+        formdata.append("submitType", "addEmploy");
+        formdata.append("type", "Employee");
+        formdata.append("ignoreHeaderFooter", 1);
 
         $.ajax({
             type: 'POST',
             url: "/add-employee",
-            data: formData,
+            data: formdata,
             contentType: false,
             processData: false,
             success: function(response) {
@@ -578,8 +605,68 @@ $(document).ready(function() {
                 } else {
                     alert(res.message);
                 }
-                $('#addEmployee').find('input').val('');
-                $('#addEmployee').find('select').val('');
+                $('#employeeForm').find('input').val('');
+                $('#employeeForm').find('select').val('');
+            },
+            error: function(error) {
+                console.log(error);
+                alert('Error submitting form');
+            }
+        });
+    });
+    // update
+    $(document).on('submit', '#studentForm', function(e) {
+        e.preventDefault();
+        var formdata = new FormData(this);
+        formdata.append("submitType", "updateStud");
+        formdata.append("ignoreHeaderFooter", 1);
+
+        $.ajax({
+            type: 'post',
+            url: "/save-student",
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                var res = JSON.parse(response);
+                console.log(res);
+                if (res.status === 'success') {
+                    alert(res.message);
+                    location.reload();
+                } else {
+                    alert(res.message);
+                }
+                $('#studentForm').find('input').val('');
+                $('#studentForm').find('select').val('');
+            },
+            error: function(error) {
+                console.log(error);
+                alert('Error submitting form');
+            }
+        });
+    });
+    $(document).on('submit', '#employeeForm', function(e) {
+        e.preventDefault();
+        var formdata = new FormData(this);
+        formdata.append("submitType", "updateEmploy");
+        formdata.append("ignoreHeaderFooter", 1);
+
+        $.ajax({
+            type: 'POST',
+            url: "/save-employee",
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                var res = JSON.parse(response);
+                if (res.status == 'success') {
+                    alert(res.message);
+                    location.reload();
+                } else {
+                    alert(res.message);
+                }
+                // $('#employeeForm').find('input').val('');
+                // $('#employeeForm').find('select').val('');
             },
             error: function(error) {
                 console.log(error);
@@ -594,16 +681,16 @@ $(document).ready(function() {
 
         console.log(e.currentTarget.getAttribute('data-type'));
 
-        var formData = new FormData();
-        formData.append("type", "viewClients");
-        formData.append("selectedType", e.currentTarget.getAttribute('data-type'));
-        formData.append('clientID', selectedID);
-        formData.append("ignoreHeaderFooter", 1);
+        var formdata = new FormData();
+        formdata.append("submitType", "viewClients");
+        formdata.append("selectedType", e.currentTarget.getAttribute('data-type'));
+        formdata.append('clientID', selectedID);
+        formdata.append("ignoreHeaderFooter", 1);
 
         $.ajax({
             type: 'POST',
             url: '/edit-users',
-            data: formData,
+            data: formdata,
             contentType: false,
             processData: false,
             success: function(response) {
@@ -617,7 +704,7 @@ $(document).ready(function() {
                     $('#lost').prop('checked', true); // Check the Lost radio button
                 }
                 // student
-                $("#studnum").val(res.studentNum);
+                $("#StudentModal #studnum").val(res.studentNum);
                 $("#StudentModal #email").val(res.email);
                 $("#StudentModal #fname").val(res.firstName);
                 $("#StudentModal #mname").val(res.middleName);
@@ -662,43 +749,44 @@ $(document).ready(function() {
         });
     });
 });
-notfinal
-$(document).on('submit', '#StudentModal, #EmployeeModal', function(e) {
-    e.preventDefault();
 
-    var formData = new FormData(this);
-    var formType = $(this).closest('.modal').attr('id'); // Determine the form type based on modal ID
 
-    if (formType === 'StudentModal') {
-        formData.append("type", "Student");
-    } else if (formType === 'EmployeeModal') {
-        formData.append("type", "Employee");
-    }
+// $(document).on('submit', '#StudentModal, #EmployeeModal', function(e) {
+//     e.preventDefault();
 
-    formData.append("ignoreHeaderFooter", 1);
+//     var formData = new FormData(this);
+//     var formType = $(this).closest('.modal').attr('id'); // Determine the form type based on modal ID
 
-    $.ajax({
-        type: 'POST',
-        url: '/save-user', // Adjust this URL to your actual endpoint
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(response) {
-            var res = JSON.parse(response);
-            if (res.status === 'success') {
-                alert(res.message);
-                $('#' + formType).modal('hide'); // Close the modal if saving is successful
-                location.reload(); // Reload the page or perform other actions as needed
-            } else {
-                alert(res.message);
-            }
-        },
-        error: function(error) {
-            console.log(error);
-            alert('Error saving form');
-        }
-    });
-});
+//     if (formType === 'StudentModal') {
+//         formData.append("type", "Student");
+//     } else if (formType === 'EmployeeModal') {
+//         formData.append("type", "Employee");
+//     }
+
+//     formData.append("ignoreHeaderFooter", 1);
+
+//     $.ajax({
+//         type: 'POST',
+//         url: '/save-user', // Adjust this URL to your actual endpoint
+//         data: formData,
+//         contentType: false,
+//         processData: false,
+//         success: function(response) {
+//             var res = JSON.parse(response);
+//             if (res.status === 'success') {
+//                 alert(res.message);
+//                 $('#' + formType).modal('hide'); // Close the modal if saving is successful
+//                 location.reload(); // Reload the page or perform other actions as needed
+//             } else {
+//                 alert(res.message);
+//             }
+//         },
+//         error: function(error) {
+//             console.log(error);
+//             alert('Error saving form');
+//         }
+//     });
+// });
 
 
 $(document).on('click', '.delete-btn2', function(e) {
@@ -706,13 +794,13 @@ $(document).on('click', '.delete-btn2', function(e) {
     var id = $(this).data('client_id');
     console.log(id)
     if (confirm('Are you sure you want to delete this client?')) {
-        var formData = new FormData();
-        formData.append('id', id);
-        formData.append('type', 'delete');
+        var formdata = new FormData();
+        formdata.append('id', id);
+        formdata.append('type', 'delete');
         $.ajax({
             url: '/del-client',
             type: 'POST',
-            data: formData,
+            data: formdata,
             processData: false,
             contentType: false,
             success: function(response) {

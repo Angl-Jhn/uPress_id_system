@@ -27,6 +27,9 @@ if(isset($_SESSION["isLogin"]) == 1){
             case "add-employee":
                 require_once("controller/transactionController.php");
                 break;
+            case "save-employee":
+                require_once("controller/transactionController.php");
+                break;
             case "edit-users":
                 require_once("controller/transactionController.php");
                 break;
