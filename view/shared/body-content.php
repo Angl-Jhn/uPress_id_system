@@ -5,7 +5,7 @@ $page_title="titi";
     <div class="container-fluid body-content col-md-12 ps-5">
         <figure class="text-start p-3">
             <h1 class="display-3 py-2" style="font-weight: 900;">CRIMSON IDentify</h1>
-            <h1 class="dispay-6 mb-4">The official ID system of <br> Western Mindanao State
+            <h1 class="dispay-6 mb-4">The official ID application system of <br> Western Mindanao State
                 University</h1>
             <button type="button" onclick="location.href='/get-id-now';"
                 style="border: none; padding: 5px 20px 5px 20px; border-radius: 5px; color: white; font-size: 25px; font-weight: bold; background-color: #C9000C;">Get
