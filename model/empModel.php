@@ -68,7 +68,7 @@ class EmployeeModel{
             return false;
         }
     }
-    function saveEmployee($id,$type,$formType,$idNumber,$email,$fname,$mdname,$lname,$nameExt,$academicRank,$plantillaPos,$designation,$resAddress,$DoB,$contact,$civilStatus,$bloodType,$emgfname,$emgMname,$emgLname,$emgNameExt,$emgAddress,$emgContact,$photo,$signature,$hrmoScanned,$hrmoNew,$aol) {
+    function updateEmploy($id,$type,$formType,$idNumber,$email,$fname,$mdname,$lname,$nameExt,$academicRank,$plantillaPos,$designation,$resAddress,$DoB,$contact,$civilStatus,$bloodType,$emgfname,$emgMname,$emgLname,$emgNameExt,$emgAddress,$emgContact,$photo,$signature,$hrmoScanned,$hrmoNew,$aol) {
         $conn = new PDOModel();
         $db = $conn->getDb();
 

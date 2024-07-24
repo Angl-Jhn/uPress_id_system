@@ -6857,6 +6857,29 @@ form :where(input:not(.form-check-input), select) {
   outline-color: #6c757d;
   background-color: transparent; }
 
+/* Style the Select2 container */
+.select2-container--bootstrap .select2-selection--single {
+  box-shadow: none !important;
+  border: 1px solid #dee2e6 !important;
+  outline-color: #6c757d !important;
+  border-radius: 7px !important;
+  height: 40px !important;
+  /* Adjust height */
+  padding: 0.5em 1em !important;
+  /* Padding */ }
+
+/* Style the dropdown items */
+.select2-container--bootstrap .select2-results__option {
+  background-color: #f0f0f0;
+  /* Light grey background */ }
+
+/* Style the dropdown items on hover */
+.select2-container--bootstrap .select2-results__option--highlighted {
+  color: #ffffff;
+  /* White text */
+  background-color: #0000ff;
+  /* Blue background */ }
+
 form label {
   font-size: 15px;
   margin-bottom: 0.4em;
@@ -6907,6 +6930,44 @@ form > div.active {
 
 ::placeholder {
   color: #adb5bd; }
+
+.optional {
+  height: fit-content;
+  width: 33px;
+  background: #fff;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.optional input {
+  outline: none;
+  height: 15px;
+  width: 32px;
+  border-radius: 25px;
+  appearance: none;
+  position: relative;
+  background: #e6e6e6;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+
+.optional input:checked {
+  background: #bf0000; }
+
+.optional input:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  height: 100%;
+  width: 14px;
+  background: linear-gradient(#fff, #f2f2f2, #e6e6e6, #d9d9d9);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
+  transform: scale(0.85);
+  transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+
+.optional :checked:before {
+  left: 18px; }
 
 @media (max-width: 576px) {
   .navbar-brand {

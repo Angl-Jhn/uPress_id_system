@@ -14,7 +14,7 @@ if(isset($_POST["submitType"])){
             handleAddStud($Stud);
         break;
         case 'updateStud':
-            // handleAddStud($Stud);
+            handleUpdateStud($Stud);
         break;
         case 'addEmploy':
             handleAddEmploy($Employ);
@@ -34,7 +34,7 @@ if(isset($_POST["submitType"])){
 }
 function handleAddStud($objModel){
     // var_dump($objModel);
-    $type = $_POST["type"];
+    $type = $_POST["clientType"];
     $formtype = $_POST["formType"];
     $studId = $_POST["studnum"];
     $email = $_POST["email"];
@@ -67,9 +67,44 @@ function handleAddStud($objModel){
     }
 
 }
+function handleUpdateStud($objModel){
+    // var_dump($objModel);
+    $type = $_POST["clientType"];
+    $formtype = $_POST["formType"];
+    $studId = $_POST["studnum"];
+    $email = $_POST["email"];
+    $firstname = $_POST["firstName"];
+    $middlename = $_POST["middleName"];
+    $familyname = $_POST["familyName"];
+    $nameExt = $_POST["nameExt"];
+    $program = $_POST["programs"];
+    $emgfname = $_POST["firstNameEmg"];
+    $emgMname = $_POST["middleNameEmg"];
+    $emgLname = $_POST["familyNameEmg"];
+    $emgNameExt = $_POST["nameExtEmg"];
+    $emgAddress = $_POST["address"];
+    $emgContact = $_POST["contactNumber"];
+    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
+    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
+    $cor = uploadImage('cor') ? uploadImage('cor'): "";
+    $oldId = uploadImage('oldId') ? uploadImage('oldId'):"";
+    $oldIdBack = uploadImage('oldIdBack')?uploadImage('oldIdBack'):"";
+    $aol = uploadImage('aol') ? uploadImage('aol'):"";
+
+    $res1 = $objModel->updateStudent(
+        $type, $formtype, $studId, $email, $firstname, $middlename, $familyname, $nameExt,
+            $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol
+    );
+    if ($res1) {
+        echo json_encode(['message'=>'Successfully updated '.$firstname.' '.$familyname, 'status'=>'success']);
+    } else {
+        echo json_encode(['message'=>'Failed to update '.$firstname.' '.$familyname, 'status'=>'error']);
+    }
+
+}
 function handleAddEmploy($objModel){
     // var_dump($objModel);
-    $type = $_POST["type"];
+    $type = $_POST["clientType"];
     $formType = $_POST["formType"];
     $idNumber = $_POST["idNumber"];
     $email = $_POST["email"];
@@ -111,7 +146,7 @@ function handleAddEmploy($objModel){
 }
 
 function handleUpdateEmploy($objModel){
-    $type = $_POST["type"];
+    $type = $_POST["clientType"];
     $formType = $_POST["formType"];
     $idNumber = $_POST["idNumber"];
     $email = $_POST["email"];
@@ -126,7 +161,7 @@ function handleUpdateEmploy($objModel){
     $dateofbirth = $_POST["dateofbirth"];
     $contactNum = $_POST["contactNum"];
     $civilStatus = $_POST["civilStatus"];
-    $bloodType = $_POST["bloodType"];
+    $bloodType = $_POST["bloodType"];   
     $emgfname = $_POST["firstNameEmg"];
     $emgMname = $_POST["middleNameEmg"];
     $emgLname = $_POST["familyNameEmg"];
@@ -140,7 +175,7 @@ function handleUpdateEmploy($objModel){
     $aol = uploadImage('aol') ? uploadImage('aol'):"";
     $id = $_POST["clientID"];
 
-    $res1 = $objModel->saveEmployee(
+    $res1 = $objModel->updateEmploy(
         $id,$type, $formType, $idNumber, $email, $firstname, $middlename, $familyname, $nameExt,
             $academicRank, $plantillaPos, $designation, $residentialAddress, $dateofbirth, $contactNum, $civilStatus, $bloodType,
             $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $hrmoscanned, $hrmoNew, $aol

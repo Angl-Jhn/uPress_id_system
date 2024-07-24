@@ -42,7 +42,7 @@
                                                 foreach ($get as $item) {
                                          ?>
                                         <tr>
-                                            <td class="clientID" style="width: 40px;"><?= $item['client_id'] ?></td>
+                                            <td class="clientID" style="width: 20px;"><?= $item['client_id'] ?></td>
                                             <td style="max-width: 60px; overflow: hidden; text-overflow: ellipsis;"
                                                 title="<?= $item['firstName']." ".$item['middleName']." ".$item['lastName']." ".$item['nameExt'] ?>">
                                                 <?= strlen($item['firstName']." ".$item['middleName']." ".$item['lastName']." ".$item['nameExt']) > 15 ?
@@ -76,7 +76,7 @@
                                                             <!-- view -->
                                                         </button>
                                                         <?php
-                                                        if($item['clientType'] == 'student') {
+                                                        if($item['clientType'] == 'Student') {
                                                         ?>
                                                         <button type="button"
                                                             class="btn btn-success btn-cirlce btn-sm edit-btn2"
@@ -87,12 +87,22 @@
                                                             <!-- edit -->
                                                         </button>
                                                         <?php
-                                                        } else {
+                                                        } else if($item['clientType'] == 'Employee') {
                                                         ?>
                                                         <button type="button"
                                                             class="btn btn-success btn-cirlce btn-sm edit-btn2"
                                                             data-id="<?= $item['client_id']; ?>" data-type="Employee"
                                                             data-bs-toggle="modal" data-bs-target="#EmployeeModal">
+                                                            <i class="fa-solid fa-pen-to-square"
+                                                                style="padding: 0;"></i>
+                                                            <!-- edit -->
+                                                        </button>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                        <button type="button"
+                                                            class="btn btn-secondary btn-cirlce btn-sm edit-btn2"
+                                                            disabled>
                                                             <i class="fa-solid fa-pen-to-square"
                                                                 style="padding: 0;"></i>
                                                             <!-- edit -->
@@ -141,10 +151,13 @@
                         <form method="post" id="studentForm" enctype="multipart/form-data">
                             <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
                                 <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-12 d-flex justify-content-center">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-lg-12 text-center py-2">
+                                            <h3>Student data</h3>
+                                        </div>
+                                        <div class="col-md-12 pb-2">
                                             <!-- Radio Buttons -->
-                                            <div class="m-0 py-2 gap-2">
+                                            <div class="m-0 py-2 gap-2 d-flex justify-content-center">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
                                                         value="New" id="new" checked onclick="view(0)">
@@ -164,95 +177,138 @@
                                             <!-- Radio Buttons End -->
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <h3>Student data</h3>
-                                            <div class="mb-3">
-                                                <label for="">Student Number</label>
-                                                <input type="text" name="studnum" id="studnum" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Email</label>
-                                                <input type="text" name="email" id="email" required>
-                                            </div>
-                                            <div class="mb-3">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-lg-5 col-md-12">
+                                            <div class="mb-1">
                                                 <label for="">First Name</label>
-                                                <input type="text" name="firstName" id="fname" required>
+                                                <input type="text" class="form-control" name="firstName" id="fname"
+                                                    required>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-1">
                                                 <label for="">Middle Name</label>
-                                                <input type="text" name="middleName" id="mname">
+                                                <input type="text" class="form-control" name="middleName" id="mname">
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-1">
                                                 <label for="">Family Name</label>
-                                                <input type="text" name="familyName" id="famname" required>
+                                                <input type="text" class="form-control" name="familyName" id="famname"
+                                                    required>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-1">
                                                 <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExt" id="ext" placeholder="Sr./Jr.">
+                                                <input type="text" class="form-control" name="nameExt" id="ext"
+                                                    placeholder="Sr./Jr.">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5 col-md-12">
+                                            <div class="mb-1">
+                                                <label for="">Student Number</label>
+                                                <input type="text" class="form-control" name="studnum" id="studnum"
+                                                    required>
+                                            </div>
+                                            <div class="mb-1">
+                                                <label for="">Email</label>
+                                                <input type="text" class="form-control" name="email" id="email"
+                                                    required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Program/Strand</label>
-                                                <select class="js-example-basic-single" name="programs"
+                                                <select class="js-example-basic-single form-control" name="programs"
                                                     id="select-program">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-lg-4 col-md-12">
                                             <h3>Emergency data</h3>
-                                            <div class="mb-3">
+                                            <div class="mb-1">
                                                 <label for="">First Name</label>
-                                                <input type="text" name="firstNameEmg" id="fnameEmg" required>
+                                                <input type="text" class="form-control" name="firstNameEmg"
+                                                    id="fnameEmg" required>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-1">
                                                 <label for="">Middle Name</label>
-                                                <input type="text" name="middleNameEmg" id="mnameEmg">
+                                                <input type="text" class="form-control" name="middleNameEmg"
+                                                    id="mnameEmg">
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-1">
                                                 <label for="">Family Name</label>
-                                                <input type="text" name="familyNameEmg" id="famnameEmg" required>
+                                                <input type="text" class="form-control" name="familyNameEmg"
+                                                    id="famnameEmg" required>
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-1">
                                                 <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExtEmg" id="extEmg" placeholder="Sr./Jr.">
+                                                <input type="text" class="form-control" name="nameExtEmg" id="extEmg"
+                                                    placeholder="Sr./Jr.">
                                             </div>
-                                            <div class="mb-3">
+                                            <div class="mb-1">
                                                 <label for="">Address</label>
-                                                <input type="text" name="address" id="addEmg" required>
+                                                <input type="text" class="form-control" name="address" id="addEmg"
+                                                    required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Contact Number</label>
-                                                <input type="number" name="contactNumber" id="contactEmg" required>
+                                                <input type="number" class="form-control" name="contactNumber"
+                                                    id="contactEmg" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-lg-4 col-md-12">
                                             <h3>Attachments</h3>
                                             <div class="mb-1">
-                                                <label for="user-pic" class="form-label">2x2 Picture</label>
+                                                <div class="row d-flex justify-content-start">
+                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                        <label for="userPhoto" class="form-label">Photo</label>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-4 ps-2">
+                                                        <div class="optional">
+                                                            <input type="checkbox" class="checkbox-popover"
+                                                                id="toggleSwitchuserPhoto" data-bs-placement="top"
+                                                                data-bs-content="I won't provide"
+                                                                data-bs-trigger="focus" data-target="userPhoto">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <input class="form-control" name="userPhoto[]" type="file"
-                                                    id="userPhoto">
+                                                    id="userPhoto" required>
                                             </div>
                                             <div class="mb-1">
-                                                <label for="signature" class="form-label">Signature</label>
+                                                <div class="row d-flex justify-content-start">
+                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                        <label for="signature" class="form-label">Signature</label>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-4 ps-2">
+                                                        <div class="optional">
+                                                            <input type="checkbox" class="checkbox-popover"
+                                                                id="toggleSwitchsignature" data-bs-placement="top"
+                                                                data-bs-content="I won't provide"
+                                                                data-bs-trigger="focus" data-target="signature">
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <input class="form-control" name="signature[]" type="file"
-                                                    id="signature">
+                                                    id="signature" required>
                                             </div>
                                             <div class="mb-1">
                                                 <label for="CoR" class="form-label">Certificate of Registration</label>
-                                                <input class="form-control" name="cor[]" type="file" id="cor">
+                                                <input class="form-control" name="cor[]" type="file" id="cor" required>
                                             </div>
                                             <div class="stud-replacement mb-1">
-                                                <label for="frontID" class="form-label">Old ID - Front</label>
-                                                <input class="form-control" name="oldId[]" type="file" id="frontId">
+                                                <label for="frontID" class="form-label">Old ID Front</label>
+                                                <input class="form-control" name="oldId[]" type="file" id="frontId"
+                                                    required>
                                             </div>
                                             <div class="stud-replacement mb-1">
                                                 <label for="backID" class="form-label">Old ID - Back</label>
-                                                <input class="form-control" name="oldIdBack[]" type="file" id="backId">
+                                                <input class="form-control" name="oldIdBack[]" type="file" id="backId"
+                                                    required>
                                             </div>
                                             <div class="stud-affidavit mb-1">
                                                 <label for="affidavit" class="form-label">Affidavit of Loss</label>
-                                                <input class="form-control" name="aol[]" type="file" id="affidavit">
+                                                <input class="form-control" name="aol[]" type="file" id="affidavit"
+                                                    required>
+                                            </div>
+                                            <div class="stud-dsa mb-1">
+                                                <label for="DSA" class="form-label">DSA Form</label>
+                                                <input class="form-control" name="dsa[]" type="file" id="dsa" required>
                                             </div>
                                         </div>
                                     </div>
@@ -278,10 +334,13 @@
                         <form method="post" id="employeeForm" enctype="multipart/form-data">
                             <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
                                 <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-12 d-flex justify-content-center">
+                                    <div class="row d-flex justify-content-center m-0 p-2">
+                                        <div class="col-lg-12 text-center py-2">
+                                            <h3>Employee data</h3>
+                                        </div>
+                                        <div class="col-lg-5 text-center pb-2">
                                             <!-- Radio Buttons -->
-                                            <div class="m-0 py-2 gap-2">
+                                            <div class="m-0 py-2 gap-2 d-flex justify-content-center">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
                                                         value="New" id="new" checked onclick="view(0)">
@@ -297,38 +356,10 @@
                                                         value="Lost" id="lost" onclick="view(2)">
                                                     <label class="form-check-label ps-2" for="lost">Lost</label>
                                                 </div>
-                                            </div>
-                                            <!-- Radio Buttons End -->
+                                            </div><!-- Radio Buttons End -->
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <h3>Employee data</h3>
-                                            <div class="mb-2">
-                                                <label for="">ID Number</label>
-                                                <input type="number" name="idNumber" id="idNumber" required>
-                                            </div>
-                                            <div class="mb-2">
-                                                <label for="">Email</label>
-                                                <input type="text" name="email" id="email" required>
-                                            </div>
-                                            <div class="mb-2">
-                                                <label for="">First Name</label>
-                                                <input type="text" name="firstName" id="fname" required>
-                                            </div>
-                                            <div class="mb-2">
-                                                <label for="">Middle Name</label>
-                                                <input type="text" name="middleName" id="mname">
-                                            </div>
-                                            <div class="mb-2">
-                                                <label for="">Family Name</label>
-                                                <input type="text" name="familyName" id="famname" required>
-                                            </div>
-                                            <div class="mb-2">
-                                                <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExt" id="ext" placeholder="Sr./Jr.">
-                                            </div>
-                                            <div class="m-0 py-2 gap-2">
+                                        <div class="col-lg-5 pb-2">
+                                            <div class="m-0 py-2 gap-2 d-flex justify-content-center">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="teachingnon"
                                                         id="teach" checked onclick="teachingnon(0)">
@@ -341,10 +372,45 @@
                                                         for="nonteach">Non-Teaching</label>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-xl-5 col-lg-6 col-md-12">
+                                            <div class="mb-1">
+                                                <label for="">ID Number</label>
+                                                <input type="number" class="form-control" name="idNumber" id="idNumber"
+                                                    required>
+                                            </div>
+                                            <div class="mb-1">
+                                                <label for="">Email</label>
+                                                <input type="text" class="form-control" name="email" id="email"
+                                                    required>
+                                            </div>
+                                            <div class="mb-1">
+                                                <label for="">First Name</label>
+                                                <input type="text" class="form-control" name="firstName" id="fname"
+                                                    required>
+                                            </div>
+                                            <div class="mb-1">
+                                                <label for="">Middle Name</label>
+                                                <input type="text" class="form-control" name="middleName" id="mname">
+                                            </div>
+                                            <div class="mb-1">
+                                                <label for="">Family Name</label>
+                                                <input type="text" class="form-control" name="familyName" id="famname"
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Name Ext.</label>
+                                                <input type="text" class="form-control" name="nameExt" id="ext"
+                                                    placeholder="Sr./Jr.">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-5 col-lg-6 col-md-12">
                                             <div class="acad-rank mb-2">
                                                 <label for="">Academic Rank</label>
-                                                <select class="academicRank-basic-single" name="academicRank"
-                                                    id="academicRank" required>
+                                                <select class="academicRank-basic-single form-control"
+                                                    name="academicRank" id="academicRank" required>
                                                     <option value=""></option>
                                                     <optgroup label="Instructor">
                                                         <option value="Instructor-1">Instructor I</option>
@@ -379,28 +445,32 @@
                                             </div>
                                             <div class="plant-pos mb-2">
                                                 <label for="">Plantilla Position</label>
-                                                <input type="text" name="plantillaPos" id="plantillaPos" required>
+                                                <input type="text" class="form-control" name="plantillaPos"
+                                                    id="plantillaPos" required>
                                             </div>
-                                            <div class="mb-2">
+                                            <div class="mb-1">
                                                 <label for="">Unit/Office/College/Department</label>
-                                                <input type="text" name="designation" id="designation" required>
+                                                <input type="text" class="form-control" name="designation"
+                                                    id="designation" required>
                                             </div>
-                                            <div class="mb-2">
+                                            <div class="mb-1">
                                                 <label for="">Residential Address</label>
-                                                <input type="text" name="residentialAddress" id="residentialAddress"
-                                                    required>
+                                                <input type="text" class="form-control" name="residentialAddress"
+                                                    id="residentialAddress" required>
                                             </div>
-                                            <div class="birth mb-2">
+                                            <div class="birth mb-1">
                                                 <label for="">Date of Birth</label>
-                                                <input type="date" name="dateofbirth" id="dateofbirth" required>
+                                                <input type="date" class="form-control" name="dateofbirth"
+                                                    id="dateofbirth" required>
                                             </div>
-                                            <div class="mb-2">
+                                            <div class="mb-1">
                                                 <label for="">Contact Number</label>
-                                                <input type="number" name="contactNum" id="contactNum" required>
+                                                <input type="number" class="form-control" name="contactNum"
+                                                    id="contactNum" required>
                                             </div>
-                                            <div class="mb-2">
+                                            <div class="mb-1">
                                                 <label for="">Civil Status</label>
-                                                <select class="civilstatus-basic-single" name="civilStatus"
+                                                <select class="civilstatus-basic-single form-control" name="civilStatus"
                                                     id="civilStatus" required>
                                                     <option value=""></option>
                                                     <option value="Single">Single</option>
@@ -411,10 +481,10 @@
                                                     <option value="Annulled">Annulled</option>
                                                 </select>
                                             </div>
-                                            <div class="mb-2">
+                                            <div class="mb-1">
                                                 <label for="">Blood Type</label>
-                                                <select class="bloodtype-basic-single" name="bloodType" id="bloodType"
-                                                    required>
+                                                <select class="bloodtype-basic-single form-control" name="bloodType"
+                                                    id="bloodType" required>
                                                     <option value=""></option>
                                                     <option value="A+">A+</option>
                                                     <option value="A+">A-</option>
@@ -427,58 +497,89 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-xl-5 col-lg-6 col-md-12">
                                             <h3>Emergency data</h3>
-                                            <div class="mb-2">
+                                            <div class="mb-1">
                                                 <label for="">First Name</label>
-                                                <input type="text" name="firstNameEmg" id="fnameEmg" required>
+                                                <input type="text" class="form-control" name="firstNameEmg"
+                                                    id="fnameEmg" required>
                                             </div>
-                                            <div class="mb-2">
+                                            <div class="mb-1">
                                                 <label for="">Middle Name</label>
-                                                <input type="text" name="middleNameEmg" id="mnameEmg">
+                                                <input type="text" class="form-control" name="middleNameEmg"
+                                                    id="mnameEmg">
                                             </div>
-                                            <div class="mb-2">
+                                            <div class="mb-1">
                                                 <label for="">Family Name</label>
-                                                <input type="text" name="familyNameEmg" id="famnameEmg" required>
+                                                <input type="text" class="form-control" name="familyNameEmg"
+                                                    id="famnameEmg" required>
                                             </div>
-                                            <div class="mb-2">
+                                            <div class="mb-1">
                                                 <label for="">Name Ext.</label>
-                                                <input type="text" name="nameExtEmg" id="extEmg" placeholder="Sr./Jr.">
+                                                <input type="text" class="form-control" name="nameExtEmg" id="extEmg"
+                                                    placeholder="Sr./Jr.">
                                             </div>
-                                            <div class="mb-2">
+                                            <div class="mb-1">
                                                 <label for="">Address</label>
-                                                <input type="text" name="address" id="addEmg" required>
+                                                <input type="text" class="form-control" name="address" id="addEmg"
+                                                    required>
                                             </div>
-                                            <div class="mb-2">
+                                            <div class="mb-1">
                                                 <label for="">Contact Number</label>
-                                                <input type="number" name="contactNumber" id="contactEmg" required>
+                                                <input type="number" class="form-control" name="contactNumber"
+                                                    id="contactEmg" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-xl-5 col-lg-6 col-md-12">
                                             <h3>Attachments</h3>
-                                            <div class="mb-3">
-                                                <label for="formFile1" class="form-label">2x2 Picture</label>
-                                                <input class="form-control" type="file" id="userPhoto"
-                                                    name="userPhoto[]">
+                                            <div class="mb-1">
+                                                <div class="row d-flex justify-content-start">
+                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                        <label for="userPhoto1" class="form-label">Photo</label>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-4 ps-2">
+                                                        <div class="optional">
+                                                            <input type="checkbox" class="checkbox-popover"
+                                                                id="toggleSwitchuserPhoto1" data-bs-placement="top"
+                                                                data-bs-content="I won't provide"
+                                                                data-bs-trigger="focus" data-target="userPhoto1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input class="form-control" name="userPhoto[]" type="file"
+                                                    id="userPhoto1" required>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="formFile2" class="form-label">Signature</label>
-                                                <input class="form-control" type="file" id="signature"
-                                                    name="signature[]">
+                                            <div class="mb-1">
+                                                <div class="row d-flex justify-content-start">
+                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                        <label for="signature" class="form-label">Signature</label>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-4 ps-2">
+                                                        <div class="optional">
+                                                            <input type="checkbox" class="checkbox-popover"
+                                                                id="toggleSwitchsignature1" data-bs-placement="top"
+                                                                data-bs-content="I won't provide"
+                                                                data-bs-trigger="focus" data-target="signature1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input class="form-control" name="signature[]" type="file"
+                                                    id="signature1" required>
                                             </div>
-                                            <div class="hrmo mb-3">
+                                            <div class="hrmo mb-1">
                                                 <label for="formFile3" class="form-label">Scanned Copy of HRMO
                                                     Form</label>
                                                 <input class="form-control" type="file" id="hrmoScanned"
-                                                    name="hrmoScanned[]">
+                                                    name="hrmoScanned[]" required>
                                             </div>
-                                            <div class="hrmo-lost mb-3">
+                                            <div class="hrmo-lost mb-1">
                                                 <label for="formFile4" class="form-label">New HRMO Form</label>
-                                                <input class="form-control" type="file" id="hrmoNew" name="hrmoNew[]">
+                                                <input class="form-control" type="file" id="hrmoNew" name="hrmoNew[]"
+                                                    required>
                                             </div>
-                                            <div class="emp-affidavit mb-3">
+                                            <div class="emp-affidavit mb-1">
                                                 <label for="emp-affidavit" class="form-label">Affidavit of Loss</label>
-                                                <input class="form-control" type="file" id="aol" name="aol[]">
+                                                <input class="form-control" type="file" id="aol" name="aol[]" required>
                                             </div>
                                         </div>
                                     </div>
@@ -526,17 +627,21 @@ $(document).ready(function() {
         allowClear: true,
         dropdownParent: $('#EmployeeModal')
     });
-    // clear modals
+    // on click modals
     $(document).on('click', '.addbtn1', function() {
         $('#StudentModal').find('input, select, textarea').val('');
         $('#new').prop('checked', true);
         $('#StudentModal h1').text('Generate Student ID');
+        $('#StudentModal form').attr('id', 'insertStudent');
+        console.log("Form ID: " + $('#StudentModal form').attr('id'));
         $('#StudentModal button[type="submit"]').attr('name', 'addStud').text('Add Student');
     });
     $(document).on('click', '.addbtn2', function() {
         $('#EmployeeModal').find('input, select, textarea').val('');
         $('#new').prop('checked', true);
         $('#EmployeeModal h1').text('Generate Employee ID');
+        $('#EmployeeModal form').attr('id', 'insertEmployee');
+        console.log("Form ID: " + $('#EmployeeModal form').attr('id'));
         $('#EmployeeModal button[type="submit"]').attr('name', 'addEmploy').text('Add Employee');
     });
 
@@ -546,18 +651,22 @@ $(document).ready(function() {
         if (clientType === 'Student') {
             $('#StudentModal h1').text('Modify Student ID');
             $('#StudentModal button[type="submit"]').attr('name', 'updateStud').text('Save Student');
+            $('#StudentModal form').attr('id', 'updateStudent');
+            console.log("Form ID: " + $('#StudentModal form').attr('id'));
         } else if (clientType === 'Employee') {
             $('#EmployeeModal h1').text('Modify Employee ID');
+            $('#EmployeeModal form').attr('id', 'updateEmployee');
+            console.log("Form ID: " + $('#EmployeeModal form').attr('id'));
             $('#EmployeeModal button[type="submit"]').attr('name', 'updateEmploy').text(
                 'Save Employee');
         }
     });
     // insert
-    $(document).on('submit', '#studentForm', function(e) {
+    $(document).on('submit', '#insertStudent', function(e) {
         e.preventDefault();
         var formdata = new FormData(this);
         formdata.append("submitType", "addStud");
-        formdata.append("type", "Student");
+        formdata.append("clientType", "Student");
         formdata.append("ignoreHeaderFooter", 1);
 
         $.ajax({
@@ -575,8 +684,8 @@ $(document).ready(function() {
                 } else {
                     alert(res.message);
                 }
-                $('#studentForm').find('input').val('');
-                $('#studentForm').find('select').val('');
+                $('#insertStudent').find('input').val('');
+                $('#insertStudent').find('select').val('');
             },
             error: function(error) {
                 console.log(error);
@@ -584,11 +693,11 @@ $(document).ready(function() {
             }
         });
     });
-    $(document).on('submit', '#employeeForm', function(e) {
+    $(document).on('submit', '#insertEmployee', function(e) {
         e.preventDefault();
         var formdata = new FormData(this);
         formdata.append("submitType", "addEmploy");
-        formdata.append("type", "Employee");
+        formdata.append("clientType", "Employee");
         formdata.append("ignoreHeaderFooter", 1);
 
         $.ajax({
@@ -605,8 +714,8 @@ $(document).ready(function() {
                 } else {
                     alert(res.message);
                 }
-                $('#employeeForm').find('input').val('');
-                $('#employeeForm').find('select').val('');
+                $('#insertEmployee').find('input').val('');
+                $('#insertEmployee').find('select').val('');
             },
             error: function(error) {
                 console.log(error);
@@ -615,7 +724,7 @@ $(document).ready(function() {
         });
     });
     // update
-    $(document).on('submit', '#studentForm', function(e) {
+    $(document).on('submit', '#updateStudent', function(e) {
         e.preventDefault();
         var formdata = new FormData(this);
         formdata.append("submitType", "updateStud");
@@ -636,8 +745,8 @@ $(document).ready(function() {
                 } else {
                     alert(res.message);
                 }
-                $('#studentForm').find('input').val('');
-                $('#studentForm').find('select').val('');
+                $('#updateStudent').find('input').val('');
+                $('#updateStudent').find('select').val('');
             },
             error: function(error) {
                 console.log(error);
@@ -645,7 +754,7 @@ $(document).ready(function() {
             }
         });
     });
-    $(document).on('submit', '#employeeForm', function(e) {
+    $(document).on('submit', '#updateEmployee', function(e) {
         e.preventDefault();
         var formdata = new FormData(this);
         formdata.append("submitType", "updateEmploy");
@@ -665,8 +774,8 @@ $(document).ready(function() {
                 } else {
                     alert(res.message);
                 }
-                // $('#employeeForm').find('input').val('');
-                // $('#employeeForm').find('select').val('');
+                $('#updateEmployee').find('input').val('');
+                $('#updateEmployee').find('select').val('');
             },
             error: function(error) {
                 console.log(error);
@@ -751,52 +860,15 @@ $(document).ready(function() {
 });
 
 
-// $(document).on('submit', '#StudentModal, #EmployeeModal', function(e) {
-//     e.preventDefault();
-
-//     var formData = new FormData(this);
-//     var formType = $(this).closest('.modal').attr('id'); // Determine the form type based on modal ID
-
-//     if (formType === 'StudentModal') {
-//         formData.append("type", "Student");
-//     } else if (formType === 'EmployeeModal') {
-//         formData.append("type", "Employee");
-//     }
-
-//     formData.append("ignoreHeaderFooter", 1);
-
-//     $.ajax({
-//         type: 'POST',
-//         url: '/save-user', // Adjust this URL to your actual endpoint
-//         data: formData,
-//         contentType: false,
-//         processData: false,
-//         success: function(response) {
-//             var res = JSON.parse(response);
-//             if (res.status === 'success') {
-//                 alert(res.message);
-//                 $('#' + formType).modal('hide'); // Close the modal if saving is successful
-//                 location.reload(); // Reload the page or perform other actions as needed
-//             } else {
-//                 alert(res.message);
-//             }
-//         },
-//         error: function(error) {
-//             console.log(error);
-//             alert('Error saving form');
-//         }
-//     });
-// });
-
-
 $(document).on('click', '.delete-btn2', function(e) {
     e.preventDefault();
     var id = $(this).data('client_id');
+    var row = $(this).closest('tr');
     console.log(id)
     if (confirm('Are you sure you want to delete this client?')) {
         var formdata = new FormData();
         formdata.append('id', id);
-        formdata.append('type', 'delete');
+        formdata.append('submitType', 'delete');
         $.ajax({
             url: '/del-client',
             type: 'POST',
@@ -804,15 +876,18 @@ $(document).on('click', '.delete-btn2', function(e) {
             processData: false,
             contentType: false,
             success: function(response) {
-                console.log(response);
-                var res = JSON.parse(response);
-                if (res.success) {
-                    alert(res.message);
-                    row.remove();
-                } else {
-                    alert(res.message);
+                try {
+                    var res = JSON.parse(response);
+                    if (res.success) {
+                        alert(res.message);
+                        row.remove();
+                    } else {
+                        alert(res.message);
+                    }
+                } catch (e) {
+                    console.error('Failed to parse JSON response:', e);
+                    alert('Error: Invalid response format.');
                 }
-                location.reload();
             },
             error: function() {
                 alert(

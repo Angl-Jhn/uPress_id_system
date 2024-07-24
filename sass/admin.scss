@@ -379,7 +379,27 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
   font-size: 12px;
   text-align: center;
 }
+.table-responsive {
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
 
+.table {
+  width: 100%; /* Ensure table takes full width */
+  table-layout: auto; /* Adjust columns based on content */
+}
+.table td,
+.table th {
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Ellipsis for overflowing text */
+}
+
+.layout {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 5px;
+}
 // media queries
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
