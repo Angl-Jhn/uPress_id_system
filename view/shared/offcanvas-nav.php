@@ -8,7 +8,7 @@
             <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvasLg" aria-labelledby="navbarOffcanvasLgLabel">
                 <div class="offcanvas-header">
                     <a class="navbar-brand" href="#"><img src="../../assets/logo/wmsu-logo.svg" id="nav-logo" alt="WMSU Logo"></a>
-                    <a class="navbar-brand" href="#">CrimsonIDentify</a>
+                    <a class="navbar-brand" href="#">Crimson IDentify</a>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -23,7 +23,7 @@
                             <a class="nav-link" href="/tutorial">TUTORIAL</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/get-id-now">GET ID NOW</a>
+                            <a class="nav-link" style="background-color: white; color: maroon; font-weight: bold; border-radius: 4px; padding-left: 10px; padding-right: 10px;" href="/get-id-now">GET ID NOW</a>
                         </li> 
                     </ul>
                 </div>
