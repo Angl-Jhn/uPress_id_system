@@ -1,3 +1,8 @@
+<?php
+include_once("././model/formConfigurationModel.php");
+$obj = new formConfigModel();
+$get = $obj->getForm();
+?>
 <div class="form-container px-0 py-3 m-0">
     <div class="container-fluid">
         <!-- tabs -->
@@ -33,10 +38,16 @@
                                     <div class="form-type">
                                         <h2 class="m-0 pb-1"><span>Student</span> Form</h2>
                                     </div>
+                                    <?php
+                                    if ($get) {
+                                    ?>
                                     <div class="update-text py-2 mb-4">
-                                        <p class="lead" id="upressFR">WMSU-UPRESS-FR-003.00</p>
-                                        <p class="lead" id="effectDate">Effective Date: 01-Mar-2017</p>
+                                        <p class="lead" id="upressFR">WMSU-UPRESS-FR-<?= $get['value']?></p>
+                                        <p class="lead" id="effectDate">Effective Date: <?= $get['value']?></p>
                                     </div>
+                                    <?php
+                                    }
+                                    ?>
                                     <ul class="progress-steps text-center px-2 mb-0">
                                         <li class="step active">
                                             <span>1</span>
@@ -314,10 +325,16 @@
                                     <div class="form-type">
                                         <h2 class="m-0 pb-1"><span>Employee</span> Form</h2>
                                     </div>
+                                    <?php
+                                    if ($get) {
+                                    ?>
                                     <div class="update-text py-2 mb-4">
-                                        <p class="lead" id="upressFR">WMSU-UPRESS-FR-004A</p>
-                                        <p class="lead" id="effectDate">Effective Date: 15-Jan-2024</p>
+                                        <p class="lead" id="upressFR">WMSU-UPRESS-FR-<?= $get['value']?></p>
+                                        <p class="lead" id="effectDate">Effective Date: <?= $get['value']?></p>
                                     </div>
+                                    <?php
+                                    }
+                                    ?>
                                     <ul class="progress-steps text-center px-2 mb-0">
                                         <li class="step active">
                                             <span>1</span>
