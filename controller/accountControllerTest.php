@@ -36,9 +36,9 @@ function handleAddAccount($accountModel) {
         $addAcc = $accountModel->addAccount($uname, $pw, $fname, $middleName, $lastName, $nameExt, $role, $img);
 
         if ($addAcc) {
-            echo json_encode(['message' => 'Successfully created user ' .$uname. 'as ' .$role, 'status' => 'success']);
+            echo json_encode(['message' => 'Successfully created user ' .$uname. ' as ' .$role, 'status' => 'success']);
         } else {
-            echo json_encode(['message' => 'Failed to create the user ' .$uname. 'as ' .$role, 'status' => 'error']);
+            echo json_encode(['message' => 'Failed to create the user ' .$uname. ' as ' .$role, 'status' => 'error']);
         }
     } catch (Exception $e) {
         echo json_encode(['message' => 'Server error: ' . $e->getMessage(), 'status' => 'error']);

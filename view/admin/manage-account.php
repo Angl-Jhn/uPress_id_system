@@ -45,10 +45,8 @@
                                                 title="<?= $item['username'] ?>">
                                                 <?= strlen($item['username']) > 10 ? substr($item['username'], 0, 10) . '...' : $item['username'] ?>
                                             </td>
-                                            <td style="max-width: 80px; overflow: hidden; text-overflow: ellipsis;"
-                                                title="<?= $item['password'] ?>">
-                                                <?= strlen($item['password']) > 6 ? substr($item['password'], 0, 6) . '...' : $item['password'] ?>
-                                            </td>
+                                            <td style="max-width: 80px; overflow: hidden; text-overflow: ellipsis;">
+                                                *****</td>
                                             <td style="max-width: 60px; overflow: hidden; text-overflow: ellipsis;"
                                                 title="<?= $item['firstName']." ".$item['middleName']." ".$item['lastName']." ".$item['nameExt'] ?>">
                                                 <?= strlen($item['firstName']." ".$item['middleName']." ".$item['lastName']." ".$item['nameExt']) > 15 ?
@@ -145,27 +143,6 @@
                                                     placeholder="********" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="" class="form-label">First name</label>
-                                                <input type="text" name="fname" class="form-control" placeholder=""
-                                                    required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="" class="form-label">Middle name</label>
-                                                <input type="text" name="mname" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="" class="form-label">Last name</label>
-                                                <input type="text" name="lname" class="form-control" placeholder=""
-                                                    required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="" class="form-label">Name Ext.</label>
-                                                <input type="text" name="nameExt" class="form-control"
-                                                    placeholder="Sr / Jr">
-                                            </div>
-                                            <div class="mb-3">
                                                 <label for="" class="form-label">Role</label>
                                                 <select class="form-control js-example-basic-single" name="role"
                                                     id="role" required style="width: 100%;">
@@ -179,6 +156,28 @@
                                                 <input class="form-control" type="file" name="accountPhoto[]"
                                                     id="accountPhoto" accept="image/*">
                                             </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">First name</label>
+                                                <input type="text" name="fname" class="form-control" placeholder=""
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Middle name</label>
+                                                <input type="text" name="mname" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Last name</label>
+                                                <input type="text" name="lname" class="form-control" placeholder=""
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Name Ext.</label>
+                                                <input type="text" name="nameExt" class="form-control"
+                                                    placeholder="Sr / Jr">
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -204,6 +203,7 @@
                             <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
                                 <div class="container-fluid">
                                     <div class="row">
+                                        <div class="alert alert-warning" role="alert" style="display:none;"></div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <input type="hidden" id="editId" name="accId">
@@ -213,9 +213,35 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="editPw" class="form-label">Password</label>
-                                                <input type="password" class="form-control" id="editPw" name="pw"
-                                                    required>
+                                                <input type="password" class="form-control" id="editPw" name="pw">
                                             </div>
+                                            <div class="mb-3">
+                                                <label for="editCPw" class="form-label">Confirm Password</label>
+                                                <input type="password" class="form-control" id="editCPw" name="cpw">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <div class="mb-3">
+                                                        <label for="editRole" class="form-label">Role</label>
+                                                        <select class="form-control js-example-basic-single" name="role"
+                                                            id="editrole" required style="width: 100%;">
+                                                            <option></option>
+                                                            <option value="admin">Admin</option>
+                                                            <option value="operator">Operator</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="mb-3">
+                                                        <label for="editAccountPhoto" class="form-label">Account
+                                                            Photo</label>
+                                                        <input type="file" class="form-control" id="editAccountPhoto"
+                                                            name="accountPhoto[]" accept="image/*">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="editFname" class="form-label">First Name</label>
                                                 <input type="text" class="form-control" id="editFname" name="fname"
@@ -225,8 +251,6 @@
                                                 <label for="editMname" class="form-label">Middle Name</label>
                                                 <input type="text" class="form-control" id="editMname" name="mname">
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="editLname" class="form-label">Last Name</label>
                                                 <input type="text" class="form-control" id="editLname" name="lname"
@@ -236,21 +260,6 @@
                                                 <label for="editNameExt" class="form-label">Name
                                                     Extension</label>
                                                 <input type="text" class="form-control" id="editNameExt" name="nameExt">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="editRole" class="form-label">Role</label>
-                                                <select class="form-control js-example-basic-single" name="role"
-                                                    id="editrole" required style="width: 100%;">
-                                                    <option></option>
-                                                    <option value="admin">Admin</option>
-                                                    <option value="operator">Operator</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="editAccountPhoto" class="form-label">Account
-                                                    Photo</label>
-                                                <input type="file" class="form-control" id="editAccountPhoto"
-                                                    name="accountPhoto[]" accept="image/*">
                                             </div>
                                         </div>
                                     </div>
@@ -332,21 +341,31 @@ $(document).ready(function() {
         var formData = new FormData(this);
         formData.append("type", "updateUser");
         formData.append("ignoreHeaderFooter", 1);
-        $.ajax({
-            type: 'POST',
-            url: "/edit-account",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                var res = JSON.parse(response);
-                if (res.status == 'success') {
-                    alert(res.message);
-                    location.reload();
+
+        if ($("#editPw").val() == $("#editCPw").val()) {
+            $.ajax({
+                type: 'POST',
+                url: "/edit-account",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    var res = JSON.parse(response);
+                    if (res.status == 'success') {
+                        alert(res.message);
+                        location.reload();
+                    }
+                    console.log(response);
                 }
-                console.log(response);
-            }
-        })
+            })
+        } else {
+            $(".alert").show();
+            $msg = "The password of " + $("#editFname").val() + " " + $("#editLname").val() +
+                " does not match!";
+            $(".alert").html($msg);
+        }
+
+
     });
 
     $(document).on('click', '.edit-btn', function(e) {
@@ -370,7 +389,6 @@ $(document).ready(function() {
                 var res = JSON.parse(response);
                 console.log(res);
                 $("#editUname").val(res.username);
-                $("#editPw").val(res.password);
                 $("#editFname").val(res.firstName);
                 $("#editMname").val(res.middleName);
                 $("#editLname").val(res.lastName);

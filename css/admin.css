@@ -6825,6 +6825,10 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 5px; }
 
+.config {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 5px; }
+
 @media (min-width: 768px) {
   .content {
     max-width: auto;

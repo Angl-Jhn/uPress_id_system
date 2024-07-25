@@ -3,7 +3,6 @@
             $obj = new TransactionManageModel();
             $get = $obj->getAll();
             ?>
-
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                     <div class="row py-3 px-2">
@@ -194,7 +193,7 @@
                                                     required>
                                             </div>
                                             <div class="mb-1">
-                                                <label for="">Name Ext.</label>
+                                                <label for="">Suffix</label>
                                                 <input type="text" class="form-control" name="nameExt" id="ext"
                                                     placeholder="Sr./Jr.">
                                             </div>
@@ -857,43 +856,42 @@ $(document).ready(function() {
             }
         });
     });
-});
 
-
-$(document).on('click', '.delete-btn2', function(e) {
-    e.preventDefault();
-    var id = $(this).data('client_id');
-    var row = $(this).closest('tr');
-    console.log(id)
-    if (confirm('Are you sure you want to delete this client?')) {
-        var formdata = new FormData();
-        formdata.append('id', id);
-        formdata.append('submitType', 'delete');
-        $.ajax({
-            url: '/del-client',
-            type: 'POST',
-            data: formdata,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                try {
-                    var res = JSON.parse(response);
-                    if (res.success) {
-                        alert(res.message);
-                        row.remove();
-                    } else {
-                        alert(res.message);
+    $(document).on('click', '.delete-btn2', function(e) {
+        e.preventDefault();
+        var id = $(this).data('client_id');
+        var row = $(this).closest('tr');
+        console.log(id)
+        if (confirm('Are you sure you want to delete this client?')) {
+            var formdata = new FormData();
+            formdata.append('id', id);
+            formdata.append('submitType', 'delete');
+            $.ajax({
+                url: '/del-client',
+                type: 'POST',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    try {
+                        var res = JSON.parse(response);
+                        if (res.success) {
+                            alert(res.message);
+                            row.remove();
+                        } else {
+                            alert(res.message);
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON response:', e);
+                        alert('Error: Invalid response format.');
                     }
-                } catch (e) {
-                    console.error('Failed to parse JSON response:', e);
-                    alert('Error: Invalid response format.');
+                },
+                error: function() {
+                    alert(
+                        'Error occurred while deleting the account');
                 }
-            },
-            error: function() {
-                alert(
-                    'Error occurred while deleting the account');
-            }
-        });
-    }
+            });
+        }
+    });
 });
             </script>

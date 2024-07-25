@@ -13,7 +13,7 @@ class TransactionManageModel{
                 clients.middleName, clients.lastName, clients.nameExt, clients.emergencyFirstName, clients.emergencyMiddleName,
                 clients.emergencyLastName, clients.emergencyNameExt, clients.emergencyAddress, clients.emergencyContactNum,
                 clients.clientSignature, clients.clientPhoto, clients.status, clients.createdAt,
-                student.id AS student_id, student.clientIDStudent, student.studentNum, student.collegeProgram, student.COR,
+                student.id AS student_id, student.clientIDStudent, student.studentNum, student.schoolProgID, student.COR,
                 student.oldIDFront, student.oldIDBack, student.affidavitOfLoss,
                 employee.id AS employee_id, employee.clientIDEmp, employee.empNum, employee.academicRank, employee.plantillaPos, employee.designation,
                 employee.residentialAddress, employee.birthDate, employee.contactNum, employee.civilStatus, employee.bloodType,

@@ -59,8 +59,8 @@ if(isset($_SESSION["isLogin"]) == 1){
             case "my-profile":
                 require_once("view/admin/page-profile.php");
                 break;
-            case "settings":
-                require_once("view/admin/page-setting.php");
+            case "form-configuration":
+                require_once("view/admin/form-config.php");
                 break;
             case "admin":
                 include_once("view/login/index.php");

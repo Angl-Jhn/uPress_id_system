@@ -48,9 +48,9 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="settings" class="sidebar-link">
+                        <a href="form-configuration" class="sidebar-link">
                             <i class="fa-solid fa-sliders"></i>
-                            Settings
+                            Form Configuration
                         </a>
                     </li>
                     <li class="sidebar-item">
