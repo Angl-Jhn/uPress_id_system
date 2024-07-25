@@ -65,6 +65,9 @@ if(isset($_SESSION["isLogin"]) == 1){
             case "admin":
                 include_once("view/login/index.php");
                 break; 
+            case "update-config":
+                require_once("controller/formConfigController.php");
+                break;
             case "logout":
                 session_destroy();
                 echo "<script>location.href = 'admin';</script>";

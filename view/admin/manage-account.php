@@ -24,7 +24,7 @@
                                 <table class="table caption-top table-striped table-hover" id="user"
                                     style="width: 100%;">
                                     <thead>
-                                        <th scope="col">ID</th>
+                                        <th scope="col">No.</th>
                                         <th scope="col">Username</th>
                                         <th scope="col">Password</th>
                                         <th scope="col">Name</th>
@@ -134,18 +134,16 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Username</label>
-                                                <input type="text" name="uname" class="form-control" placeholder="admin"
-                                                    required>
+                                                <input type="text" name="uname" class="form-control" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Password</label>
-                                                <input type="password" name="pw" class="form-control"
-                                                    placeholder="********" required>
+                                                <input type="password" name="pw" class="form-control" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Role</label>
-                                                <select class="form-control js-example-basic-single" name="role"
-                                                    id="role" required style="width: 100%;">
+                                                <select class="role-single" name="role" id="role" required
+                                                    style="width: 100%;">
                                                     <option></option>
                                                     <option value="admin">Admin</option>
                                                     <option value="operator">Operator</option>
@@ -223,8 +221,8 @@
                                                 <div class="col-md-5">
                                                     <div class="mb-3">
                                                         <label for="editRole" class="form-label">Role</label>
-                                                        <select class="form-control js-example-basic-single" name="role"
-                                                            id="editrole" required style="width: 100%;">
+                                                        <select class="role-single" name="role" id="editrole" required
+                                                            style="width: 100%;">
                                                             <option></option>
                                                             <option value="admin">Admin</option>
                                                             <option value="operator">Operator</option>
@@ -257,8 +255,7 @@
                                                     required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="editNameExt" class="form-label">Name
-                                                    Extension</label>
+                                                <label for="editNameExt" class="form-label">Suffix</label>
                                                 <input type="text" class="form-control" id="editNameExt" name="nameExt">
                                             </div>
                                         </div>
@@ -276,12 +273,14 @@
 
             <script>
 $(document).ready(function() {
-    $("#addAccountModal .js-example-basic-single").select2({
+    $("#addAccountModal .role-single").select2({
+        theme: 'bootstrap',
         placeholder: "Select Role",
         allowClear: true,
         dropdownParent: $('#addAccountModal')
     });
-    $("#editAccountModal .js-example-basic-single").select2({
+    $("#editAccountModal .role-single").select2({
+        theme: 'bootstrap',
         placeholder: "Select Role",
         allowClear: true,
         dropdownParent: $('#editAccountModal')

@@ -6829,7 +6829,41 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 5px; }
 
+/* Style the Select2 container */
+.select2-container--bootstrap .select2-selection--single {
+  box-shadow: none !important;
+  border: 1px solid #dee2e6 !important;
+  outline-color: #6c757d !important;
+  border-radius: 7px !important;
+  height: 40px !important;
+  /* Adjust height */
+  padding: 0.5em 1em !important;
+  /* Padding */ }
+
+/* Style the dropdown items */
+.select2-container--bootstrap .select2-results__option {
+  background-color: #f0f0f0 !important;
+  /* Light grey background */ }
+
+/* Style the dropdown items on hover */
+.select2-container--bootstrap .select2-results__option--highlighted {
+  color: #ffffff !important;
+  /* White text */
+  background-color: #0000ff !important;
+  /* Blue background */ }
+
 @media (min-width: 768px) {
   .content {
     max-width: auto;
     width: auto; } }
+
+.print {
+  display: none; }
+
+@media print {
+  #StudentIDView .no-print {
+    display: none; }
+  #StudentIDView .page-break {
+    page-break-before: always;
+    /* Forces a page break before the element */ }
+  /* Add other print-specific styles here */ }

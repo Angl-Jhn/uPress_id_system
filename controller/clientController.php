@@ -5,11 +5,11 @@ $client = new StudentModel();
 $client1 = new EmployeeModel();  
 
 if(isset($_POST["type"])){
-if($_POST["type"] == "student"){
+if($_POST["type"] == "Student"){
     $type = $_POST["type"];
     $formtype = $_POST["formType"];
     $studId = $_POST["studnum"];
-    $wmsuEmail = $_POST["wmsuEmail"];
+    $email = $_POST["email"];
     $firstname = $_POST["firstName"];
     $middlename = $_POST["middleName"];
     $familyname = $_POST["familyName"];
@@ -27,11 +27,12 @@ if($_POST["type"] == "student"){
     $oldId = "";
     $oldIdBack = "";
     $aol = "";
+    $DSAForm = "";
   
     $status = false; // Initialize $status to false
     $cntData = 0; // Initialize $index to 0
 
-    $arr = ["userPhoto","signature","cor","oldId","oldIdBack","aol"];
+    $arr = ["userPhoto","signature","cor","oldId","oldIdBack","aol","DSAForm"];
     $errors = array();
     $uploadedFiles = array();
 
@@ -64,6 +65,8 @@ if($_POST["type"] == "student"){
                         $oldIdBack = $photoName;
                     } elseif ($i == "aol") {
                         $aol = $photoName;
+                    } elseif ($i == "DSAForm") {
+                        $DSAForm = $photoName;
                     }
                     $uploadedFiles[$i][] = $photoName; // Store the uploaded file name
                 }
@@ -85,23 +88,24 @@ if($_POST["type"] == "student"){
     if ($status == true) {
         $res = $client->requestId(
             $type, $formtype, $studId, $wmsuEmail, $firstname, $middlename, $familyname, $nameExt,
-            $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol
+            $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol, $DSAForm
         );
         /*if($res){
             var_dump($res); 
         }*/
     }
-} elseif ($_POST["type"] == "employee"){
+} elseif ($_POST["type"] == "Employee"){
     
     $type = $_POST["type"];
     $formtype = $_POST["formType"];
     $idNumber = $_POST["idNumber"];
-    $wmsuEmail = $_POST["wmsuEmail"];
+    $email = $_POST["email"];
     $firstname = $_POST["firstName"];
     $middlename = $_POST["middleName"];
     $familyname = $_POST["familyName"];
     $nameExt = $_POST["nameExt"];
     $academicRank = $_POST["academicRank"];
+    $plantillaPos = $_POST["plantillaPos"];
     $designation = $_POST["designation"];
     $resAddress = $_POST["residentialAddress"];
     $DoB = $_POST["dateofbirth"];

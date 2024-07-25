@@ -55,10 +55,11 @@ function handleAddStud($objModel){
     $oldId = uploadImage('oldId') ? uploadImage('oldId'):"";
     $oldIdBack = uploadImage('oldIdBack')?uploadImage('oldIdBack'):"";
     $aol = uploadImage('aol') ? uploadImage('aol'):"";
+    $DSAForm = uploadImage('DSAForm') ? uploadImage('DSAForm'):"";
 
     $res1 = $objModel->requestId(
         $type, $formtype, $studId, $email, $firstname, $middlename, $familyname, $nameExt,
-            $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol
+            $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol, $DSAForm
     );
     if ($res1) {
         echo json_encode(['message'=>'Successfully added '.$firstname.' '.$familyname,'status'=>'success']);
@@ -90,10 +91,12 @@ function handleUpdateStud($objModel){
     $oldId = uploadImage('oldId') ? uploadImage('oldId'):"";
     $oldIdBack = uploadImage('oldIdBack')?uploadImage('oldIdBack'):"";
     $aol = uploadImage('aol') ? uploadImage('aol'):"";
+    $DSAForm = uploadImage('DSAForm') ? uploadImage('DSAForm'):"";
+    $id = $_POST["id"];
 
-    $res1 = $objModel->updateStudent(
+    $res1 = $objModel->updateStudent($id,
         $type, $formtype, $studId, $email, $firstname, $middlename, $familyname, $nameExt,
-            $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol
+            $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol, $DSAForm
     );
     if ($res1) {
         echo json_encode(['message'=>'Successfully updated '.$firstname.' '.$familyname, 'status'=>'success']);
@@ -173,7 +176,7 @@ function handleUpdateEmploy($objModel){
     $hrmoscanned = uploadImage('hrmoScanned') ? uploadImage('hrmoScanned'): "";
     $hrmoNew = uploadImage('hrmoNew') ? uploadImage('hrmoNew'):"";
     $aol = uploadImage('aol') ? uploadImage('aol'):"";
-    $id = $_POST["clientID"];
+    $id = $_POST["id"];
 
     $res1 = $objModel->updateEmploy(
         $id,$type, $formType, $idNumber, $email, $firstname, $middlename, $familyname, $nameExt,
@@ -196,7 +199,7 @@ function handleViewClients($id,$objModel){
 }
 
 function handleDeleteClient($objModel) {
-    $id = $_POST['clientID'];
+    $id = $_POST['id'];
     $deleteAcc = $objModel->softDeleteClient($id);
     if($deleteAcc){
         echo json_encode(['message'=>'Successfully deleted client '.$id,'status'=>'success']);

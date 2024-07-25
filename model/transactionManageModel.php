@@ -13,7 +13,7 @@ class TransactionManageModel{
                 clients.middleName, clients.lastName, clients.nameExt, clients.emergencyFirstName, clients.emergencyMiddleName,
                 clients.emergencyLastName, clients.emergencyNameExt, clients.emergencyAddress, clients.emergencyContactNum,
                 clients.clientSignature, clients.clientPhoto, clients.status, clients.createdAt,
-                student.id AS student_id, student.clientIDStudent, student.studentNum, student.schoolProgID, student.COR,
+                student.id AS student_id, student.clientIDStudent, student.studentNum, student.progCategoryID, student.COR,
                 student.oldIDFront, student.oldIDBack, student.affidavitOfLoss,
                 employee.id AS employee_id, employee.clientIDEmp, employee.empNum, employee.academicRank, employee.plantillaPos, employee.designation,
                 employee.residentialAddress, employee.birthDate, employee.contactNum, employee.civilStatus, employee.bloodType,
@@ -50,9 +50,10 @@ class TransactionManageModel{
         $conn = new PDOModel();
         $db = $conn->getDb();
         
-        $stmt = $db->prepare("UPDATE clients SET deletedAt = NOW() WHERE id = :id");
+        $stmt = $db->prepare("UPDATE clients SET deletedAt = NOW() , status = 1 WHERE id = :id");
         $stmt->bindParam(':id', $id);
-        return $stmt->execute();
+         $stmt->execute();
+         return true;
     }
 
     function reactivateClient($id) {
@@ -60,7 +61,7 @@ class TransactionManageModel{
         $db = $conn->getDb();
 
         // Reactivate the account by setting deleted_at to NULL
-        $stmt = $db->prepare("UPDATE clients SET deletedAt = NULL WHERE id = :id");
+        $stmt = $db->prepare("UPDATE clients SET deletedAt = NULL, status = 0 WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }

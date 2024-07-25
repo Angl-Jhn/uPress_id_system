@@ -2,7 +2,18 @@
             include_once("././model/transactionManageModel.php");
             $obj = new TransactionManageModel();
             $get = $obj->getAll();
+
+            include_once("././model/dsaListModel.php");
+            $DSAobj = new DsaListModel();
+            $getDSA = $DSAobj->getList();
+            $setDefault = $DSAobj->getDefault();
+
+            include_once("././model/presidentListModal.php");
+            $PRESobj = new PresidentListModal();
+            $getPres = $PRESobj->getList();
+            $setDefaultPres = $PRESobj->getDefault();
             ?>
+
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                     <div class="row py-3 px-2">
@@ -27,7 +38,7 @@
                                 <table class="table caption-top table-striped table-hover" id="transactions"
                                     style="width: 100%;">
                                     <thead>
-                                        <th scope="col">Client ID</th>
+                                        <th scope="col">No.</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Type</th>
                                         <th scope="col">Transaction Type</th>
@@ -67,16 +78,16 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <button type="button"
-                                                            class="btn btn-info btn-cirlce btn-sm view-btn2"
-                                                            data-id="<?= $item['client_id']; ?>" data-bs-toggle="modal"
-                                                            data-bs-target="#view">
-                                                            <i class="fa-solid fa-eye" style="padding: 0;"></i>
-                                                            <!-- view -->
-                                                        </button>
                                                         <?php
                                                         if($item['clientType'] == 'Student') {
                                                         ?>
+                                                        <button type="button"
+                                                            class="btn btn-info btn-cirlce btn-sm view-btn"
+                                                            data-id="<?= $item['client_id']; ?>" data-type="Student"
+                                                            data-bs-toggle="modal" data-bs-target="#StudentIDView">
+                                                            <i class="fa-solid fa-eye" style="padding: 0;"></i>
+                                                            <!-- view -->
+                                                        </button>
                                                         <button type="button"
                                                             class="btn btn-success btn-cirlce btn-sm edit-btn2"
                                                             data-id="<?= $item['client_id']; ?>" data-type="Student"
@@ -88,6 +99,13 @@
                                                         <?php
                                                         } else if($item['clientType'] == 'Employee') {
                                                         ?>
+                                                        <button type="button"
+                                                            class="btn btn-info btn-cirlce btn-sm view-btn"
+                                                            data-id="<?= $item['client_id']; ?>" data-type="Employee"
+                                                            data-bs-toggle="modal" data-bs-target="#EmployeeIDView">
+                                                            <i class="fa-solid fa-eye" style="padding: 0;"></i>
+                                                            <!-- view -->
+                                                        </button>
                                                         <button type="button"
                                                             class="btn btn-success btn-cirlce btn-sm edit-btn2"
                                                             data-id="<?= $item['client_id']; ?>" data-type="Employee"
@@ -138,7 +156,7 @@
                 </div>
             </main>
             <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
-            <!-- Add Modal -->
+            <!-- Add Edit Modal -->
             <div class="modal fade" id="StudentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
@@ -179,6 +197,7 @@
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-lg-5 col-md-12">
                                             <div class="mb-1">
+                                                <input type="hidden" id="id" name="id">
                                                 <label for="">First Name</label>
                                                 <input type="text" class="form-control" name="firstName" id="fname"
                                                     required>
@@ -360,6 +379,7 @@
                                         <div class="col-lg-5 pb-2">
                                             <div class="m-0 py-2 gap-2 d-flex justify-content-center">
                                                 <div class="form-check form-check-inline">
+                                                    <input type="hidden" id="id" name="id">
                                                     <input class="form-check-input" type="radio" name="teachingnon"
                                                         id="teach" checked onclick="teachingnon(0)">
                                                     <label class="form-check-label ps-2" for="teach">Teaching</label>
@@ -593,8 +613,230 @@
                     </div>
                 </div>
             </div>
+            <!-- View Modals -->
+            <div class="modal fade" id="StudentIDView" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-2" id="staticBackdropLabel"></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
+                            <div id="contentToPrint"
+                                class="container-fluid h-100 w-75 d-flex justify-content-center align-items-center">
+                                <div
+                                    class="row layout py-3 px-2 gap-4 justify-content-center text-center bg-info-subtle">
+                                    <div class="col-md-12 text-center py-2">
+                                        <div class="card-header no-print">
+                                            <h2>Student ID</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 py-3 page-start">
+                                        <div class="front" style="position: relative; left: 50%; transform: translateX(-50%); display: block; 
+                                background-image: url('../../assets/id_layouts/STUDENT/STUDENT-ID-FRONT.svg'); 
+                                width:204px; height:316px; background-size: 204px 321px; background-position: center; 
+                                background-repeat: no-repeat; border: 1px solid black; border-radius: 10px">
+                                            <p style="position: absolute; left: 45px; top: 217px; color: black; 
+                                    text-align: center; z-index: 1; font-weight: bold; font-size: 10px" id="studNum">
+                                            </p>
+                                            <p style="position: absolute; left: 0; right: 0; top: 230px; color: black; 
+                                    text-align: center; z-index: 1; font-weight: 900; font-size: 16px; color: maroon"
+                                                id="programName">
+                                            </p>
+                                            <p style="position: absolute; left: 0; right: 0; top: 250px; color: black;
+                                    text-align: center; z-index: 1; font-weight: bold; font-size: 16px;" id="studName">
+                                            </p>
+                                            <img src="../../assets/id_layouts/signature.png" style="position: absolute; left: 0; right: 0; 
+                                    top: 270px; max-width:60px; max-height:30px; display: block; margin: auto;">
+                                            <p style="position: absolute; left: 0; right: 0; bottom: 1px; color: black; 
+                                    text-align: center; z-index: 1; font-weight: bold; font-size: 8px">
+                                                <?php 
+                                        echo $setDefault['title'].' '.$setDefault['firstName'].' '.$setDefault['middleName'].' '
+                                        .$setDefault['familyName'].' '.$setDefault['suffix'];
+                                    ?>
+                                            </p>
+                                            <p style="position: absolute; left: 0; right: 0; bottom: 10px; color: black; 
+                                    text-align: center; z-index: 1; font-size: 8px; padding-bottom: 0px; margin: 0px;">
+                                                Director, Student Affairs</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 py-3 page-break">
+                                        <div class="back" style="position: relative; left: 50%; transform: translateX(-50%); display: block; 
+                                background-image: url('../../assets/id_layouts/STUDENT/STUDENT-ID-BACK.svg'); 
+                                width:204px; height:316px; background-size: 204px 321px; background-position: center; 
+                                background-repeat: no-repeat; border: 1px solid black; border-radius: 10px">
+                                            <p style="position: absolute; left: 0; right: 0; top: 73px; color: black; 
+                                    text-align: center; font-size: 14px; font-weight: 900;" id="emergencyName">
+                                            </p>
 
+                                            <p style="position: absolute; left: 0; right: 0; top: 100px; color: black; 
+                                    text-align: center; font-size: 10px; width: 190px; line-height: 10px;"
+                                                id="emergencyAddress">
+                                            </p>
+                                            <p style="position: absolute; left: 0; right: 0; top: 120px; color: black; 
+                                    text-align: center; font-size: 12px; font-weight: 900;" id="emergencyContact">
+                                            </p>
+                                            <?php
+                                    function generateYearRange($startYear) { //generate the year range for a given start year
+                                        $endYear = $startYear + 1;
+                                        return "$startYear-$endYear";
+                                    }
+                                    $numberOfRanges = 4; // Number of <p> elements to display
+                                    $startYear = $setDefault['year'];
+                                    $yearRanges = [];
+                                    for ($i = 0; $i < $numberOfRanges; $i++) {
+                                        $yearRanges[] = generateYearRange($startYear + $i);
+                                    }
+                                ?>
+                                            <?php foreach ($yearRanges as $index => $range){?>
+                                            <p style="position: absolute; left: 11px; bottom: <?php echo 115 - ($index * 17); ?>px;
+                                    color: black; font-size: 5px; font-weight: bold;">
+                                                <?php echo $range; ?>
+                                            </p>
+                                            <?php } ?>
+                                            <img src="../../assets/id_layouts/signature.png" style="position: absolute; 
+                                    left: 0; right: 0; bottom: 25px; max-width:80px; max-height:40px; display: 
+                                    block; margin: auto;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="printButton" name="" class="btn btn-primary"><i
+                                    class="fa-solid fa-print"></i>Print</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="EmployeeIDView" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-2" id="staticBackdropLabel"></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
+                            <div id="contentToPrint"
+                                class="container-fluid h-100 w-75 d-flex justify-content-center align-items-center">
+                                <div
+                                    class="row layout py-3 px-2 gap-4 justify-content-center text-center bg-info-subtle">
+                                    <div class="col-md-12 text-center py-2">
+                                        <div class="card-header no-print">
+                                            <h2>Employee ID</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 py-3 page-start">
+                                        <div class="front" style="position: relative; left: 50%; transform: translateX(-50%); display: block; 
+                                background-image: url('../../assets/id_layouts/EMPLOYEE/CSM.png'); width:316px; height: 204px; 
+                                background-size: 321px 204px; background-position: center; background-repeat: no-repeat; 
+                                border: 1px solid black; border-radius: 10px">
+                                            <p style="position: absolute; left: 45px; bottom: -14px; color: black; 
+                                    text-align: center; z-index: 1; font-weight: bold; font-size: 9px" id="empNum"></p>
+                                            <p style="position: absolute; left: 145px; right: 10px; top: 62px; color: black; 
+                                    text-align: center; z-index: 1; font-weight: 600; font-size: 12px;" id="empName">
+                                            </p>
+                                            <p style="position: absolute; left: 145px; right: 10px; top: 80px; color: black; 
+                                    text-align: center; z-index: 1; font-weight: 600; font-size: 9px;" id="rankPos">
+                                            </p>
+                                            <p style="position: absolute; left: 145px; right: 10px; top: 93px; color: black;
+                                    text-align: center; z-index: 1; font-weight: 600; font-size: 9px;"
+                                                id="designation">
+                                            </p>
+                                            <img src="../../assets/id_layouts/signature.png" style="position: absolute; right: 60px; 
+                                    bottom: 10px; max-width:60px; max-height:30px; display: block; margin: auto;">
+                                            <p style="position: absolute; left: 158px; right: 20px; bottom: -6px; color: black; 
+                                    text-align: center; z-index: 1; font-weight: 800; font-size: 6px">
+                                                <?php 
+                                        echo $setDefaultPres['title'].' '.$setDefaultPres['firstName'].' '.$setDefaultPres['middleName'].' '
+                                        .$setDefaultPres['familyName'].' '.$setDefaultPres['suffix'];
+                                    ?></p>
+                                            <p style="position: absolute; right: 75px; bottom: 4px; color: black; text-align: center; 
+                                    z-index: 1; font-size: 6px; font-weight: bold; padding-bottom: 0px; margin: 0px;">
+                                                President</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 py-3 page-break">
+                                        <div class="back" style="position: relative; left: 50%; transform: translateX(-50%); display: block; 
+                                background-image: url('../../assets/id_layouts/EMPLOYEE/EMPLOYEE-ID-BACK.png'); 
+                                width:316px; height: 204px; background-size: 321px 204px; background-position: center; 
+                                background-repeat: no-repeat; border: 1px solid black; border-radius: 10px">
+                                            <p style="position: absolute; left: 0; right: 0; top: 84px; color: black; text-align: center; 
+                                    z-index: 1; font-weight: 900; font-size: 10px;" id="residentialAddress">
+                                            </p>
+                                            <p style="position: absolute; left: 60px; bottom: 69.6px; color: black; 
+                                    font-size: 5px; font-weight: 900;" id="birthdate">
+                                            </p>
+                                            <p style="position: absolute; left: 57px; bottom: 53.5px; color: black; 
+                                    font-size: 5px; font-weight: 900;" id="contactNum">
+                                            </p>
+                                            <p style="position: absolute; left: 145px; bottom: 69.6px; color: black; 
+                                    font-size: 5px; font-weight: 900;" id="bloodtype">
+                                            </p>
+                                            <p style="position: absolute; left: 145px; bottom: 53.5px; color: black;
+                                    font-size: 5px; font-weight: 900;" id="civilstatus">
+                                            </p>
+                                            <p style="position: absolute; left: 205px; bottom: 45px; color: black; 
+                                    font-size: 8px; font-weight: 900;" id="emergencyName">
+                                            </p>
+                                            <p style="position: absolute; left: 175px; bottom: 30px; color: black; 
+                                    font-size: 6px; font-weight: 900;" id="emergencyAddress">
+                                            </p>
+                                            <p style="position: absolute; left: 210px; bottom: 11px; color: black; 
+                                    font-size: 8px; font-weight: 900;" id="emergencyContact">
+                                            </p>
+                                            <img src="../../assets/id_layouts/" style="position: absolute; 
+                                    left: 65px; bottom: 20px; max-width:60px; max-height:30px; 
+                                    display: block; margin: auto;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="printButton" name="" class="btn btn-primary"><i
+                                    class="fa-solid fa-print"></i>Print</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <script>
+$('#printButton').click(function() {
+    // Find the currently visible modal
+    var visibleModal = $('.modal.show').attr('id');
+
+    if (!visibleModal) {
+        alert('No modal is currently open.');
+        return;
+    }
+
+    // Determine the content to print based on the modal ID
+    var content = $('#' + visibleModal + ' #contentToPrint').html();
+
+    if (!content) {
+        alert('No content found to print.');
+        return;
+    }
+
+    // var content = $('#contentToPrint').html();
+
+    // Create a new window
+    var printWindow = window.open('', '', 'height=600,width=800');
+    printWindow.document.write('<html><head><title>Print</title>');
+    printWindow.document.write(
+        '<style>@media print { @page { size: 210mm 297mm; margin: 0mm; } .page-start{margin-top:0px !important;} .page-break { page-break-before: always; margin-top:4px;} .no-print{display:none;} p{margin-top: 0;margin-bottom: 1rem;} .front { transform: translateX(-191%) !important;} .back { transform: translateX(-191%) !important;}}</style>'
+    );
+    printWindow.document.write('</head><body>');
+    printWindow.document.write(content);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+});
 $(document).ready(function() {
     var table = $('#transactions').DataTable({
         // dom: 'Bfrtip',
@@ -709,7 +951,7 @@ $(document).ready(function() {
                 var res = JSON.parse(response);
                 if (res.status == 'success') {
                     alert(res.message);
-                    location.reload();
+                    // location.reload();
                 } else {
                     alert(res.message);
                 }
@@ -727,6 +969,7 @@ $(document).ready(function() {
         e.preventDefault();
         var formdata = new FormData(this);
         formdata.append("submitType", "updateStud");
+        formdata.append("clientType", "Student");
         formdata.append("ignoreHeaderFooter", 1);
 
         $.ajax({
@@ -757,6 +1000,7 @@ $(document).ready(function() {
         e.preventDefault();
         var formdata = new FormData(this);
         formdata.append("submitType", "updateEmploy");
+        formdata.append("clientType", "Employee");
         formdata.append("ignoreHeaderFooter", 1);
 
         $.ajax({
@@ -783,6 +1027,57 @@ $(document).ready(function() {
         });
     });
 
+    $(document).on('click', '.view-btn', function(e) {
+        var id = $(this).attr('data-id');
+        var formdata = new FormData();
+        formdata.append("submitType", "viewClients");
+        formdata.append('clientID', id);
+        // formdata.append("selectedType", e.currentTarget.getAttribute('data-type'));
+        formdata.append("ignoreHeaderFooter", 1);
+        $.ajax({
+            type: 'POST',
+            url: '/edit-users',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                var res = JSON.parse(response);
+                $("#StudentIDView #studNum").html(res.studentNum);
+                $("#StudentIDView #programName").html(res.programName);
+                $("#StudentIDView #studName").html(res.firstName + " " + res.middleName
+                    .charAt(0) + ". " +
+                    res.lastName + " " + (res.nameExt ? res.nameExt : ""));
+                $("#StudentIDView #emergencyName").html(res.emergencyFirstName + " " + res
+                    .middleName
+                    .charAt(0) + ". " + res.emergencyLastName + " " + (res
+                        .emergencyNameExt ? res.emergencyNameExt : ""));
+                $("#StudentIDView #emergencyAddress").html(res.emergencyAddress);
+                $("#StudentIDView #emergencyContact").html(res.emergencyContactNum);
+
+                $("#EmployeeIDView #empNum").html(res.empNum);
+                $("#EmployeeIDView #empName").html(res.firstName + " " + res.middleName
+                    .charAt(0) + ". " +
+                    res.lastName + " " + (res.nameExt ? res.nameExt : ""));
+                if (res.academicRank) {
+                    $("#EmployeeIDView #rankPos").html(res.academicRank);
+                } else {
+                    $("#EmployeeIDView #rankPos").html(res.plantillaPos);
+                }
+                $("#EmployeeIDView #designation").html(res.designation);
+                $("#EmployeeIDView #residentialAddress").html(res.residentialAddress);
+                $("#EmployeeIDView #birthdate").html(res.birthDate);
+                $("#EmployeeIDView #contactNum").html(res.contactNum);
+                $("#EmployeeIDView #bloodtype").html(res.bloodType);
+                $("#EmployeeIDView #civilstatus").html(res.civilStatus);
+                $("#EmployeeIDView #emergencyName").html(res.emergencyFirstName + " " + res
+                    .middleName.charAt(0) + ". " + res.emergencyLastName + " " +
+                    (res.emergencyNameExt ? res.emergencyNameExt : ""));
+                $("#EmployeeIDView #emergencyAddress").html(res.emergencyAddress);
+                $("#EmployeeIDView #emergencyContact").html(res.emergencyContactNum);
+            }
+        });
+        console.log();
+    });
     $(document).on('click', '.edit-btn2', function(e) {
         e.preventDefault();
         var selectedID = $(this).closest('tr').find('.clientID').text();
@@ -794,7 +1089,8 @@ $(document).ready(function() {
         formdata.append("selectedType", e.currentTarget.getAttribute('data-type'));
         formdata.append('clientID', selectedID);
         formdata.append("ignoreHeaderFooter", 1);
-
+        $("#StudentModal #id").val(selectedID);
+        $("#EmployeeModal #id").val(selectedID);
         $.ajax({
             type: 'POST',
             url: '/edit-users',
@@ -812,6 +1108,7 @@ $(document).ready(function() {
                     $('#lost').prop('checked', true); // Check the Lost radio button
                 }
                 // student
+
                 $("#StudentModal #studnum").val(res.studentNum);
                 $("#StudentModal #email").val(res.email);
                 $("#StudentModal #fname").val(res.firstName);
@@ -859,13 +1156,14 @@ $(document).ready(function() {
 
     $(document).on('click', '.delete-btn2', function(e) {
         e.preventDefault();
-        var id = $(this).data('client_id');
+        var id = $(this).data('id');
         var row = $(this).closest('tr');
-        console.log(id)
+        console.log(row)
         if (confirm('Are you sure you want to delete this client?')) {
             var formdata = new FormData();
             formdata.append('id', id);
             formdata.append('submitType', 'delete');
+            formdata.append("ignoreHeaderFooter", 1);
             $.ajax({
                 url: '/del-client',
                 type: 'POST',
@@ -873,17 +1171,12 @@ $(document).ready(function() {
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    try {
-                        var res = JSON.parse(response);
-                        if (res.success) {
-                            alert(res.message);
-                            row.remove();
-                        } else {
-                            alert(res.message);
-                        }
-                    } catch (e) {
-                        console.error('Failed to parse JSON response:', e);
-                        alert('Error: Invalid response format.');
+                    var res = JSON.parse(response);
+                    if (res.status == "success") {
+                        alert(res.message);
+                        row.remove();
+                    } else {
+                        alert(res.message);
                     }
                 },
                 error: function() {

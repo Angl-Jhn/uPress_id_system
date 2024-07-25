@@ -11,12 +11,12 @@ $get = $obj->getForm();
                 <div class="nav-box">
                     <ul class="nav nav-pills justify-content-center align-item-center" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="student" data-bs-toggle="pill"
+                            <button class="nav-link active" id="Student" data-bs-toggle="pill"
                                 data-bs-target="#pills-student" type="button" role="tab" aria-controls="pills-student"
                                 aria-selected="true">Student</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="employee" data-bs-toggle="pill"
+                            <button class="nav-link" id="Employee" data-bs-toggle="pill"
                                 data-bs-target="#pills-employee" type="button" role="tab" aria-controls="pills-employee"
                                 aria-selected="false">Employee</button>
                         </li>
@@ -42,8 +42,10 @@ $get = $obj->getForm();
                                     if ($get) {
                                     ?>
                                     <div class="update-text py-2 mb-4">
-                                        <p class="lead" id="upressFR">WMSU-UPRESS-FR-<?= $get['value']?></p>
-                                        <p class="lead" id="effectDate">Effective Date: <?= $get['value']?></p>
+                                        <p class="lead" id="upressFR">
+                                            WMSU-UPRESS-FR-<?= $get['StudentFormVersion']['value'] ?></p>
+                                        <p class="lead" id="effectDate">Effective Date:
+                                            <?= $get['StudentFormEDate']['value'] ?></p>
                                     </div>
                                     <?php
                                     }
@@ -124,7 +126,7 @@ $get = $obj->getForm();
                                                             <label for="">Email
                                                                 <span class="text-danger">*</span>
                                                             </label>
-                                                            <input type="text" name="wmsuEmail" id="wmsuEmail" required>
+                                                            <input type="text" name="email" id="wmsuEmail" required>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -329,8 +331,10 @@ $get = $obj->getForm();
                                     if ($get) {
                                     ?>
                                     <div class="update-text py-2 mb-4">
-                                        <p class="lead" id="upressFR">WMSU-UPRESS-FR-<?= $get['value']?></p>
-                                        <p class="lead" id="effectDate">Effective Date: <?= $get['value']?></p>
+                                        <p class="lead" id="upressFR">
+                                            WMSU-UPRESS-FR-<?= $get['EmployeeFormVersion']['value'] ?></p>
+                                        <p class="lead" id="effectDate">Effective Date:
+                                            <?= $get['EmployeeFormEDate']['value'] ?></p>
                                     </div>
                                     <?php
                                     }
@@ -432,7 +436,7 @@ $get = $obj->getForm();
                                                             <label for="">Email
                                                                 <span class="text-danger">*</span>
                                                             </label>
-                                                            <input type="text" name="wmsuEmail" id="wmsuEmail" required>
+                                                            <input type="text" name="email" id="wmsuEmail" required>
                                                         </div>
                                                         <div class="mb-2">
                                                             <label for="">ID Number
@@ -728,12 +732,12 @@ function reloadPage(tabId) {
 }
 
 // Add event listeners to the tab buttons
-document.getElementById('student').addEventListener('click', function() {
-    reloadPage('student');
+document.getElementById('Student').addEventListener('click', function() {
+    reloadPage('Student');
 });
 
-document.getElementById('employee').addEventListener('click', function() {
-    reloadPage('employee');
+document.getElementById('Employee').addEventListener('click', function() {
+    reloadPage('Employee');
 });
 
 // On page load, check for the stored active tab ID and set the active tab
@@ -752,7 +756,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add the active class to the active tab link and content
         document.getElementById(activeTab).classList.add('active');
         document.getElementById(activeTab).setAttribute('aria-selected', 'true');
-        var tabContent = document.querySelector(activeTab === 'student' ? '#pills-student' : '#pills-employee');
+        var tabContent = document.querySelector(activeTab === 'Student' ? '#pills-student' : '#pills-employee');
         tabContent.classList.add('show', 'active');
 
         // Clear the stored active tab ID after setting the active tab
@@ -763,24 +767,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 $(document).ready(function() {
-    $('#studentForm .program-strand-single').select2({
+    $('.program-strand-single').select2({
         placeholder: 'Select a program',
         theme: 'bootstrap',
+        allowClear: true,
         dropdownParent: $('#studentForm')
     });
     $('.academicRank-basic-single').select2({
         placeholder: 'Select Academic Rank',
         theme: 'bootstrap',
+        allowClear: true,
         dropdownParent: $('#employeeForm')
     });
     $('.civilstatus-single').select2({
         placeholder: 'Single',
         theme: 'bootstrap',
+        allowClear: true,
         dropdownParent: $('#employeeForm')
     });
     $('.bloodType-single').select2({
         placeholder: 'A+',
         theme: 'bootstrap',
+        allowClear: true,
         dropdownParent: $('#employeeForm')
     });
 });
@@ -789,7 +797,7 @@ $(document).ready(function() {
     $('#studentForm').on('submit', function(e) {
         e.preventDefault();
         var formData = new FormData(this);
-        formData.append("type", "student"); // Add the additional field
+        formData.append("type", "Student"); // Add the additional field
         console.log(formData);
         $.ajax({
             type: 'POST',
@@ -820,7 +828,7 @@ $(document).ready(function() {
                 $("#backId").val("");
                 $("#affidavit").val("");
 
-                location.reload(); //refresh page
+                // location.reload(); //refresh page
             },
             error: function(error) {
                 console.log(error);
@@ -832,7 +840,7 @@ $(document).ready(function() {
     $('#employeeForm').on('submit', function(e) {
         e.preventDefault();
         var formData = new FormData(this);
-        formData.append("type", "employee"); // Add the additional field
+        formData.append("type", "Employee"); // Add the additional field
         $.ajax({
             type: 'POST',
             url: '/request-id',
@@ -867,7 +875,7 @@ $(document).ready(function() {
                 $("#hrmoNew").val("");
                 $("#aol").val("");
 
-                location.reload(); //refresh page
+                // location.reload(); //refresh page
             },
             error: function(error) {
                 console.log(error);
