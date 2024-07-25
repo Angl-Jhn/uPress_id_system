@@ -11,6 +11,8 @@
                                 background-image: url('../../assets/id_layouts/EMPLOYEE/CSM.png'); width:316px; height: 204px; 
                                 background-size: 321px 204px; background-position: center; background-repeat: no-repeat; 
                                 border: 1px solid black; border-radius: 10px">
+                                <img src="../../assets/id_layouts/sample.png" style="position: absolute; left: 12px; 
+                                    bottom: 19px; max-width: 120px; display: block; margin: auto;">
                                 <p style="position: absolute; left: 45px; bottom: -14px; color: black; 
                                     text-align: center; z-index: 1; font-weight: bold; font-size: 9px">
                                     00149</p>
