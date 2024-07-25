@@ -18,36 +18,6 @@ if (isset($_POST["type"])) {
             break;
     }
 }
-
-function handleUpdateAccount($accountModel){
-    $uname = htmlentities($_POST["uname"]);
-    $pw = htmlentities($_POST["pw"]);
-    $fname = htmlentities($_POST["fname"]);
-    $middleName = htmlentities($_POST["mname"]);
-    $lastName = htmlentities($_POST["lname"]);
-    $nameExt = htmlentities($_POST["nameExt"]);
-    $role = htmlentities($_POST["role"]);
-    $img = uploadImage('accountPhoto');
-    $id = $_POST["accId"];
-    
-    $updateAcc = $accountModel->updateAccount($id,$uname, $pw, $fname, $middleName, $lastName, $nameExt, $role, $img);  
-    
-    if ($updateAcc) {
-        echo json_encode(['message'=>'succesfully updated the user '.$uname,'status'=>'success']);
-    } else {
-        echo json_encode(['message'=>'failed to update user '.$uname,'status'=>'error']);
-    }
-    
-}
-
-function handleViewAccount($accountModel){
-    $id = $_POST["accId"];
-    $result = $accountModel->getAccountById($id);
-    if($result){
-        echo json_encode($result);
-    }
-}
-
 function handleAddAccount($accountModel) {
     header('Content-Type: application/json');
     // For debugging
@@ -74,8 +44,33 @@ function handleAddAccount($accountModel) {
         echo json_encode(['message' => 'Server error: ' . $e->getMessage(), 'status' => 'error']);
     }
 }
-
-
+function handleUpdateAccount($accountModel){
+    $uname = htmlentities($_POST["uname"]);
+    $pw = htmlentities($_POST["pw"]);
+    $fname = htmlentities($_POST["fname"]);
+    $middleName = htmlentities($_POST["mname"]);
+    $lastName = htmlentities($_POST["lname"]);
+    $nameExt = htmlentities($_POST["nameExt"]);
+    $role = htmlentities($_POST["role"]);
+    $img = uploadImage('accountPhoto');
+    $id = $_POST["accId"];
+    
+    $updateAcc = $accountModel->updateAccount($id,$uname, $pw, $fname, $middleName, $lastName, $nameExt, $role, $img);  
+    
+    if ($updateAcc) {
+        echo json_encode(['message'=>'succesfully updated the user '.$uname,'status'=>'success']);
+    } else {
+        echo json_encode(['message'=>'failed to update user '.$uname,'status'=>'error']);
+    }
+    
+}
+function handleViewAccount($accountModel){
+    $id = $_POST["accId"];
+    $result = $accountModel->getAccountById($id);
+    if($result){
+        echo json_encode($result);
+    }
+}
 function handleDeleteAccount($accountModel) {
     $id = $_POST['id'];
     $deleteAcc = $accountModel->softDeleteAccount($id);

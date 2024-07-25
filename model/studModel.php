@@ -62,4 +62,70 @@ class StudentModel{
             return false;
         }
     }
+    function updateStudent($type,$formType,$studId,$email,$fname,$mdname,$lname,$nameExt,$program,
+    $emgfname,$emgMname,$emgLname,$emgNameExt,$emgAddress,$emgContact,$photo,$signature,$cor,$oldId,$oldIdBack,$aol) {
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+
+        try {
+            // Prepare the SQL statement
+            $stmt = $db->prepare("
+                UPDATE clients SET 
+                clientType = :clientType, formType = :formType, email = :email, firstName = :firstName, middleName = :middleName, 
+                lastName = :lastName, nameExt = :nameExt, emergencyFirstName = :emergencyfname, emergencyMiddleName = :emergencymname, 
+                emergencyLastName = :emergencylname, emergencyNameExt = :emergencyNameExt, emergencyAddress = :emergencyaddress, 
+                emergencyContactNum = :emergencycontact, clientSignature = :signature, clientPhoto = :photo 
+                WHERE id = :id
+            ");
+
+            // Bind the parameters  
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(':clientType', $type);
+            $stmt->bindParam(':formType', $formType);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':firstName', $fname);
+            $stmt->bindParam(':middleName', $mdname);
+            $stmt->bindParam(':lastName', $lname);
+            $stmt->bindParam(':nameExt', $nameExt);
+            $stmt->bindParam(':emergencyfname', $emgfname);
+            $stmt->bindParam(':emergencymname', $emgMname);
+            $stmt->bindParam(':emergencylname', $emgLname);
+            $stmt->bindParam(':emergencyNameExt', $emgNameExt);
+            $stmt->bindParam(':emergencyaddress', $emgAddress);
+            $stmt->bindParam(':emergencycontact', $emgContact);
+            $stmt->bindParam(':photo', $photo);
+            $stmt->bindParam(':signature', $signature);
+
+            // Execute the statement
+            $stmt->execute();
+
+            // Optionally, you can return the ID of the inserted row
+            // variable res as lastinsertid
+            $res = $id;
+            if($res){
+                $stmt1 = $db->prepare("
+                    UPDATE student SET 
+                    studentNum = :studnum, collegeProgram = :programs, COR = :cor, oldIDFront = :oldId, oldIDBack = :oldIdBack, 
+                    affidavitOfLoss = :aol
+                    WHERE clientIDStudent = :clientIDstud
+                ");
+                $stmt1->bindParam(':clientIDstud', $res);
+                $stmt1->bindParam(':studnum', $studId);
+                $stmt1->bindParam(':programs', $program);
+                $stmt1->bindParam(':cor', $cor);
+                $stmt1->bindParam(':oldId', $oldId);
+                $stmt1->bindParam(':oldIdBack', $oldIdBack);
+                $stmt1->bindParam(':aol', $aol);
+
+                $stmt1->execute();
+                return $res;
+            }
+            
+
+        } catch (PDOException $e) {
+            // Handle any errors
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }
