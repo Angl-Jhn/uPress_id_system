@@ -35,7 +35,8 @@ if(isset($_POST["submitType"])){
 function handleAddStud($objModel){
     // var_dump($objModel);
     $type = $_POST["clientType"];
-    $formtype = $_POST["formType"];
+    $formtype = $_POST["formType"] ? $_POST["formType"] : '';
+    var_dump($formtype);
     $studId = $_POST["studnum"];
     $email = $_POST["email"];
     $firstname = $_POST["firstName"];
@@ -71,7 +72,7 @@ function handleAddStud($objModel){
 function handleUpdateStud($objModel){
     // var_dump($objModel);
     $type = $_POST["clientType"];
-    $formtype = $_POST["formType"];
+    $formtype = $_POST["formType"]? $_POST["formType"] : '';
     $studId = $_POST["studnum"];
     $email = $_POST["email"];
     $firstname = $_POST["firstName"];
@@ -108,7 +109,7 @@ function handleUpdateStud($objModel){
 function handleAddEmploy($objModel){
     // var_dump($objModel);
     $type = $_POST["clientType"];
-    $formType = $_POST["formType"];
+    $formType = $_POST["formType"] ? $_POST["formType"] : '';
     $idNumber = $_POST["idNumber"];
     $email = $_POST["email"];
     $firstname = $_POST["firstName"];
@@ -150,7 +151,7 @@ function handleAddEmploy($objModel){
 
 function handleUpdateEmploy($objModel){
     $type = $_POST["clientType"];
-    $formType = $_POST["formType"];
+    $formType = $_POST["formType"]? $_POST["formType"] : '';
     $idNumber = $_POST["idNumber"];
     $email = $_POST["email"];
     $firstname = $_POST["firstName"];

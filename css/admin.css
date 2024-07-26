@@ -6842,14 +6842,14 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
 
 /* Style the dropdown items */
 .select2-container--bootstrap .select2-results__option {
-  background-color: #f0f0f0 !important;
+  background-color: #f0f0f0;
   /* Light grey background */ }
 
 /* Style the dropdown items on hover */
 .select2-container--bootstrap .select2-results__option--highlighted {
-  color: #ffffff !important;
+  color: #ffffff;
   /* White text */
-  background-color: #0000ff !important;
+  background-color: #0000ff;
   /* Blue background */ }
 
 @media (min-width: 768px) {

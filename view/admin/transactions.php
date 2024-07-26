@@ -236,7 +236,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-12">
+                                        <div class="col-lg-5 col-md-12 pt-4">
                                             <h3>Emergency data</h3>
                                             <div class="mb-1">
                                                 <label for="">First Name</label>
@@ -269,7 +269,7 @@
                                                     id="contactEmg" required>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-12">
+                                        <div class="col-lg-5 col-md-12 pt-4">
                                             <h3>Attachments</h3>
                                             <div class="mb-1">
                                                 <div class="row d-flex justify-content-start">
@@ -305,7 +305,7 @@
                                                 <input class="form-control" name="signature[]" type="file"
                                                     id="signature" required>
                                             </div>
-                                            <div class="mb-1">
+                                            <!-- <div class="mb-1">
                                                 <label for="CoR" class="form-label">Certificate of Registration</label>
                                                 <input class="form-control" name="cor[]" type="file" id="cor" required>
                                             </div>
@@ -327,7 +327,7 @@
                                             <div class="stud-dsa mb-1">
                                                 <label for="DSA" class="form-label">DSA Form</label>
                                                 <input class="form-control" name="dsa[]" type="file" id="dsa" required>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -516,7 +516,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-xl-5 col-lg-6 col-md-12">
+                                        <div class="col-xl-5 col-lg-6 col-md-12 pt-4">
                                             <h3>Emergency data</h3>
                                             <div class="mb-1">
                                                 <label for="">First Name</label>
@@ -549,7 +549,7 @@
                                                     id="contactEmg" required>
                                             </div>
                                         </div>
-                                        <div class="col-xl-5 col-lg-6 col-md-12">
+                                        <div class="col-xl-5 col-lg-6 col-md-12 pt-4">
                                             <h3>Attachments</h3>
                                             <div class="mb-1">
                                                 <div class="row d-flex justify-content-start">
@@ -585,7 +585,7 @@
                                                 <input class="form-control" name="signature[]" type="file"
                                                     id="signature1" required>
                                             </div>
-                                            <div class="hrmo mb-1">
+                                            <!-- <div class="hrmo mb-1">
                                                 <label for="formFile3" class="form-label">Scanned Copy of HRMO
                                                     Form</label>
                                                 <input class="form-control" type="file" id="hrmoScanned"
@@ -599,7 +599,7 @@
                                             <div class="emp-affidavit mb-1">
                                                 <label for="emp-affidavit" class="form-label">Affidavit of Loss</label>
                                                 <input class="form-control" type="file" id="aol" name="aol[]" required>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -635,28 +635,29 @@
                                     <div class="col-md-4 py-3 page-start">
                                         <div class="front" style="position: relative; left: 50%; transform: translateX(-50%); display: block; 
                                 background-image: url('../../assets/id_layouts/STUDENT/STUDENT-ID-FRONT.svg'); 
-                                width:204px; height:316px; background-size: 204px 321px; background-position: center; 
+                                width:207.87px; height:329px; background-size: 212px 330px; background-position: center; 
                                 background-repeat: no-repeat; border: 1px solid black; border-radius: 10px">
-                                            <p style="position: absolute; left: 45px; top: 217px; color: black; 
+                                            <p style="position: absolute; left: 45px; top: 225px; color: black; 
                                     text-align: center; z-index: 1; font-weight: bold; font-size: 10px" id="studNum">
                                             </p>
-                                            <p style="position: absolute; left: 0; right: 0; top: 230px; color: black; 
+                                            <p style="position: absolute; left: 0; right: 0; top: 235px; color: black; 
                                     text-align: center; z-index: 1; font-weight: 900; font-size: 16px; color: maroon"
                                                 id="programName">
+                                                BS CS
                                             </p>
-                                            <p style="position: absolute; left: 0; right: 0; top: 250px; color: black;
+                                            <p style="position: absolute; left: 0; right: 0; top: 253px; color: black;
                                     text-align: center; z-index: 1; font-weight: bold; font-size: 16px;" id="studName">
                                             </p>
                                             <img src="../../assets/id_layouts/signature.png" style="position: absolute; left: 0; right: 0; 
-                                    top: 270px; max-width:60px; max-height:30px; display: block; margin: auto;">
-                                            <p style="position: absolute; left: 0; right: 0; bottom: 1px; color: black; 
+                                    top: 275px; max-width:60px; max-height:30px; display: block; margin: auto;">
+                                            <p style="position: absolute; left: 0; right: 0; bottom: -2px; color: black; 
                                     text-align: center; z-index: 1; font-weight: bold; font-size: 8px">
                                                 <?php 
                                         echo $setDefault['title'].' '.$setDefault['firstName'].' '.$setDefault['middleName'].' '
                                         .$setDefault['familyName'].' '.$setDefault['suffix'];
                                     ?>
                                             </p>
-                                            <p style="position: absolute; left: 0; right: 0; bottom: 10px; color: black; 
+                                            <p style="position: absolute; left: 0; right: 0; bottom: 5px; color: black; 
                                     text-align: center; z-index: 1; font-size: 8px; padding-bottom: 0px; margin: 0px;">
                                                 Director, Student Affairs</p>
                                         </div>
@@ -664,17 +665,17 @@
                                     <div class="col-md-4 py-3 page-break">
                                         <div class="back" style="position: relative; left: 50%; transform: translateX(-50%); display: block; 
                                 background-image: url('../../assets/id_layouts/STUDENT/STUDENT-ID-BACK.svg'); 
-                                width:204px; height:316px; background-size: 204px 321px; background-position: center; 
+                                width:207.87px; height:329px; background-size: 212px 330px; background-position: center; 
                                 background-repeat: no-repeat; border: 1px solid black; border-radius: 10px">
-                                            <p style="position: absolute; left: 0; right: 0; top: 73px; color: black; 
+                                            <p style="position: absolute; left: 0; right: 0; top: 75px; color: black; 
                                     text-align: center; font-size: 14px; font-weight: 900;" id="emergencyName">
                                             </p>
 
                                             <p style="position: absolute; left: 0; right: 0; top: 100px; color: black; 
-                                    text-align: center; font-size: 10px; width: 190px; line-height: 10px;"
+                                    text-align: center; font-size: 10px; width: 190px; margin: auto auto; line-height: 10px;"
                                                 id="emergencyAddress">
                                             </p>
-                                            <p style="position: absolute; left: 0; right: 0; top: 120px; color: black; 
+                                            <p style="position: absolute; left: 0; right: 0; top: 124px; color: black; 
                                     text-align: center; font-size: 12px; font-weight: 900;" id="emergencyContact">
                                             </p>
                                             <?php
@@ -690,13 +691,13 @@
                                     }
                                 ?>
                                             <?php foreach ($yearRanges as $index => $range){?>
-                                            <p style="position: absolute; left: 11px; bottom: <?php echo 115 - ($index * 17); ?>px;
-                                    color: black; font-size: 5px; font-weight: bold;">
+                                            <p style="position: absolute; left: 9.5px; bottom: <?php echo 118 - ($index * 17); ?>px;
+                                    color: black; font-size: 5.5px; font-weight: bold;">
                                                 <?php echo $range; ?>
                                             </p>
                                             <?php } ?>
                                             <img src="../../assets/id_layouts/signature.png" style="position: absolute; 
-                                    left: 0; right: 0; bottom: 25px; max-width:80px; max-height:40px; display: 
+                                    left: 0; right: 0; bottom: 28px; max-width:80px; max-height:40px; display: 
                                     block; margin: auto;">
                                         </div>
                                     </div>
@@ -828,7 +829,15 @@ $('#printButton').click(function() {
     var printWindow = window.open('', '', 'height=600,width=800');
     printWindow.document.write('<html><head><title>Print</title>');
     printWindow.document.write(
-        '<style>@media print { @page { size: 210mm 297mm; margin: 0mm; } .page-start{margin-top:0px !important;} .page-break { page-break-before: always; margin-top:4px;} .no-print{display:none;} p{margin-top: 0;margin-bottom: 1rem;} .front { transform: translateX(-191%) !important;} .back { transform: translateX(-191%) !important;}}</style>'
+        '<style>@media print ' +
+        '{ @page { size: 210mm 297mm; margin: mm; }' +
+        '.page-break { page-break-before: always; margin-top:4px;}' +
+        '.no-print{display:none;} p{margin-top: 0;margin-bottom: 1rem;}' +
+        '.front { transform: translateX(-189%) !important; width: 207.87px; height: 329px;' +
+        'background-size: 212px 330px; background-position: center; background-repeat: no-repeat;' +
+        'border: 1px solid black; border-radius: 10px;}' +
+        'p#studNum {position: absolute; left: 45px; top: 225px; color: black; text-align: center; z-index: 1; font-weight: bold; font-size: 10px}' +
+        '.back { transform: translateX(-189%) !important;}}</style>'
     );
     printWindow.document.write('</head><body>');
     printWindow.document.write(content);
@@ -850,22 +859,22 @@ $(document).ready(function() {
     });
     $("#StudentModal .js-example-basic-single").select2({
         placeholder: "Select Program",
-        allowClear: true,
+        theme: 'bootstrap',
         dropdownParent: $('#StudentModal')
     });
     $("#EmployeeModal .civilstatus-basic-single").select2({
         placeholder: "Select status",
-        allowClear: true,
+        theme: 'bootstrap',
         dropdownParent: $('#EmployeeModal')
     });
     $("#EmployeeModal .bloodtype-basic-single").select2({
         placeholder: "Select blood type",
-        allowClear: true,
+        theme: 'bootstrap',
         dropdownParent: $('#EmployeeModal')
     });
     $("#EmployeeModal .academicRank-basic-single").select2({
         placeholder: "Select academic rank",
-        allowClear: true,
+        theme: 'bootstrap',
         dropdownParent: $('#EmployeeModal')
     });
     // on click modals
