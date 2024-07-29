@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../node_modules/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="../../node_modules/select2-bootstrap-theme/dist/select2-bootstrap.min.css">
     <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 
     <link rel="stylesheet" href="../../node_modules/datatables.net-bs5/css/dataTables.bootstrap5.css">

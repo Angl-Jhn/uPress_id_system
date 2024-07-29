@@ -6776,7 +6776,134 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
   width: 100%;
   height: 100%; }
 
+.btn-circle.btn-sm {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  font-size: 12px;
+  text-align: center; }
+
+.btn-circle.btn-md {
+  width: 50px;
+  height: 50px;
+  padding: 7px 10px;
+  border-radius: 25px;
+  font-size: 10px;
+  text-align: center; }
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 12px;
+  text-align: center; }
+
+.table-responsive {
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar */
+  -webkit-overflow-scrolling: touch;
+  /* Smooth scrolling on iOS */ }
+
+.table {
+  width: 100%;
+  /* Ensure table takes full width */
+  table-layout: auto;
+  /* Adjust columns based on content */ }
+
+.table td,
+.table th {
+  white-space: nowrap;
+  /* Prevent text wrapping */
+  overflow: hidden;
+  /* Hide overflow */
+  text-overflow: ellipsis;
+  /* Ellipsis for overflowing text */ }
+
+.layout {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 5px; }
+
+.config {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 5px; }
+
+form input,
+form select {
+  width: 100%; }
+
+form > div p {
+  color: #495057;
+  margin-bottom: 0.8em; }
+
+form > div > div:not(.checkbox) {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.8em; }
+
+input[type="radio"] {
+  font-size: 18px; }
+
+form :where(input:not(.form-check-input), select) {
+  height: 40px;
+  padding: 0 1em;
+  border-radius: 7px;
+  border: 1px solid #dee2e6;
+  outline-color: #6c757d;
+  background-color: transparent; }
+
+/* Style the Select2 container */
+.select2-container--bootstrap .select2-selection--single {
+  box-shadow: none !important;
+  border: 1px solid #dee2e6 !important;
+  outline-color: #6c757d !important;
+  border-radius: 7px !important;
+  height: 40px !important;
+  /* Adjust height */
+  padding: 0.5em 1em !important;
+  /* Padding */ }
+
+/* Style the dropdown items */
+.select2-container--bootstrap .select2-results__option {
+  background-color: #f0f0f0;
+  /* Light grey background */ }
+
+/* Style the dropdown items on hover */
+.select2-container--bootstrap .select2-results__option--highlighted {
+  color: #ffffff;
+  /* White text */
+  background-color: #0000ff;
+  /* Blue background */ }
+
+form label {
+  font-size: 15px;
+  margin-bottom: 0.4em;
+  font-weight: 600; }
+
+form .grouping {
+  display: flex; }
+
+form .grouping input {
+  max-width: 70px;
+  text-align: center;
+  margin-right: 1em; }
+
+form .checkbox input {
+  height: auto; }
+
 @media (min-width: 768px) {
   .content {
     max-width: auto;
     width: auto; } }
+
+.print {
+  display: none; }
+
+@media print {
+  #StudentIDView .no-print {
+    display: none; }
+  #StudentIDView .page-break {
+    page-break-before: always;
+    /* Forces a page break before the element */ }
+  /* Add other print-specific styles here */ }

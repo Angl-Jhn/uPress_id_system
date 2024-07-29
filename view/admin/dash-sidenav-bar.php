@@ -48,9 +48,9 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="settings" class="sidebar-link">
+                        <a href="form-configuration" class="sidebar-link">
                             <i class="fa-solid fa-sliders"></i>
-                            Settings
+                            Form Configuration
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -70,24 +70,15 @@
                 <button class="btn" id="sidebar-toggle" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <!-- <div class="card-header px-2">
-                    <h2><?= $page_name; ?></h2>
-                    <h2>default</h2>
-                </div> -->
                 <div class="navbar-collapse navbar">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-4">
+                            <a href="#" class="dropdown-toggle nav-icon pe-md-4" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 Welcome, <?= $_SESSION['role']; ?>
                             </a>
-                            <!-- <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-1">
-                                <img src="../../uploads/account/<?=$_SESSION['accountPhoto'];?>"
-                                    class="avatar img-fluid rounded-circle" alt="photo">
-                            </a> -->
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a href="my-profile" class="dropdown-item">
-                                    <?= $acctype; ?> Profile
-                                </a>
+                                <a href="my-profile" class="dropdown-item">Profile</a>
                                 <a href="logout" class="dropdown-item">Logout</a>
                             </div>
                         </li>

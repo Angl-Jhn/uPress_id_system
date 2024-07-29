@@ -37,36 +37,12 @@ class AccountManageModel{
             return false;
         }
     }
-    function getAccount() {
-        $conn = new PDOModel();
-        $db = $conn->getDb();
-
-        $res = $db->prepare("SELECT * FROM account WHERE deletedAt IS NULL AND status = '0' ORDER BY `role` DESC");
-        // $res->bindParam(':id', $id, PDO::PARAM_INT);
-        $res->execute();
-
-        $fetch_acc = [];
-        while($row = $res->fetch(PDO::FETCH_ASSOC)) {
-            $fetch_acc[$row['id']]=$row;
-        }
-        return ($res->rowCount() > 0) ? $fetch_acc :0;
-    }
-    function getAccountById($id){
-        $conn = new PDOModel();
-        $db = $conn->getDb();
-
-        $res = $db->prepare("SELECT*FROM account where id=?");
-        $res->execute([$id]);
-        $fetch_acc = $res->fetch(PDO::FETCH_ASSOC);
-        return ($res->rowCount() > 0) ? $fetch_acc :0;
-        
-    }
     function updateAccount($id,$uname,$pw,$fname,$mname,$lname,$nameExt,$role,$img){
         $conn = new PDOModel();
         $db = $conn->getDb();
         
         try {
-            $hashed_pw = password_hash($pw, PASSWORD_DEFAULT);
+            $hashed_pw = sha1($pw);
             if($img != false){
                 $stmt = $db->prepare("
                 UPDATE account 
@@ -114,6 +90,30 @@ class AccountManageModel{
             echo "Error: " . $e->getMessage();
             return false;
         }
+    }
+    function getAccount() {
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+
+        $res = $db->prepare("SELECT * FROM account WHERE deletedAt IS NULL AND status = '0' ORDER BY `role` DESC");
+        // $res->bindParam(':id', $id, PDO::PARAM_INT);
+        $res->execute();
+
+        $fetch_acc = [];
+        while($row = $res->fetch(PDO::FETCH_ASSOC)) {
+            $fetch_acc[$row['id']]=$row;
+        }
+        return ($res->rowCount() > 0) ? $fetch_acc :0;
+    }
+    function getAccountById($id){
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+
+        $res = $db->prepare("SELECT*FROM account where id=?");
+        $res->execute([$id]);
+        $fetch_acc = $res->fetch(PDO::FETCH_ASSOC);
+        return ($res->rowCount() > 0) ? $fetch_acc :0;
+        
     }
     function softDeleteAccount($id) {
         $conn = new PDOModel();

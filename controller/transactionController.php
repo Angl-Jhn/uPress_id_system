@@ -8,14 +8,20 @@ $clients = new TransactionManageModel();
 // $clients = $obj->getAll();
 // $delClient = $obj->softDeleteClient($id);
 
-if(isset($_POST["type"])){
-    switch($_POST["type"]) {
-        case 'Student':
+if(isset($_POST["submitType"])){
+    switch($_POST["submitType"]) {
+        case 'addStud':
             handleAddStud($Stud);
         break;
-        case 'Employee':
+        case 'updateStud':
+            handleUpdateStud($Stud);
+        break;
+        case 'addEmploy':
             handleAddEmploy($Employ);
-            break;    
+            break;
+        case 'updateEmploy':
+            handleUpdateEmploy($Employ);
+            break;
         case 'viewClients':
             handleViewClients($_POST["clientID"],$clients);
             break;
@@ -28,8 +34,45 @@ if(isset($_POST["type"])){
 }
 function handleAddStud($objModel){
     // var_dump($objModel);
-    $type = $_POST["type"];
-    $formtype = $_POST["formType"];
+    $type = $_POST["clientType"];
+    $formtype = $_POST["formType"] ? $_POST["formType"] : '';
+    var_dump($formtype);
+    $studId = $_POST["studnum"];
+    $email = $_POST["email"];
+    $firstname = $_POST["firstName"];
+    $middlename = $_POST["middleName"];
+    $familyname = $_POST["familyName"];
+    $nameExt = $_POST["nameExt"];
+    $program = $_POST["programs"];
+    $emgfname = $_POST["firstNameEmg"];
+    $emgMname = $_POST["middleNameEmg"];
+    $emgLname = $_POST["familyNameEmg"];
+    $emgNameExt = $_POST["nameExtEmg"];
+    $emgAddress = $_POST["address"];
+    $emgContact = $_POST["contactNumber"];
+    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
+    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
+    $cor = $_POST["cor"];
+    $oldId = uploadImage('oldId') ? uploadImage('oldId'):"";
+    $oldIdBack = uploadImage('oldIdBack')?uploadImage('oldIdBack'):"";
+    $aol = uploadImage('aol') ? uploadImage('aol'):"";
+    $DSAForm = uploadImage('DSAForm') ? uploadImage('DSAForm'):"";
+
+    $res1 = $objModel->requestId(
+        $type, $formtype, $studId, $email, $firstname, $middlename, $familyname, $nameExt,
+            $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol, $DSAForm
+    );
+    if ($res1) {
+        echo json_encode(['message'=>'Successfully added '.$firstname.' '.$familyname,'status'=>'success']);
+    } else {
+        echo json_encode(['message'=>'Failed to add'.$firstname.' '.$familyname,'status'=>'error']);
+    }
+
+}
+function handleUpdateStud($objModel){
+    // var_dump($objModel);
+    $type = $_POST["clientType"];
+    $formtype = $_POST["formType"]? $_POST["formType"] : '';
     $studId = $_POST["studnum"];
     $email = $_POST["email"];
     $firstname = $_POST["firstName"];
@@ -49,22 +92,24 @@ function handleAddStud($objModel){
     $oldId = uploadImage('oldId') ? uploadImage('oldId'):"";
     $oldIdBack = uploadImage('oldIdBack')?uploadImage('oldIdBack'):"";
     $aol = uploadImage('aol') ? uploadImage('aol'):"";
+    $DSAForm = uploadImage('DSAForm') ? uploadImage('DSAForm'):"";
+    $id = $_POST["id"];
 
-    $res1 = $objModel->requestId(
+    $res1 = $objModel->updateStudent($id,
         $type, $formtype, $studId, $email, $firstname, $middlename, $familyname, $nameExt,
-            $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol
+            $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol, $DSAForm
     );
     if ($res1) {
-        echo json_encode(['message'=>'Successfully added '.$firstname.' '.$familyname,'status'=>'success']);
+        echo json_encode(['message'=>'Successfully updated '.$firstname.' '.$familyname, 'status'=>'success']);
     } else {
-        echo json_encode(['message'=>'Failed to add'.$firstname.' '.$familyname,'status'=>'error']);
+        echo json_encode(['message'=>'Failed to update '.$firstname.' '.$familyname, 'status'=>'error']);
     }
 
 }
 function handleAddEmploy($objModel){
     // var_dump($objModel);
-    $type = $_POST["type"];
-    $formType = $_POST["formType"];
+    $type = $_POST["clientType"];
+    $formType = $_POST["formType"] ? $_POST["formType"] : '';
     $idNumber = $_POST["idNumber"];
     $email = $_POST["email"];
     $firstname = $_POST["firstName"];
@@ -104,6 +149,48 @@ function handleAddEmploy($objModel){
 
 }
 
+function handleUpdateEmploy($objModel){
+    $type = $_POST["clientType"];
+    $formType = $_POST["formType"]? $_POST["formType"] : '';
+    $idNumber = $_POST["idNumber"];
+    $email = $_POST["email"];
+    $firstname = $_POST["firstName"];
+    $middlename = $_POST["middleName"];
+    $familyname = $_POST["familyName"];
+    $nameExt = $_POST["nameExt"];
+    $academicRank = $_POST["academicRank"];
+    $plantillaPos = $_POST["plantillaPos"];
+    $designation = $_POST["designation"];
+    $residentialAddress = $_POST["residentialAddress"];
+    $dateofbirth = $_POST["dateofbirth"];
+    $contactNum = $_POST["contactNum"];
+    $civilStatus = $_POST["civilStatus"];
+    $bloodType = $_POST["bloodType"];   
+    $emgfname = $_POST["firstNameEmg"];
+    $emgMname = $_POST["middleNameEmg"];
+    $emgLname = $_POST["familyNameEmg"];
+    $emgNameExt = $_POST["nameExtEmg"];
+    $emgAddress = $_POST["address"];
+    $emgContact = $_POST["contactNumber"];
+    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
+    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
+    $hrmoscanned = uploadImage('hrmoScanned') ? uploadImage('hrmoScanned'): "";
+    $hrmoNew = uploadImage('hrmoNew') ? uploadImage('hrmoNew'):"";
+    $aol = uploadImage('aol') ? uploadImage('aol'):"";
+    $id = $_POST["id"];
+
+    $res1 = $objModel->updateEmploy(
+        $id,$type, $formType, $idNumber, $email, $firstname, $middlename, $familyname, $nameExt,
+            $academicRank, $plantillaPos, $designation, $residentialAddress, $dateofbirth, $contactNum, $civilStatus, $bloodType,
+            $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $hrmoscanned, $hrmoNew, $aol
+    );
+    if ($res1) {
+        echo json_encode(['message'=>"Successfully updated ".$firstname.' '.$familyname,'status'=>'success']);
+    } else {
+        echo json_encode(['message'=>"Failed to update ".$firstname.' '.$familyname,'status'=>'error']);
+    }
+}
+
 function handleViewClients($id,$objModel){
     $result = $objModel->getAccountById($id);
     if($result){
@@ -113,7 +200,7 @@ function handleViewClients($id,$objModel){
 }
 
 function handleDeleteClient($objModel) {
-    $id = $_POST['clientID'];
+    $id = $_POST['id'];
     $deleteAcc = $objModel->softDeleteClient($id);
     if($deleteAcc){
         echo json_encode(['message'=>'Successfully deleted client '.$id,'status'=>'success']);

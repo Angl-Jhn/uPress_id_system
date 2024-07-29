@@ -24,7 +24,13 @@ if(isset($_SESSION["isLogin"]) == 1){
             case "add-student":
                 require_once("controller/transactionController.php");
                 break;
+            case "save-student":
+                require_once("controller/transactionController.php");
+                break;
             case "add-employee":
+                require_once("controller/transactionController.php");
+                break;
+            case "save-employee":
                 require_once("controller/transactionController.php");
                 break;
             case "edit-users":
@@ -53,12 +59,21 @@ if(isset($_SESSION["isLogin"]) == 1){
             case "my-profile":
                 require_once("view/admin/page-profile.php");
                 break;
-            case "settings":
-                require_once("view/admin/page-setting.php");
+            case "form-configuration":
+                require_once("view/admin/form-config.php");
                 break;
             case "admin":
                 include_once("view/login/index.php");
                 break; 
+            case "update-config":
+                require_once("controller/formConfigController.php");
+                break;
+            case "add-program-cat":
+                require_once("controller/formConfigController.php");
+                break;
+            case "insert-program":
+                require_once("controller/formConfigController.php");
+                break;
             case "logout":
                 session_destroy();
                 echo "<script>location.href = 'admin';</script>";

@@ -18,7 +18,32 @@ if (isset($_POST["type"])) {
             break;
     }
 }
+function handleAddAccount($accountModel) {
+    header('Content-Type: application/json');
+    // For debugging
+    error_log('Inside handleAddAccount function');
 
+    try {
+        $uname = htmlentities($_POST["uname"]);
+        $pw = htmlentities($_POST["pw"]);
+        $fname = htmlentities($_POST["fname"]);
+        $middleName = htmlentities($_POST["mname"]);
+        $lastName = htmlentities($_POST["lname"]);
+        $nameExt = htmlentities($_POST["nameExt"]);
+        $role = htmlentities($_POST["role"]);
+        $img = uploadImage('accountPhoto');
+
+        $addAcc = $accountModel->addAccount($uname, $pw, $fname, $middleName, $lastName, $nameExt, $role, $img);
+
+        if ($addAcc) {
+            echo json_encode(['message' => 'Successfully created user ' .$uname. ' as ' .$role, 'status' => 'success']);
+        } else {
+            echo json_encode(['message' => 'Failed to create the user ' .$uname. ' as ' .$role, 'status' => 'error']);
+        }
+    } catch (Exception $e) {
+        echo json_encode(['message' => 'Server error: ' . $e->getMessage(), 'status' => 'error']);
+    }
+}
 function handleUpdateAccount($accountModel){
     $uname = htmlentities($_POST["uname"]);
     $pw = htmlentities($_POST["pw"]);
@@ -39,7 +64,6 @@ function handleUpdateAccount($accountModel){
     }
     
 }
-
 function handleViewAccount($accountModel){
     $id = $_POST["accId"];
     $result = $accountModel->getAccountById($id);
@@ -47,35 +71,6 @@ function handleViewAccount($accountModel){
         echo json_encode($result);
     }
 }
-
-function handleAddAccount($accountModel) {
-    header('Content-Type: application/json');
-    // For debugging
-    error_log('Inside handleAddAccount function');
-
-    try {
-        $uname = htmlentities($_POST["uname"]);
-        $pw = htmlentities($_POST["pw"]);
-        $fname = htmlentities($_POST["fname"]);
-        $middleName = htmlentities($_POST["mname"]);
-        $lastName = htmlentities($_POST["lname"]);
-        $nameExt = htmlentities($_POST["nameExt"]);
-        $role = htmlentities($_POST["role"]);
-        $img = uploadImage('accountPhoto');
-
-        $addAcc = $accountModel->addAccount($uname, $pw, $fname, $middleName, $lastName, $nameExt, $role, $img);
-
-        if ($addAcc) {
-            echo json_encode(['message' => 'Successfully created user ' .$uname. 'as ' .$role, 'status' => 'success']);
-        } else {
-            echo json_encode(['message' => 'Failed to create the user ' .$uname. 'as ' .$role, 'status' => 'error']);
-        }
-    } catch (Exception $e) {
-        echo json_encode(['message' => 'Server error: ' . $e->getMessage(), 'status' => 'error']);
-    }
-}
-
-
 function handleDeleteAccount($accountModel) {
     $id = $_POST['id'];
     $deleteAcc = $accountModel->softDeleteAccount($id);
