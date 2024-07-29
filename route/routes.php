@@ -68,6 +68,12 @@ if(isset($_SESSION["isLogin"]) == 1){
             case "update-config":
                 require_once("controller/formConfigController.php");
                 break;
+            case "add-program-cat":
+                require_once("controller/formConfigController.php");
+                break;
+            case "insert-program":
+                require_once("controller/formConfigController.php");
+                break;
             case "logout":
                 session_destroy();
                 echo "<script>location.href = 'admin';</script>";

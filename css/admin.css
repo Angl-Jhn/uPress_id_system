@@ -6829,6 +6829,30 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 5px; }
 
+form input,
+form select {
+  width: 100%; }
+
+form > div p {
+  color: #495057;
+  margin-bottom: 0.8em; }
+
+form > div > div:not(.checkbox) {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.8em; }
+
+input[type="radio"] {
+  font-size: 18px; }
+
+form :where(input:not(.form-check-input), select) {
+  height: 40px;
+  padding: 0 1em;
+  border-radius: 7px;
+  border: 1px solid #dee2e6;
+  outline-color: #6c757d;
+  background-color: transparent; }
+
 /* Style the Select2 container */
 .select2-container--bootstrap .select2-selection--single {
   box-shadow: none !important;
@@ -6851,6 +6875,22 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
   /* White text */
   background-color: #0000ff;
   /* Blue background */ }
+
+form label {
+  font-size: 15px;
+  margin-bottom: 0.4em;
+  font-weight: 600; }
+
+form .grouping {
+  display: flex; }
+
+form .grouping input {
+  max-width: 70px;
+  text-align: center;
+  margin-right: 1em; }
+
+form .checkbox input {
+  height: auto; }
 
 @media (min-width: 768px) {
   .content {

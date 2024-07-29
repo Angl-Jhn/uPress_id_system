@@ -59,6 +59,67 @@ class formConfigModel {
         }
     }
 
-}
+    function getPrograms(){
+        $conn = new PDOModel();
+        $db = $conn->getDb();
 
+        $stmt = $db->prepare("SELECT * FROM schoolprog");
+        $stmt->execute();
+
+        $fetch_acc = $stmt->fetchAll();
+        
+        return $fetch_acc;
+    }
+    function getProgCat(){
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+
+        $stmt = $db->prepare("SELECT * FROM progcategory");
+        $stmt->execute();
+
+        $fetch_acc = $stmt->fetchAll();
+        
+        return $fetch_acc;
+    }
+
+    // function newProgram(){
+    //     $conn = new PDOModel();
+    //     $db = $conn->getDb();
+
+    //     try {
+    //         // Prepare the SQL statement
+    //         $stmt = $db->prepare("
+    //             INSERT INTO
+    //             progcategory
+    //         ");
+
+    //         // Bind the parameters
+    //         $stmt->bindParam(':clientType', $type);
+    //         // Execute the statement
+    //         $stmt->execute();
+    //         // Optionally, you can return the ID of the inserted row
+    //         // variable res as lastinsertid
+            
+    //         $res = $db->lastInsertId();
+    //         // var_dump($res);
+    //         if($res){
+    //             $stmt1 = $db->prepare("
+                
+    //             ");
+    //             $stmt1->bindParam(':clientIDstud', $res);
+                
+                
+    //             $stmt1->execute();
+    //             return $db->lastInsertId();
+    //         }
+            
+
+    //     } catch (PDOException $e) {
+    //         // Handle any errors
+    //         echo "Error: " . $e->getMessage();
+    //         return false;
+    //     }
+    // }
+
+}
 ?>

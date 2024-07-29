@@ -406,6 +406,31 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
   border-radius: 5px;
 }
 
+form input,
+form select {
+  width: 100%;
+}
+form > div p {
+  color: $gray-700;
+  margin-bottom: 0.8em;
+}
+form > div > div:not(.checkbox) {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.8em;
+}
+input[type="radio"] {
+  font-size: 18px;
+}
+form :where(input:not(.form-check-input), select) {
+  height: 40px;
+  padding: 0 1em;
+  border-radius: 7px;
+  border: 1px solid $gray-300;
+  outline-color: $gray-600;
+  background-color: transparent;
+}
+
 /* Style the Select2 container */
 .select2-container--bootstrap .select2-selection--single {
   box-shadow: none !important;
@@ -425,6 +450,23 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
 .select2-container--bootstrap .select2-results__option--highlighted {
   color: #ffffff; /* White text */
   background-color: #0000ff; /* Blue background */
+}
+
+form label {
+  font-size: 15px;
+  margin-bottom: 0.4em;
+  font-weight: 600;
+}
+form .grouping {
+  display: flex;
+}
+form .grouping input {
+  max-width: 70px;
+  text-align: center;
+  margin-right: 1em;
+}
+form .checkbox input {
+  height: auto;
 }
 
 // media queries

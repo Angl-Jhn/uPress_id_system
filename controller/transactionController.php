@@ -52,7 +52,7 @@ function handleAddStud($objModel){
     $emgContact = $_POST["contactNumber"];
     $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
     $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
-    $cor = uploadImage('cor') ? uploadImage('cor'): "";
+    $cor = $_POST["cor"];
     $oldId = uploadImage('oldId') ? uploadImage('oldId'):"";
     $oldIdBack = uploadImage('oldIdBack')?uploadImage('oldIdBack'):"";
     $aol = uploadImage('aol') ? uploadImage('aol'):"";

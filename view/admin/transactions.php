@@ -169,10 +169,10 @@
                             <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
                                 <div class="container-fluid">
                                     <div class="row d-flex justify-content-center">
-                                        <div class="col-lg-12 text-center py-2">
-                                            <h3>Student data</h3>
-                                        </div>
                                         <div class="col-md-12 pb-2">
+                                            <div class="col-lg-12 text-center py-2">
+                                                <h3>Student data</h3>
+                                            </div>
                                             <!-- Radio Buttons -->
                                             <div class="m-0 py-2 gap-2 d-flex justify-content-center">
                                                 <div class="form-check form-check-inline">
@@ -198,7 +198,7 @@
                                         <div class="col-lg-5 col-md-12">
                                             <div class="mb-1">
                                                 <input type="hidden" id="id" name="id">
-                                                <label for="">First Name</label>
+                                                <label for="">First Name <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="firstName" id="fname"
                                                     required>
                                             </div>
@@ -206,40 +206,57 @@
                                                 <label for="">Middle Name</label>
                                                 <input type="text" class="form-control" name="middleName" id="mname">
                                             </div>
-                                            <div class="mb-1">
-                                                <label for="">Family Name</label>
-                                                <input type="text" class="form-control" name="familyName" id="famname"
-                                                    required>
-                                            </div>
-                                            <div class="mb-1">
-                                                <label for="">Suffix</label>
-                                                <input type="text" class="form-control" name="nameExt" id="ext"
-                                                    placeholder="Sr./Jr.">
+                                            <div class="row">
+                                                <div class="col-sm-9">
+                                                    <div class="mb-1">
+                                                        <label for="">Family Name <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" name="familyName"
+                                                            id="famname" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="mb-1">
+                                                        <label for="">Suffix</label>
+                                                        <select class="form-control select-suffix" name="nameExt"
+                                                            id="ext">
+                                                            <option value=""></option>
+                                                            <option value="Jr.">Jr.</option>
+                                                            <option value="Sr.">Sr.</option>
+                                                            <option value="II">II</option>
+                                                            <option value="III">III</option>
+                                                            <option value="IV">IV</option>
+                                                            <option value="V">V</option>
+                                                            <option value="VI">VI</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-5 col-md-12">
                                             <div class="mb-1">
-                                                <label for="">Student Number</label>
+                                                <label for="">Student Number <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="studnum" id="studnum"
                                                     required>
                                             </div>
                                             <div class="mb-1">
-                                                <label for="">Email</label>
+                                                <label for="">Email <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="email" id="email"
                                                     required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="">Program/Strand</label>
+                                                <label for="">Program/Strand <span class="text-danger">*</span>
+                                                </label>
                                                 <select class="js-example-basic-single form-control" name="programs"
                                                     id="select-program">
                                                     <option value=""></option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-lg-5 col-md-12 pt-4">
+                                        <div class="col-lg-5 col-md-12">
                                             <h3>Emergency data</h3>
                                             <div class="mb-1">
-                                                <label for="">First Name</label>
+                                                <label for="">First Name <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="firstNameEmg"
                                                     id="fnameEmg" required>
                                             </div>
@@ -248,34 +265,47 @@
                                                 <input type="text" class="form-control" name="middleNameEmg"
                                                     id="mnameEmg">
                                             </div>
-                                            <div class="mb-1">
-                                                <label for="">Family Name</label>
-                                                <input type="text" class="form-control" name="familyNameEmg"
-                                                    id="famnameEmg" required>
+                                            <div class="row">
+                                                <div class="col-sm-9">
+                                                    <div class="mb-1">
+                                                        <label for="">Family Name <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" name="familyNameEmg"
+                                                            id="famnameEmg" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="mb-1">
+                                                        <label for="">Suffix</label>
+                                                        <select class="form-control select-suffix" name="nameExtEmg"
+                                                            id="extEmg">
+                                                            <option value=""></option>
+                                                            <option value="Jr.">Jr.</option>
+                                                            <option value="Sr.">Sr.</option>
+                                                            <option value="II">II</option>
+                                                            <option value="III">III</option>
+                                                            <option value="IV">IV</option>
+                                                            <option value="V">V</option>
+                                                            <option value="VI">VI</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="mb-1">
-                                                <label for="">Name Ext.</label>
-                                                <input type="text" class="form-control" name="nameExtEmg" id="extEmg"
-                                                    placeholder="Sr./Jr.">
-                                            </div>
-                                            <div class="mb-1">
-                                                <label for="">Address</label>
+                                                <label for="">Address <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="address" id="addEmg"
                                                     required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="">Contact Number</label>
+                                                <label for="">Contact Number <span class="text-danger">*</span></label>
                                                 <input type="number" class="form-control" name="contactNumber"
                                                     id="contactEmg" required>
                                             </div>
                                         </div>
-                                        <div class="col-lg-5 col-md-12 pt-4">
+                                        <div class="col-lg-5 col-md-12">
                                             <h3>Attachments</h3>
                                             <div class="mb-1">
                                                 <div class="row d-flex justify-content-start">
-                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
-                                                        <label for="userPhoto" class="form-label">Photo</label>
-                                                    </div>
                                                     <div class="col-lg-4 col-md-4 col-4 ps-2">
                                                         <div class="optional">
                                                             <input type="checkbox" class="checkbox-popover"
@@ -284,15 +314,15 @@
                                                                 data-bs-trigger="focus" data-target="userPhoto">
                                                         </div>
                                                     </div>
+                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                        <label for="userPhoto" class="form-label">Photo</label>
+                                                    </div>
                                                 </div>
                                                 <input class="form-control" name="userPhoto[]" type="file"
                                                     id="userPhoto" required>
                                             </div>
-                                            <div class="mb-1">
+                                            <div class="mb-4">
                                                 <div class="row d-flex justify-content-start">
-                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
-                                                        <label for="signature" class="form-label">Signature</label>
-                                                    </div>
                                                     <div class="col-lg-4 col-md-4 col-4 ps-2">
                                                         <div class="optional">
                                                             <input type="checkbox" class="checkbox-popover"
@@ -301,33 +331,36 @@
                                                                 data-bs-trigger="focus" data-target="signature">
                                                         </div>
                                                     </div>
+                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                        <label for="signature" class="form-label">Signature</label>
+                                                    </div>
                                                 </div>
                                                 <input class="form-control" name="signature[]" type="file"
                                                     id="signature" required>
                                             </div>
-                                            <!-- <div class="mb-1">
-                                                <label for="CoR" class="form-label">Certificate of Registration</label>
-                                                <input class="form-control" name="cor[]" type="file" id="cor" required>
+                                            <div class="mb-3">
+                                                <h5>Request the following files and verify</h5>
+                                            </div>
+                                            <div class="mb-1">
+                                                <h6><input class="form-check-input me-3" name="cor" type="checkbox"
+                                                        id="cor" required>Certificate of Registration</h6>
                                             </div>
                                             <div class="stud-replacement mb-1">
-                                                <label for="frontID" class="form-label">Old ID Front</label>
-                                                <input class="form-control" name="oldId[]" type="file" id="frontId"
-                                                    required>
+                                                <h6><input class="form-check-input me-3" name="oldId" type="checkbox"
+                                                        id="frontId" required>Old ID Front</h6>
                                             </div>
                                             <div class="stud-replacement mb-1">
-                                                <label for="backID" class="form-label">Old ID - Back</label>
-                                                <input class="form-control" name="oldIdBack[]" type="file" id="backId"
-                                                    required>
+                                                <h6><input class="form-check-input me-3" name="oldIdBack"
+                                                        type="checkbox" id="backId" required>Old ID Back</h6>
                                             </div>
                                             <div class="stud-affidavit mb-1">
-                                                <label for="affidavit" class="form-label">Affidavit of Loss</label>
-                                                <input class="form-control" name="aol[]" type="file" id="affidavit"
-                                                    required>
+                                                <h6><input class="form-check-input me-3" name="aol" type="checkbox"
+                                                        id="affidavit" required>Affidavit of Loss</h6>
                                             </div>
                                             <div class="stud-dsa mb-1">
-                                                <label for="DSA" class="form-label">DSA Form</label>
-                                                <input class="form-control" name="dsa[]" type="file" id="dsa" required>
-                                            </div> -->
+                                                <h6><input class="form-check-input me-3" name="dsa" type="checkbox"
+                                                        id="dsa" required>DSA Form</h6>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -396,17 +429,17 @@
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-xl-5 col-lg-6 col-md-12">
                                             <div class="mb-1">
-                                                <label for="">ID Number</label>
+                                                <label for="">ID Number <span class="text-danger">*</span></label>
                                                 <input type="number" class="form-control" name="idNumber" id="idNumber"
                                                     required>
                                             </div>
                                             <div class="mb-1">
-                                                <label for="">Email</label>
+                                                <label for="">Email <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="email" id="email"
                                                     required>
                                             </div>
                                             <div class="mb-1">
-                                                <label for="">First Name</label>
+                                                <label for="">First Name <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="firstName" id="fname"
                                                     required>
                                             </div>
@@ -414,20 +447,36 @@
                                                 <label for="">Middle Name</label>
                                                 <input type="text" class="form-control" name="middleName" id="mname">
                                             </div>
-                                            <div class="mb-1">
-                                                <label for="">Family Name</label>
-                                                <input type="text" class="form-control" name="familyName" id="famname"
-                                                    required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Name Ext.</label>
-                                                <input type="text" class="form-control" name="nameExt" id="ext"
-                                                    placeholder="Sr./Jr.">
+                                            <div class="row">
+                                                <div class="col-sm-9">
+                                                    <div class="mb-1">
+                                                        <label for="">Family Name <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" name="familyName"
+                                                            id="famname" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="mb-3">
+                                                        <label for="">Suffix</label>
+                                                        <select class="form-control select-suffix" name="nameExt"
+                                                            id="ext">
+                                                            <option value=""></option>
+                                                            <option value="Jr.">Jr.</option>
+                                                            <option value="Sr.">Sr.</option>
+                                                            <option value="II">II</option>
+                                                            <option value="III">III</option>
+                                                            <option value="IV">IV</option>
+                                                            <option value="V">V</option>
+                                                            <option value="VI">VI</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-5 col-lg-6 col-md-12">
                                             <div class="acad-rank mb-2">
-                                                <label for="">Academic Rank</label>
+                                                <label for="">Academic Rank <span class="text-danger">*</span></label>
                                                 <select class="academicRank-basic-single form-control"
                                                     name="academicRank" id="academicRank" required>
                                                     <option value=""></option>
@@ -463,63 +512,82 @@
                                                 </select>
                                             </div>
                                             <div class="plant-pos mb-2">
-                                                <label for="">Plantilla Position</label>
+                                                <label for="">Plantilla Position <span
+                                                        class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="plantillaPos"
                                                     id="plantillaPos" required>
                                             </div>
                                             <div class="mb-1">
-                                                <label for="">Unit/Office/College/Department</label>
+                                                <label for="">Unit/Office/College/Department <span
+                                                        class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="designation"
                                                     id="designation" required>
                                             </div>
                                             <div class="mb-1">
-                                                <label for="">Residential Address</label>
+                                                <label for="">Residential Address <span
+                                                        class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="residentialAddress"
                                                     id="residentialAddress" required>
                                             </div>
-                                            <div class="birth mb-1">
-                                                <label for="">Date of Birth</label>
-                                                <input type="date" class="form-control" name="dateofbirth"
-                                                    id="dateofbirth" required>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="birth mb-1">
+                                                        <label for="">Date of Birth <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="date" class="form-control" name="dateofbirth"
+                                                            id="dateofbirth" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="mb-1">
+                                                        <label for="">Contact Number <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="number" class="form-control" name="contactNum"
+                                                            id="contactNum" required>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="mb-1">
-                                                <label for="">Contact Number</label>
-                                                <input type="number" class="form-control" name="contactNum"
-                                                    id="contactNum" required>
-                                            </div>
-                                            <div class="mb-1">
-                                                <label for="">Civil Status</label>
-                                                <select class="civilstatus-basic-single form-control" name="civilStatus"
-                                                    id="civilStatus" required>
-                                                    <option value=""></option>
-                                                    <option value="Single">Single</option>
-                                                    <option value="Married">Married</option>
-                                                    <option value="Widowed">Widowed</option>
-                                                    <option value="Divorced">Divorced</option>
-                                                    <option value="Separated">Separated</option>
-                                                    <option value="Annulled">Annulled</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-1">
-                                                <label for="">Blood Type</label>
-                                                <select class="bloodtype-basic-single form-control" name="bloodType"
-                                                    id="bloodType" required>
-                                                    <option value=""></option>
-                                                    <option value="A+">A+</option>
-                                                    <option value="A+">A-</option>
-                                                    <option value="B+">B+</option>
-                                                    <option value="B-">B-</option>
-                                                    <option value="AB+">AB+</option>
-                                                    <option value="AB-">AB-</option>
-                                                    <option value="O+">O+</option>
-                                                    <option value="O-">O-</option>
-                                                </select>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="mb-1">
+                                                        <label for="">Civil Status <span
+                                                                class="text-danger">*</span></label>
+                                                        <select class="civilstatus-basic-single form-control"
+                                                            name="civilStatus" id="civilStatus" required>
+                                                            <option value=""></option>
+                                                            <option value="Single">Single</option>
+                                                            <option value="Married">Married</option>
+                                                            <option value="Widowed">Widowed</option>
+                                                            <option value="Divorced">Divorced</option>
+                                                            <option value="Separated">Separated</option>
+                                                            <option value="Annulled">Annulled</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="mb-1">
+                                                        <label for="">Blood Type <span
+                                                                class="text-danger">*</span></label>
+                                                        <select class="bloodtype-basic-single form-control"
+                                                            name="bloodType" id="bloodType" required>
+                                                            <option value=""></option>
+                                                            <option value="A+">A+</option>
+                                                            <option value="A+">A-</option>
+                                                            <option value="B+">B+</option>
+                                                            <option value="B-">B-</option>
+                                                            <option value="AB+">AB+</option>
+                                                            <option value="AB-">AB-</option>
+                                                            <option value="O+">O+</option>
+                                                            <option value="O-">O-</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-5 col-lg-6 col-md-12 pt-4">
                                             <h3>Emergency data</h3>
                                             <div class="mb-1">
-                                                <label for="">First Name</label>
+                                                <label for="">First Name <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="firstNameEmg"
                                                     id="fnameEmg" required>
                                             </div>
@@ -528,23 +596,39 @@
                                                 <input type="text" class="form-control" name="middleNameEmg"
                                                     id="mnameEmg">
                                             </div>
-                                            <div class="mb-1">
-                                                <label for="">Family Name</label>
-                                                <input type="text" class="form-control" name="familyNameEmg"
-                                                    id="famnameEmg" required>
+                                            <div class="row">
+                                                <div class="col-sm-9">
+                                                    <div class="mb-1">
+                                                        <label for="">Family Name <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" name="familyNameEmg"
+                                                            id="famnameEmg" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="mb-1">
+                                                        <label for="">Suffix</label>
+                                                        <select class="form-control select-suffix" name="nameExtEmg"
+                                                            id="extEmg">
+                                                            <option value=""></option>
+                                                            <option value="Jr.">Jr.</option>
+                                                            <option value="Sr.">Sr.</option>
+                                                            <option value="II">II</option>
+                                                            <option value="III">III</option>
+                                                            <option value="IV">IV</option>
+                                                            <option value="V">V</option>
+                                                            <option value="VI">VI</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="mb-1">
-                                                <label for="">Name Ext.</label>
-                                                <input type="text" class="form-control" name="nameExtEmg" id="extEmg"
-                                                    placeholder="Sr./Jr.">
-                                            </div>
-                                            <div class="mb-1">
-                                                <label for="">Address</label>
+                                                <label for="">Address <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" name="address" id="addEmg"
                                                     required>
                                             </div>
                                             <div class="mb-1">
-                                                <label for="">Contact Number</label>
+                                                <label for="">Contact Number <span class="text-danger">*</span></label>
                                                 <input type="number" class="form-control" name="contactNumber"
                                                     id="contactEmg" required>
                                             </div>
@@ -553,9 +637,6 @@
                                             <h3>Attachments</h3>
                                             <div class="mb-1">
                                                 <div class="row d-flex justify-content-start">
-                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
-                                                        <label for="userPhoto1" class="form-label">Photo</label>
-                                                    </div>
                                                     <div class="col-lg-4 col-md-4 col-4 ps-2">
                                                         <div class="optional">
                                                             <input type="checkbox" class="checkbox-popover"
@@ -564,15 +645,15 @@
                                                                 data-bs-trigger="focus" data-target="userPhoto1">
                                                         </div>
                                                     </div>
+                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                        <label for="userPhoto1" class="form-label">Photo</label>
+                                                    </div>
                                                 </div>
                                                 <input class="form-control" name="userPhoto[]" type="file"
                                                     id="userPhoto1" required>
                                             </div>
-                                            <div class="mb-1">
+                                            <div class="mb-4">
                                                 <div class="row d-flex justify-content-start">
-                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
-                                                        <label for="signature" class="form-label">Signature</label>
-                                                    </div>
                                                     <div class="col-lg-4 col-md-4 col-4 ps-2">
                                                         <div class="optional">
                                                             <input type="checkbox" class="checkbox-popover"
@@ -581,25 +662,28 @@
                                                                 data-bs-trigger="focus" data-target="signature1">
                                                         </div>
                                                     </div>
+                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                        <label for="signature" class="form-label">Signature</label>
+                                                    </div>
                                                 </div>
                                                 <input class="form-control" name="signature[]" type="file"
                                                     id="signature1" required>
                                             </div>
-                                            <!-- <div class="hrmo mb-1">
-                                                <label for="formFile3" class="form-label">Scanned Copy of HRMO
-                                                    Form</label>
-                                                <input class="form-control" type="file" id="hrmoScanned"
-                                                    name="hrmoScanned[]" required>
+                                            <div class="mb-3">
+                                                <h5>Request the following files and verify</h5>
+                                            </div>
+                                            <div class="hrmo mb-1">
+                                                <h6><input class="form-check-input me-3" name="hrmoScanned"
+                                                        type="checkbox" id="hrmoScanned" required>HRMO Form</h6>
                                             </div>
                                             <div class="hrmo-lost mb-1">
-                                                <label for="formFile4" class="form-label">New HRMO Form</label>
-                                                <input class="form-control" type="file" id="hrmoNew" name="hrmoNew[]"
-                                                    required>
+                                                <h6><input class="form-check-input me-3" name="hrmoNew" type="checkbox"
+                                                        id="hrmoNew" required>New HRMO Form</h6>
                                             </div>
                                             <div class="emp-affidavit mb-1">
-                                                <label for="emp-affidavit" class="form-label">Affidavit of Loss</label>
-                                                <input class="form-control" type="file" id="aol" name="aol[]" required>
-                                            </div> -->
+                                                <h6><input class="form-check-input me-3" name="aol" type="checkbox"
+                                                        id="aol" required>Affidavit of Loss</h6>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -846,6 +930,7 @@ $('#printButton').click(function() {
     printWindow.focus();
     printWindow.print();
 });
+
 $(document).ready(function() {
     var table = $('#transactions').DataTable({
         // dom: 'Bfrtip',
@@ -857,8 +942,18 @@ $(document).ready(function() {
             }
         }
     });
+    $("#StudentModal .select-suffix").select2({
+        placeholder: "Jr.",
+        theme: 'bootstrap',
+        dropdownParent: $('#StudentModal')
+    });
     $("#StudentModal .js-example-basic-single").select2({
         placeholder: "Select Program",
+        theme: 'bootstrap',
+        dropdownParent: $('#StudentModal')
+    });
+    $("#EmployeeModal .select-suffix").select2({
+        placeholder: "Jr.",
         theme: 'bootstrap',
         dropdownParent: $('#StudentModal')
     });

@@ -109,46 +109,55 @@ $get = $obj->getForm();
                                                             <label for="">Middle Name</label>
                                                             <input type="text" name="middleName" id="mname">
                                                         </div>
-                                                        <div class="mb-2">
-                                                            <label for="">Family Name
-                                                                <span class="text-danger">*</span>
-                                                            </label>
-                                                            <input type="text" name="familyName" id="famname" required>
+                                                        <div class="row">
+                                                            <div class="col-sm-9">
+                                                                <div class="mb-2">
+                                                                    <label for="">Family Name
+                                                                        <span class="text-danger">*</span>
+                                                                    </label>
+                                                                    <input type="text" name="familyName" id="famname"
+                                                                        required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="mb-2">
+                                                                    <label for="">Suffix</label>
+                                                                    <select class="form-control select-suffix"
+                                                                        name="nameExt" id="ext">
+                                                                        <option value=""></option>
+                                                                        <option value="Jr.">Jr.</option>
+                                                                        <option value="Sr.">Sr.</option>
+                                                                        <option value="II">II</option>
+                                                                        <option value="III">III</option>
+                                                                        <option value="IV">IV</option>
+                                                                        <option value="V">V</option>
+                                                                        <option value="VI">VI</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <div class="mb-2">
-                                                            <label for="">Suffix</label>
-                                                            <input type="text" name="nameExt" id="ext"
-                                                                placeholder="(e.g., Jr., III)">
-                                                        </div>
                                                         <div class="mb-2">
                                                             <label for="">Email
                                                                 <span class="text-danger">*</span>
                                                             </label>
                                                             <input type="text" name="email" id="wmsuEmail" required>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="mb-2">
-                                                                    <label for="">Student ID
-                                                                        <span class="text-danger">*</span>
-                                                                    </label>
-                                                                    <input type="text" name="studnum" id="studId"
-                                                                        required>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="mb-2">
-                                                                    <label for="select-program">Program/Strand
-                                                                        <span class="text-danger">*</span>
-                                                                    </label>
-                                                                    <select class="program-strand-single"
-                                                                        name="programs" id="select-program">
-                                                                        <option value=""></option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
+                                                        <div class="mb-2">
+                                                            <label for="">Student ID
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <input type="text" name="studnum" id="studId" required>
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label for="select-program">Program/Strand
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <select class="program-strand-single" name="programs"
+                                                                id="select-program">
+                                                                <option value=""></option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -185,8 +194,17 @@ $get = $obj->getForm();
                                                     <div class="col-md-4">
                                                         <div class="mb-2">
                                                             <label for="">Suffix</label>
-                                                            <input type="text" name="nameExtEmg" id="extEmg"
-                                                                placeholder="(e.g., Jr., III)">
+                                                            <select class="form-control select-suffix" name="nameExtEmg"
+                                                                id="extEmg">
+                                                                <option value=""></option>
+                                                                <option value="Jr.">Jr.</option>
+                                                                <option value="Sr.">Sr.</option>
+                                                                <option value="II">II</option>
+                                                                <option value="III">III</option>
+                                                                <option value="IV">IV</option>
+                                                                <option value="V">V</option>
+                                                                <option value="VI">VI</option>
+                                                            </select>
                                                         </div>
                                                         <div class="mb-2">
                                                             <label for="">Address
@@ -427,8 +445,17 @@ $get = $obj->getForm();
                                                         </div>
                                                         <div class="mb-2">
                                                             <label for="">Suffix</label>
-                                                            <input type="text" name="nameExt" id="nameExt"
-                                                                placeholder="(e.g., Jr., III)">
+                                                            <select class="form-control select-suffix" name="nameExt"
+                                                                id="nameExt">
+                                                                <option value=""></option>
+                                                                <option value="Jr.">Jr.</option>
+                                                                <option value="Sr.">Sr.</option>
+                                                                <option value="II">II</option>
+                                                                <option value="III">III</option>
+                                                                <option value="IV">IV</option>
+                                                                <option value="V">V</option>
+                                                                <option value="VI">VI</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-4 col-lg-6 col-md-12">
@@ -767,6 +794,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 $(document).ready(function() {
+    $('.select-suffix').select2({
+        placeholder: 'Jr.',
+        theme: 'bootstrap',
+        allowClear: true,
+    });
     $('.program-strand-single').select2({
         placeholder: 'Select a program',
         theme: 'bootstrap',
