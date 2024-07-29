@@ -14,10 +14,12 @@
                         </div>
                         <div class="col-md-4 py-3">
                             <div style="position: relative; left: 50%; transform: translateX(-50%); display: block; 
-                                background-image: url('../../assets/id_layouts/STUDENT/STUDENT-ID-FRONT.svg'); 
+                                background-image: url('../../assets/id_layouts/STUDENT/STUDENT-ID-FRONT.png'); 
                                 width:204px; height:316px; background-size: 204px 321px; background-position: center; 
                                 background-repeat: no-repeat; border: 1px solid black; border-radius: 10px">
-                                <p style="position: absolute; left: 45px; top: 217px; color: black; 
+                                <img src="../../assets/id_layouts/sample.png" style="position: absolute;
+                                    left: 0; right: 0; bottom: 97px; max-width: 150px; margin: auto;">
+                                <p style="position: absolute; left: 45px; top: 215px; color: black;
                                     text-align: center; z-index: 1; font-weight: bold; font-size: 10px">
                                 </p>
                                 <p style="position: absolute; left: 0; right: 0; top: 230px; color: black; 

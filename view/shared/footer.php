@@ -4,7 +4,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="single-box gap-2">
                         <img src="../assets/logo/upress-logo-red.svg" class="img-fluid" alt="UPress Logo in Red"
-                            style="max-height: 150px;">
+                            style="max-height: 250px;">
                         <p id="text-content">UNIVERSITY PRESS<br>
                             Western Mindanao State University<br>
                             Normal Rd.,Baliwasan, Zamboanga City Philippines <br>
@@ -17,10 +17,10 @@
                     <div class="single-box gap-2">
                         <h3>Navigation</h3>
                         <ul class="list-unstyled">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/about-us">About Us</a></li>
-                            <li><a href="/tutorial">Tutorial</a></li>
-                            <li><a href="/get-id-now">Get ID Now!!</a></li>
+                            <li style="margin-bottom: 10px;"><a href="/">Home</a></li>
+                            <li style="margin-bottom: 10px;"><a href="/about-us">About Us</a></li>
+                            <li style="margin-bottom: 10px;"><a href="/tutorial">Tutorial</a></li>
+                            <li><a style="border-radius: 5px; padding: 5px 8px 5px 8px;background-color: white; color: maroon;" href="/get-id-now">Get ID Now!</a></li>
                         </ul>
                     </div>
                 </div>
