@@ -177,17 +177,17 @@
                                             <div class="m-0 py-2 gap-2 d-flex justify-content-center">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="New" id="new" checked onclick="view(0)">
+                                                        data-val="New" id="new" checked onclick="view(0)">
                                                     <label class="form-check-label ps-2" for="new">New</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="Replacement" id="rep" onclick="view(1)">
+                                                        data-val="Replacement" id="rep" onclick="view(1)">
                                                     <label class="form-check-label ps-2" for="rep">Replacement</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="Lost" id="lost" onclick="view(2)">
+                                                        data-val="Lost" id="lost" onclick="view(2)">
                                                     <label class="form-check-label ps-2" for="lost">Lost</label>
                                                 </div>
                                             </div>
@@ -253,7 +253,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-lg-5 col-md-12">
+                                        <div class="col-lg-5 col-md-12 pt-4">
                                             <h3>Emergency data</h3>
                                             <div class="mb-1">
                                                 <label for="">First Name <span class="text-danger">*</span></label>
@@ -302,11 +302,11 @@
                                                     id="contactEmg" required>
                                             </div>
                                         </div>
-                                        <div class="col-lg-5 col-md-12">
+                                        <div class="col-lg-5 col-md-12 pt-4">
                                             <h3>Attachments</h3>
                                             <div class="mb-1">
                                                 <div class="row d-flex justify-content-start">
-                                                    <div class="col-lg-4 col-md-4 col-4 ps-2">
+                                                    <div class="col-xl-1 col-lg-2 col-md-2 col-2 pe-5">
                                                         <div class="optional">
                                                             <input type="checkbox" class="checkbox-popover"
                                                                 id="toggleSwitchuserPhoto" data-bs-placement="top"
@@ -314,7 +314,7 @@
                                                                 data-bs-trigger="focus" data-target="userPhoto">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                    <div class="col-lg-2 col-md-2 col-3 ps-0">
                                                         <label for="userPhoto" class="form-label">Photo</label>
                                                     </div>
                                                 </div>
@@ -323,7 +323,7 @@
                                             </div>
                                             <div class="mb-4">
                                                 <div class="row d-flex justify-content-start">
-                                                    <div class="col-lg-4 col-md-4 col-4 ps-2">
+                                                    <div class="col-xl-1 col-lg-2 col-md-2 col-2 pe-5">
                                                         <div class="optional">
                                                             <input type="checkbox" class="checkbox-popover"
                                                                 id="toggleSwitchsignature" data-bs-placement="top"
@@ -331,7 +331,7 @@
                                                                 data-bs-trigger="focus" data-target="signature">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                    <div class="col-lg-2 col-md-2 col-3 ps-0">
                                                         <label for="signature" class="form-label">Signature</label>
                                                     </div>
                                                 </div>
@@ -394,17 +394,18 @@
                                             <div class="m-0 py-2 gap-2 d-flex justify-content-center">
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="New" id="new" checked onclick="view(0)">
+                                                        value="New" data-val="New" id="new" checked onclick="view(0)">
                                                     <label class="form-check-label ps-2" for="new">New</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="Replacement" id="rep" onclick="view(1)">
+                                                        value="Replacement" data-val="Replacement" id="rep"
+                                                        onclick="view(1)">
                                                     <label class="form-check-label ps-2" for="rep">Replacement</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="formType"
-                                                        value="Lost" id="lost" onclick="view(2)">
+                                                        value="Lost" data-val="Lost" id="lost" onclick="view(2)">
                                                     <label class="form-check-label ps-2" for="lost">Lost</label>
                                                 </div>
                                             </div><!-- Radio Buttons End -->
@@ -637,7 +638,7 @@
                                             <h3>Attachments</h3>
                                             <div class="mb-1">
                                                 <div class="row d-flex justify-content-start">
-                                                    <div class="col-lg-4 col-md-4 col-4 ps-2">
+                                                    <div class="col-xl-1 col-lg-2 col-md-2 col-2 pe-5">
                                                         <div class="optional">
                                                             <input type="checkbox" class="checkbox-popover"
                                                                 id="toggleSwitchuserPhoto1" data-bs-placement="top"
@@ -645,7 +646,7 @@
                                                                 data-bs-trigger="focus" data-target="userPhoto1">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                    <div class="col-lg-2 col-md-2 col-3 ps-0">
                                                         <label for="userPhoto1" class="form-label">Photo</label>
                                                     </div>
                                                 </div>
@@ -654,7 +655,7 @@
                                             </div>
                                             <div class="mb-4">
                                                 <div class="row d-flex justify-content-start">
-                                                    <div class="col-lg-4 col-md-4 col-4 ps-2">
+                                                    <div class="col-xl-1 col-lg-2 col-md-2 col-2 pe-5">
                                                         <div class="optional">
                                                             <input type="checkbox" class="checkbox-popover"
                                                                 id="toggleSwitchsignature1" data-bs-placement="top"
@@ -662,7 +663,7 @@
                                                                 data-bs-trigger="focus" data-target="signature1">
                                                         </div>
                                                     </div>
-                                                    <div class="col-xl-3 col-lg-4 col-md-2 col-3 pe-0">
+                                                    <div class="col-lg-2 col-md-2 col-3 ps-0">
                                                         <label for="signature" class="form-label">Signature</label>
                                                     </div>
                                                 </div>
@@ -931,6 +932,9 @@ $('#printButton').click(function() {
     printWindow.print();
 });
 
+
+
+
 $(document).ready(function() {
     var table = $('#transactions').DataTable({
         // dom: 'Bfrtip',
@@ -1013,7 +1017,8 @@ $(document).ready(function() {
         formdata.append("submitType", "addStud");
         formdata.append("clientType", "Student");
         formdata.append("ignoreHeaderFooter", 1);
-
+        const checkedValue = $('#insertStudent input[name="formType"]:checked').attr('data-val');
+        formdata.append('formType', checkedValue);
         $.ajax({
             type: 'post',
             url: "/add-student",
@@ -1044,6 +1049,8 @@ $(document).ready(function() {
         formdata.append("submitType", "addEmploy");
         formdata.append("clientType", "Employee");
         formdata.append("ignoreHeaderFooter", 1);
+        const checkedValue = $('#insertEmployee input[name="formType"]:checked').attr('data-val');
+        formdata.append('formType', checkedValue);
 
         $.ajax({
             type: 'POST',

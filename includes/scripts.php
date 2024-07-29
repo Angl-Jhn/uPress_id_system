@@ -24,6 +24,7 @@
 <script>
 $(document).ready(function() {
     view(0);
+
 });
 
 function view(x) {
@@ -93,16 +94,6 @@ function clearViews() {
     $('.hrmo-lost').hide();
     $('.emp-affidavit').hide();
 }
-
-$('#new').click(function() {
-    text(0);
-});
-$('#rep').click(function() {
-    text(1);
-});
-$('#lost').click(function() {
-    text(2);
-});
 
 $(document).ready(function() {
     $('#teach').click(function() {

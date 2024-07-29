@@ -257,7 +257,7 @@ $get = $obj->getForm();
                                                         </div>
                                                         <div class="mb-3">
                                                             <div class="row d-flex justify-content-start">
-                                                                <div class="col-xl-1 col-lg-2 col-md-2 col-2 pe-0">
+                                                                <div class="col-xl-2 col-lg-2 col-md-2 col-2 pe-0">
                                                                     <div class="optional">
                                                                         <input type="checkbox" class="checkbox-popover"
                                                                             id="toggleSwitchsignature"
@@ -840,27 +840,9 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response);
                 alert('Form submitted successfully');
-                $("#studId").val("");
-                $("#wmsuEmail").val("");
-                $("#fname").val("");
-                $("#mname").val("");
-                $("#famname").val("");
-                $("#ext").val("");
-                $("#select-program").val("");
-                $("#fnameEmg").val("");
-                $("#mnameEmg").val("");
-                $("#famnameEmg").val("");
-                $("#extEmg").val("");
-                $("#addEmg").val("");
-                $("#contactEmg").val("");
-                $("#userPhoto").val("");
-                $("#signature").val("");
-                $("#cor").val("");
-                $("#frontId").val("");
-                $("#backId").val("");
-                $("#affidavit").val("");
-
-                // location.reload(); //refresh page
+                $('#studentForm').find('input').val('');
+                $('#studentForm').find('select').val('');
+                location.reload(); //refresh page
             },
             error: function(error) {
                 console.log(error);
@@ -882,32 +864,9 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response);
                 alert('Form submitted successfully');
-                $("#idNumber").val("");
-                $("#wmsuEmail").val("");
-                $("#firstName").val("");
-                $("#middleName").val("");
-                $("#familyName").val("");
-                $("#nameExt").val("");
-                $("#academicRank").val("");
-                $("#designation").val("");
-                $("#residentialAddress").val("");
-                $("#dateofbirth").val("");
-                $("#contactNumber").val("");
-                $("#civilStatus").val("");
-                $("#bloodType").val("");
-                $("#emergencyFirstName").val("");
-                $("#emergencyMiddleName").val("");
-                $("#emergencyFamilyName").val("");
-                $("#emergencyNameExt").val("");
-                $("#emergencyAddress").val("");
-                $("#emergencyContact").val("");
-                $("#userPhoto").val("");
-                $("#signature").val("");
-                $("#hrmoScanned").val("");
-                $("#hrmoNew").val("");
-                $("#aol").val("");
-
-                // location.reload(); //refresh page
+                $('#employeeForm').find('input').val('');
+                $('#employeeForm').find('select').val('');
+                location.reload(); //refresh page
             },
             error: function(error) {
                 console.log(error);

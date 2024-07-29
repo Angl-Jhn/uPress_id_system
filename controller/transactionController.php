@@ -36,7 +36,7 @@ function handleAddStud($objModel){
     // var_dump($objModel);
     $type = $_POST["clientType"];
     $formtype = $_POST["formType"] ? $_POST["formType"] : '';
-    var_dump($formtype);
+    //var_dump($formtype);
     $studId = $_POST["studnum"];
     $email = $_POST["email"];
     $firstname = $_POST["firstName"];

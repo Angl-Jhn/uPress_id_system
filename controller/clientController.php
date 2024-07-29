@@ -87,7 +87,7 @@ if($_POST["type"] == "Student"){
     }
     if ($status == true) {
         $res = $client->requestId(
-            $type, $formtype, $studId, $wmsuEmail, $firstname, $middlename, $familyname, $nameExt,
+            $type, $formtype, $studId, $email, $firstname, $middlename, $familyname, $nameExt,
             $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol, $DSAForm
         );
         /*if($res){

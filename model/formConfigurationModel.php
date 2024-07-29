@@ -82,6 +82,16 @@ class formConfigModel {
         return $fetch_acc;
     }
 
+    function newProgCat($programCatg) {
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+
+        $data = array(':programCatg' => $programCatg);
+        $stmt = $db->prepare("SELECT * FROM progcategory WHERE programCatg = :programCatg");
+
+        $stmt->execute($data);
+    }
+
     // function newProgram(){
     //     $conn = new PDOModel();
     //     $db = $conn->getDb();
