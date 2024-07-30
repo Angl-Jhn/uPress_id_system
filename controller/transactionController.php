@@ -5,8 +5,16 @@ include_once("model/transactionManageModel.php");
 $Stud = new StudentModel();
 $Employ = new EmployeeModel();
 $clients = new TransactionManageModel();
-// $clients = $obj->getAll();
-// $delClient = $obj->softDeleteClient($id);
+$uploadedFiles = array();
+$uploadedFiles['userPhoto'] = array();
+$uploadedFiles['signature'] = array();
+$uploadedFiles['cor']= array();
+$uploadedFiles['oldId'] = array();
+$uploadedFiles['oldIdBack'] = array();
+$uploadedFiles['aol'] = array();
+$uploadedFiles['DSAForm'] = array();
+$uploadedFiles['hrmoScanned'] = array();
+$uploadedFiles['hrmoNew'] = array();
 
 if(isset($_POST["submitType"])){
     switch($_POST["submitType"]) {
@@ -25,11 +33,24 @@ if(isset($_POST["submitType"])){
         case 'viewClients':
             handleViewClients($_POST["clientID"],$clients);
             break;
+        case 'updateStatus':
+            handleStatus($clients);
+            break;
         case 'delete':
             handleDeleteClient($clients);
             break;
 
         
+    }
+}
+function handleStatus($updatedStatus){
+    $id = $_POST['id'];
+
+    $update = $updatedStatus->changeStatus($id);
+    if($update){
+        echo json_encode(['message'=>'Status updated successfully','status'=>'success']);
+    } else {
+        echo json_encode(['message'=>'Status was not changed','status'=>'error']);
     }
 }
 function handleAddStud($objModel){
@@ -50,13 +71,24 @@ function handleAddStud($objModel){
     $emgNameExt = $_POST["nameExtEmg"];
     $emgAddress = $_POST["address"];
     $emgContact = $_POST["contactNumber"];
-    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
-    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
-    $cor = $_POST["cor"];
-    $oldId = uploadImage('oldId') ? uploadImage('oldId'):"";
-    $oldIdBack = uploadImage('oldIdBack')?uploadImage('oldIdBack'):"";
-    $aol = uploadImage('aol') ? uploadImage('aol'):"";
-    $DSAForm = uploadImage('DSAForm') ? uploadImage('DSAForm'):"";
+
+    uploadImage('userPhoto','student/pictures');
+    uploadImage('signature','student/pictures');
+    uploadImage('cor','student/files');
+    uploadImage('oldId','student/files');
+    uploadImage('oldIdBack','student/files');
+    uploadImage('aol','student/files');
+    uploadImage('DSAForm','student/files');
+    
+    global $uploadedFiles;
+    $photo = !empty($uploadedFiles['userPhoto'][0]) ? $uploadedFiles['userPhoto'][0]:"";
+    $signature = !empty($uploadedFiles['signature'][0]) ? $uploadedFiles['signature'][0]:"";
+    $cor = !empty($uploadedFiles['cor'][0]) ? $uploadedFiles['cor'][0]:"";
+    $oldId = !empty($uploadedFiles['oldId'][0]) ? $uploadedFiles['oldId'][0]:"";
+    $oldIdBack = !empty($uploadedFiles['oldIdBack'][0]) ? $uploadedFiles['oldIdBack'][0]:"";
+    $aol =!empty($uploadedFiles['aol'][0]) ? $uploadedFiles['aol'][0]:"";
+    $DSAForm =!empty($uploadedFiles['DSAForm'][0]) ? $uploadedFiles['DSAForm'][0]:"";
+
 
     $res1 = $objModel->requestId(
         $type, $formtype, $studId, $email, $firstname, $middlename, $familyname, $nameExt,
@@ -86,15 +118,26 @@ function handleUpdateStud($objModel){
     $emgNameExt = $_POST["nameExtEmg"];
     $emgAddress = $_POST["address"];
     $emgContact = $_POST["contactNumber"];
-    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
-    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
-    $cor = uploadImage('cor') ? uploadImage('cor'): "";
-    $oldId = uploadImage('oldId') ? uploadImage('oldId'):"";
-    $oldIdBack = uploadImage('oldIdBack')?uploadImage('oldIdBack'):"";
-    $aol = uploadImage('aol') ? uploadImage('aol'):"";
-    $DSAForm = uploadImage('DSAForm') ? uploadImage('DSAForm'):"";
+    
+    global $uploadedFiles;
+    uploadImage('userPhoto','student/pictures');
+    uploadImage('signature','student/pictures');
+    uploadImage('cor','student/files');
+    uploadImage('oldId','student/files');
+    uploadImage('oldIdBack','student/files');
+    uploadImage('aol','student/files');
+    uploadImage('DSAForm','student/files');
+    
+    $photo = !empty($uploadedFiles['userPhoto'][0]) ? $uploadedFiles['userPhoto'][0]:"";
+    $signature = !empty($uploadedFiles['signature'][0]) ? $uploadedFiles['signature'][0]:"";
+    $cor = !empty($uploadedFiles['cor'][0]) ? $uploadedFiles['cor'][0]:"";
+    $oldId = !empty($uploadedFiles['oldId'][0]) ? $uploadedFiles['oldId'][0]:"";
+    $oldIdBack = !empty($uploadedFiles['oldIdBack'][0]) ? $uploadedFiles['oldIdBack'][0]:"";
+    $aol =!empty($uploadedFiles['aol'][0]) ? $uploadedFiles['aol'][0]:"";
+    $DSAForm =!empty($uploadedFiles['DSAForm'][0]) ? $uploadedFiles['DSAForm'][0]:"";
+    
     $id = $_POST["id"];
-
+    
     $res1 = $objModel->updateStudent($id,
         $type, $formtype, $studId, $email, $firstname, $middlename, $familyname, $nameExt,
             $program, $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $cor, $oldId, $oldIdBack, $aol, $DSAForm
@@ -130,16 +173,24 @@ function handleAddEmploy($objModel){
     $emgNameExt = $_POST["nameExtEmg"];
     $emgAddress = $_POST["address"];
     $emgContact = $_POST["contactNumber"];
-    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
-    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
-    $hrmoscanned = uploadImage('hrmoScanned') ? uploadImage('hrmoScanned'): "";
-    $hrmoNew = uploadImage('hrmoNew') ? uploadImage('hrmoNew'):"";
-    $aol = uploadImage('aol') ? uploadImage('aol'):"";
+
+    uploadImage('userPhoto','employee/pictures');
+    uploadImage('signature','employee/pictures');
+    uploadImage('hrmoScanned','employee/files');
+    uploadImage('hrmoNew','employee/files');
+    uploadImage('aol','employee/files');
+    
+    global $uploadedFiles;
+    $photo = !empty($uploadedFiles['userPhoto'][0]) ? $uploadedFiles['userPhoto'][0]:"";
+    $signature = !empty($uploadedFiles['signature'][0]) ? $uploadedFiles['signature'][0]:"";
+    $hrmoScanned = !empty($uploadedFiles['hrmoScanned'][0]) ? $uploadedFiles['hrmoScanned'][0]:"";
+    $hrmoNew = !empty($uploadedFiles['hrmoNew'][0]) ? $uploadedFiles['hrmoNew'][0]:"";
+    $aol =!empty($uploadedFiles['aol'][0]) ? $uploadedFiles['aol'][0]:"";
 
     $res1 = $objModel->requestId(
         $type, $formType, $idNumber, $email, $firstname, $middlename, $familyname, $nameExt,
             $academicRank, $plantillaPos, $designation, $residentialAddress, $dateofbirth, $contactNum, $civilStatus, $bloodType,
-            $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $hrmoscanned, $hrmoNew, $aol
+            $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $hrmoScanned, $hrmoNew, $aol
     );
     if ($res1) {
         echo json_encode(['message'=>"Successfully added ".$firstname.' '.$familyname,'status'=>'success']);
@@ -172,17 +223,26 @@ function handleUpdateEmploy($objModel){
     $emgNameExt = $_POST["nameExtEmg"];
     $emgAddress = $_POST["address"];
     $emgContact = $_POST["contactNumber"];
-    $photo = uploadImage('userPhoto') ? uploadImage('userPhoto'):"";
-    $signature = uploadImage('signature') ? uploadImage('signature'):"" ;
-    $hrmoscanned = uploadImage('hrmoScanned') ? uploadImage('hrmoScanned'): "";
-    $hrmoNew = uploadImage('hrmoNew') ? uploadImage('hrmoNew'):"";
-    $aol = uploadImage('aol') ? uploadImage('aol'):"";
+    
+    uploadImage('userPhoto','employee/pictures');
+    uploadImage('signature','employee/pictures');
+    uploadImage('hrmoScanned','employee/files');
+    uploadImage('hrmoNew','employee/files');
+    uploadImage('aol','employee/files');
+    
+    global $uploadedFiles;
+    $photo = !empty($uploadedFiles['userPhoto'][0]) ? $uploadedFiles['userPhoto'][0]:"";
+    $signature = !empty($uploadedFiles['signature'][0]) ? $uploadedFiles['signature'][0]:"";
+    $hrmoScanned = !empty($uploadedFiles['hrmoScanned'][0]) ? $uploadedFiles['hrmoScanned'][0]:"";
+    $hrmoNew = !empty($uploadedFiles['hrmoNew'][0]) ? $uploadedFiles['hrmoNew'][0]:"";
+    $aol =!empty($uploadedFiles['aol'][0]) ? $uploadedFiles['aol'][0]:"";
+
     $id = $_POST["id"];
 
     $res1 = $objModel->updateEmploy(
         $id,$type, $formType, $idNumber, $email, $firstname, $middlename, $familyname, $nameExt,
             $academicRank, $plantillaPos, $designation, $residentialAddress, $dateofbirth, $contactNum, $civilStatus, $bloodType,
-            $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $hrmoscanned, $hrmoNew, $aol
+            $emgfname, $emgMname, $emgLname, $emgNameExt, $emgAddress, $emgContact, $photo, $signature, $hrmoScanned, $hrmoNew, $aol
     );
     if ($res1) {
         echo json_encode(['message'=>"Successfully updated ".$firstname.' '.$familyname,'status'=>'success']);
@@ -209,10 +269,10 @@ function handleDeleteClient($objModel) {
     }
 }
 
-function uploadImage($fieldName) {
+function uploadImage($fieldName,$folder) {
     $errors = array();
-    $uploadedFiles = array();
-
+    global $uploadedFiles;
+    
     $allowedExtensions = array("jpeg", "jpg", "png", "gif");
     foreach ($_FILES as $fileKey => $fileArray) {
         if (isset($fileArray)) {
@@ -228,7 +288,7 @@ function uploadImage($fieldName) {
 
                 $filename = basename($file_name, "." . $ext);
                 $photoName = $filename . time() . "." . $ext;
-                $uploadPath = "uploads/account/" . $photoName;
+                $uploadPath = "uploads/".$folder."/" . $photoName;
 
                 if (move_uploaded_file($file_tmp, $uploadPath)) {
                     $uploadedFiles[$fileKey][] = $photoName;
@@ -240,9 +300,9 @@ function uploadImage($fieldName) {
     }
 
     if (!empty($errors)) {
-        return false;
+        return false; 
     }
-
+    
     return $uploadedFiles[$fieldName][0] ?? false;
 }
 

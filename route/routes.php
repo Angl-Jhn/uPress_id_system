@@ -39,6 +39,9 @@ if(isset($_SESSION["isLogin"]) == 1){
             case "del-client":
                 require_once("controller/transactionController.php");
                 break;
+            case "update-status":
+                require_once("controller/transactionController.php");
+                break;
             case "student-layout":
                 require_once("view/admin/student.php");
                 break;

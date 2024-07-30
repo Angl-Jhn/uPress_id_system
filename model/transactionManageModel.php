@@ -35,6 +35,44 @@ class TransactionManageModel{
             return false;
         }
     }
+
+    function getProdCategory(){
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+
+        $stmt = $db->prepare("SELECT * FROM progcategory");
+        $stmt->execute();
+        $arr = [];
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $arr[$row['schoolProgID']][] = $row;
+        }
+        return $arr;
+    }
+    function getSchoolProg(){
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+
+        $stmt = $db->prepare("SELECT * FROM schoolprog");
+        $stmt->execute();
+        $arr = [];
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $arr[$row['id']] = $row;
+        }
+        return $arr; 
+    }
+
+    function getSpecialization(){
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+
+        $stmt = $db->prepare("SELECT * FROM specialization");
+        $stmt->execute();
+        $arr = [];
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            $arr[$row['programID']][] = $row;
+        }
+        return $arr; 
+    }
     function getAccountById($id){
         $conn = new PDOModel();
         $db = $conn->getDb();
@@ -50,7 +88,7 @@ class TransactionManageModel{
         $conn = new PDOModel();
         $db = $conn->getDb();
         
-        $stmt = $db->prepare("UPDATE clients SET deletedAt = NOW() , status = 1 WHERE id = :id");
+        $stmt = $db->prepare("UPDATE clients SET deletedAt = NOW() WHERE id = :id");
         $stmt->bindParam(':id', $id);
          $stmt->execute();
          return true;
@@ -63,6 +101,15 @@ class TransactionManageModel{
         // Reactivate the account by setting deleted_at to NULL
         $stmt = $db->prepare("UPDATE clients SET deletedAt = NULL, status = 0 WHERE id = :id");
         $stmt->bindParam(':id', $id);
+        $stmt->execute();
+    }
+    
+    function changeStatus($id){
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+
+        $stmt = $db->prepare("UPDATE clients SET status = 1 WHERE id = :id");
+        $stmt->bindParam(':id',$id);
         $stmt->execute();
     }
 }
