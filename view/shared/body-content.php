@@ -14,7 +14,7 @@ $page_title="titi";
         </figure>
     </div>
 </div>
-<div class="upress-text-area">
+<!-- <div class="upress-text-area">
     <div class="container-fluid col-12 col-md-10 p-4">
         <figure class="text-center">
             <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
@@ -27,7 +27,7 @@ $page_title="titi";
             <p>john doe</p>
         </figure>
     </div>
-</div>
+</div> -->
 <div class="id-layout">
     <div class="container-fluid">
         <div class="row py-5">
