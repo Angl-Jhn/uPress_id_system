@@ -129,56 +129,56 @@ class formConfigModel {
             return false;
         }
     }
-    function getByID() {
-        $conn = new PDOModel();
-        $db = $conn->getDb();
+    // function getByID() {
+    //     $conn = new PDOModel();
+    //     $db = $conn->getDb();
 
-        try{
-            $stmt = $db->prepare("SELECT 
-                schoolprog.id AS schoolprog_id, 
-                progcategory.id AS progcategory_id, 
-                specialization.id AS specialization_id
-                FROM schoolprog
-                LEFT JOIN progcategory ON schoolprog.id = progcategory.schoolProgID
-                LEFT JOIN specialization ON progcategory.id = specialization.programID
-                WHERE progcategory.schoolProgID = schoolprog.id
-                AND specialization.programID = progcategory.id
-            ");
+    //     try{
+    //         $stmt = $db->prepare("SELECT 
+    //             schoolprog.id AS schoolprog_id, 
+    //             progcategory.id AS progcategory_id, 
+    //             specialization.id AS specialization_id
+    //             FROM schoolprog
+    //             LEFT JOIN progcategory ON schoolprog.id = progcategory.schoolProgID
+    //             LEFT JOIN specialization ON progcategory.id = specialization.programID
+    //             WHERE progcategory.schoolProgID = schoolprog.id
+    //             AND specialization.programID = progcategory.id
+    //         ");
       
-      $stmt->execute();
-      $fetch_id = [];
+    //   $stmt->execute();
+    //   $fetch_id = [];
   
-      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-          // Check if the key already exists to avoid overwriting
-          if (!isset($fetch_id[$row['schoolprog_id']])) {
-              $fetch_id[$row['schoolprog_id']] = [
-                  'programName' => $row['programName'],
-                  'progcategory' => [],
-              ];
-          }
+    //   while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    //       // Check if the key already exists to avoid overwriting
+    //       if (!isset($fetch_id[$row['schoolprog_id']])) {
+    //           $fetch_id[$row['schoolprog_id']] = [
+    //               'programName' => $row['programName'],
+    //               'progcategory' => [],
+    //           ];
+    //       }
   
-          if ($row['progcategory_id']) {
-              $fetch_id[$row['schoolprog_id']]['progcategory'][] = [
-                  'progcategory_id' => $row['progcategory_id'],
-                  'programCatg' => $row['programCatg'],
-                  'specialization' => []
-              ];
+    //       if ($row['progcategory_id']) {
+    //           $fetch_id[$row['schoolprog_id']]['progcategory'][] = [
+    //               'progcategory_id' => $row['progcategory_id'],
+    //               'programCatg' => $row['programCatg'],
+    //               'specialization' => []
+    //           ];
   
-              if ($row['specialization_id']) {
-                  $lastIndex = count($fetch_id[$row['schoolprog_id']]['progcategory']) - 1;
-                  $fetch_id[$row['schoolprog_id']]['progcategory'][$lastIndex]['specialization'][] = [
-                      'specialization_id' => $row['specialization_id'],
-                      'specialization' => $row['specialization']
-                  ];
-              }
-          }
-      }
-            return $fetch_id;
-        }catch (PDOException $e){
-            echo "Error: " . $e->getMessage();
-            return false;
-        }
-    }
+    //           if ($row['specialization_id']) {
+    //               $lastIndex = count($fetch_id[$row['schoolprog_id']]['progcategory']) - 1;
+    //               $fetch_id[$row['schoolprog_id']]['progcategory'][$lastIndex]['specialization'][] = [
+    //                   'specialization_id' => $row['specialization_id'],
+    //                   'specialization' => $row['specialization']
+    //               ];
+    //           }
+    //       }
+    //   }
+    //         return $fetch_id;
+    //     }catch (PDOException $e){
+    //         echo "Error: " . $e->getMessage();
+    //         return false;
+    //     }
+    // }
 
     function newProgCat($programCatg,$programName,$specialization) {
         $conn = new PDOModel();

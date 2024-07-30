@@ -1,7 +1,14 @@
 <?php
 include_once("././model/formConfigurationModel.php");
-$obj = new formConfigModel();
-$get = $obj->getForm();
+$obj = new formConfigModel();   
+$getFormConfig = $obj->getForm();
+
+include_once("././model/transactionManageModel.php");
+$objProg = new TransactionManageModel();
+$get = $objProg->getAll();
+$getSchoolProg = $objProg->getSchoolProg();
+$getProdCat = $objProg->getProdCategory();
+$getSpecialize = $objProg->getSpecialization();
 ?>
 <div class="form-container px-0 py-3 m-0">
     <div class="container-fluid">
@@ -39,13 +46,13 @@ $get = $obj->getForm();
                                         <h2 class="m-0 pb-1"><span>Student</span> Form</h2>
                                     </div>
                                     <?php
-                                    if ($get) {
+                                    if ($getFormConfig) {
                                     ?>
                                     <div class="update-text py-2 mb-4">
                                         <p class="lead" id="upressFR">
-                                            WMSU-UPRESS-FR-<?= $get['StudentFormVersion']['value'] ?></p>
+                                            WMSU-UPRESS-FR-<?= $getFormConfig['StudentFormVersion']['value'] ?></p>
                                         <p class="lead" id="effectDate">Effective Date:
-                                            <?= $get['StudentFormEDate']['value'] ?></p>
+                                            <?= $getFormConfig['StudentFormEDate']['value'] ?></p>
                                     </div>
                                     <?php
                                     }
@@ -157,6 +164,19 @@ $get = $obj->getForm();
                                                             <select class="program-strand-single" name="programs"
                                                                 id="select-program">
                                                                 <option value=""></option>
+                                                                <?php
+                                                                    foreach($getSchoolProg as $sp=>$rsp){
+                                                                        echo '<optgroup label="'.$rsp['programName'].'">';
+                                                                            foreach($getProdCat[$sp] as $pc=>$rpc){
+                                                                                echo '<optgroup label="'.$rpc['programCatg'].'">';
+                                                                                    foreach($getSpecialize[$rpc['id']] as $row){
+                                                                                        echo '<option>'.$row['specialization'].'</option>';
+                                                                                    }
+                                                                                echo '</optgroup>';
+                                                                            }
+                                                                        echo '</optgroup>';
+                                                                    }
+                                                                ?>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -346,13 +366,13 @@ $get = $obj->getForm();
                                         <h2 class="m-0 pb-1"><span>Employee</span> Form</h2>
                                     </div>
                                     <?php
-                                    if ($get) {
+                                    if ($getFormConfig) {
                                     ?>
                                     <div class="update-text py-2 mb-4">
                                         <p class="lead" id="upressFR">
-                                            WMSU-UPRESS-FR-<?= $get['EmployeeFormVersion']['value'] ?></p>
+                                            WMSU-UPRESS-FR-<?= $getFormConfig['EmployeeFormVersion']['value'] ?></p>
                                         <p class="lead" id="effectDate">Effective Date:
-                                            <?= $get['EmployeeFormEDate']['value'] ?></p>
+                                            <?= $getFormConfig['EmployeeFormEDate']['value'] ?></p>
                                     </div>
                                     <?php
                                     }

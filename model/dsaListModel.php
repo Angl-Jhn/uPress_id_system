@@ -28,5 +28,53 @@ class DsaListModel {
 
         return ($stmt->rowCount() > 0) ? $fetch_acc :0;
     }
+    
+    function addNewDirector($title,$firstName,$middleName,$familyName,$suffix,$signature,$year){
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+
+        try{
+            $stmt = $db->prepare("
+            INSERT INTO
+            dsa_list (title, firstName, middleName, familyName, suffix, signature, year)
+            VALUES (:title, :firstName, :middleName, :familyName, :suffix, :signature, :year)
+            ");
+            $stmt->bindParam(':title',$title);
+            $stmt->bindParam(':firstName',$firstName);
+            $stmt->bindParam(':middleName',$middleName);
+            $stmt->bindParam(':familyName',$familyName);
+            $stmt->bindParam(':suffix',$suffix);
+            $stmt->bindParam(':signature',$signature);
+            $stmt->bindParam(':year',$year);
+            
+            $stmt->execute();
+            return $db->lastInsertId();
+            
+        }catch (PDOException $e) {
+            // Handle any errors
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    function updateDefault($id){
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+        try{
+            $stmt = $db->prepare("
+            UPDATE dsa_list SET status = 0
+            ");
+            $stmt->execute();
+
+            $stmt1 = $db->prepare("UPDATE dsa_list SET status = 1 where id = :id");
+            $stmt1->bindParam(":id",$id);
+            $stmt1->execute();
+
+            return true;
+        }catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }
 ?>
