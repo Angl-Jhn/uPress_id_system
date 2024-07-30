@@ -4,6 +4,7 @@
             $get = $obj->getForm();
             $programs = $obj->getPrograms();
             $progCat = $obj->getProgCat();
+            $data = $obj->getall();
             ?>
             <main class="content px-3 py-2" style="height: 100vh;">
                 <div class="container-fluid h-100">
@@ -93,14 +94,56 @@
                             <div class="table-responsive">
                                 <table id="presList" class="table table-striped table-hover" style="width: 100%;">
                                     <thead>
-                                        <th scope="col">No.</th>
-                                        <th scope="col">Programs</th>
-                                        <th scope="col">Program Category</th>
-                                        <th scope="col">Major/Specialization</th>
-                                        <th scope="col">Action</th>
+                                        <tr>
+                                            <th scope="col">No.</th>
+                                            <th scope="col">Programs</th>
+                                            <th scope="col">Program Category</th>
+                                            <th scope="col">Major/Specialization</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
                                     </thead>
-                                    <tbody class="table-group-divider" id="">
-
+                                    <tbody class="table-group-divider">
+                                        <?php if ($data): ?>
+                                        <?php $count = 1; ?>
+                                        <?php foreach ($data as $programId => $program): ?>
+                                        <?php foreach ($program['progcategory'] as $category): ?>
+                                        <tr>
+                                            <td><?php echo $count++; ?></td>
+                                            <td><?php echo htmlspecialchars($program['programName']); ?></td>
+                                            <td><?php echo htmlspecialchars($category['programCatg']); ?></td>
+                                            <td>
+                                                <?php if (!empty($category['specialization'])): ?>
+                                                <?php foreach ($category['specialization'] as $specialization): ?>
+                                                <div><?php echo htmlspecialchars($specialization['specialization']); ?>
+                                                </div>
+                                                <?php endforeach; ?>
+                                                <?php else: ?>
+                                                N/A
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <!-- Add your action buttons here -->
+                                                <button type="button" class="btn btn-success btn-sm edit-btn2"
+                                                    data-type="Student" data-bs-toggle="modal" data-bs-placement="top"
+                                                    data-bs-title="Edit" data-bs-target="#programsModal">
+                                                    <i class="fa-solid fa-pen-to-square" style="padding: 0;"></i>
+                                                    <!-- edit -->
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-sm delete-btn2"
+                                                    data-bs-toggle="modal" data-bs-placement="top"
+                                                    data-bs-title="Delete" data-id="<?= $item['client_id']; ?>">
+                                                    <i class="fa-solid fa-trash" style="padding: 0;"></i>
+                                                    <!-- delete -->
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                        <?php endforeach; ?>
+                                        <?php else: ?>
+                                        <tr>
+                                            <td colspan="5" class="text-center">No data available</td>
+                                        </tr>
+                                        <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -164,11 +207,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                <button type="submit" name="" class="btn btn-primary"></button>
+                            </div>
                         </form>
-                        <div class="modal-footer">
-                            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                            <button type="submit" name="" class="btn btn-primary"></button>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -305,5 +349,14 @@ $(document).ready(function() {
         });
     });
 
+});
+            </script>
+
+            <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="modal"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 });
             </script>

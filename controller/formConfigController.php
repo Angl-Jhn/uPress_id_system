@@ -14,10 +14,9 @@ if($_POST['action'] == 'updateForm'){
     } else {
         echo json_encode(['message'=>'Form failed to update','status'=>'error']);
     }
-} else if($_POST['action' == 'AddProgramCategory']) {
+} else if($_POST['action'] == 'insertNew') {
     $programCatg = htmlentities($_POST['programCatg']);
-
-    $new = $form->newProgCat($programCatg);
+    $new = $form->newProgCat($programCatg,$_POST['programName'],$_POST['specialization']);
     if($new){
         echo json_encode(['message'=>'Succesfully added new category','status'=>'success']);
     } else {

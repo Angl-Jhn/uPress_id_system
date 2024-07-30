@@ -319,14 +319,8 @@ $(document).ready(function() {
                 } else {
                     alert(res.message);
                 }
-                $("#uname").val("");
-                $("#pw").val("");
-                $("#fname").val("");
-                $("#mname").val("");
-                $("#lname").val("");
-                $("#nameExt").val("");
-                $("#role").val("");
-                $("#accountPhoto").val("");
+                $('#addAccount').find('input').val('');
+                $('#addAccount').find('select').val('');
             },
             error: function(error) {
                 console.log('Error:', error);

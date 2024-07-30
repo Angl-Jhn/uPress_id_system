@@ -2,6 +2,10 @@
             include_once("././model/transactionManageModel.php");
             $obj = new TransactionManageModel();
             $get = $obj->getAll();
+            $getSchoolProg = $obj->getSchoolProg();
+            $getProdCat = $obj->getProdCategory();
+            $getSpecialize = $obj->getSpecialization();
+            
 
             include_once("././model/dsaListModel.php");
             $DSAobj = new DsaListModel();
@@ -67,11 +71,11 @@
                                                     if ($item['status'] == 0) {
                                                         $item['status'] = 'Pending';
                                                     } else if ($item['status'] == 1) {
-                                                        $item['status'] = 'Completed';
+                                                        $item['status'] = 'Complete';
                                                     }
                                                 ?>
                                                 <span
-                                                    class="badge text-bg-<?= $item['status'] == 'Completed' ? 'success' : 'danger' ?>">
+                                                    class="badge text-bg-<?= $item['status'] == 'Complete' ? 'success' : 'danger' ?>">
                                                     <?= $item['status'] ?>
                                                 </span>
                                             </td>
@@ -80,18 +84,42 @@
                                                     <div class="col">
                                                         <?php
                                                         if($item['clientType'] == 'Student') {
+                                                            if(!empty($item['clientPhoto'])) {
                                                         ?>
-                                                        <button type="button"
-                                                            class="btn btn-info btn-cirlce btn-sm view-btn"
+                                                        <a href="../../uploads/student/<?= $item['clientPhoto'] ?>"
+                                                            class="btn btn-info btn-sm download-btn"
                                                             data-id="<?= $item['client_id']; ?>" data-type="Student"
-                                                            data-bs-toggle="modal" data-bs-target="#StudentIDView">
+                                                            data-bs-toggle="modal" data-bs-placement="top"
+                                                            data-bs-title="Student Photo" disabled>
+                                                            <i class="fa-solid fa-download" style="padding: 0;"></i>
+                                                            <!-- download -->
+                                                        </a>
+                                                        <?php
+                                                            } else {
+                                                        ?>
+                                                        <a href="../../uploads/student/<?= $item['clientPhoto'] ?>"
+                                                            class="btn btn-info btn-sm download-btn"
+                                                            data-id="<?= $item['client_id']; ?>" data-type="Student"
+                                                            data-bs-toggle="modal" data-bs-placement="top"
+                                                            data-bs-title="Student Photo">
+                                                            <i class="fa-solid fa-download" style="padding: 0;"></i>
+                                                            <!-- download -->
+                                                        </a>
+                                                        <?php
+                                                            }
+                                                        ?>
+                                                        <button type="button" class="btn btn-info btn-sm view-btn"
+                                                            data-id="<?= $item['client_id']; ?>" data-type="Student"
+                                                            data-bs-toggle="modal" data-bs-placement="top"
+                                                            data-bs-title="View Student ID"
+                                                            data-bs-target="#StudentIDView">
                                                             <i class="fa-solid fa-eye" style="padding: 0;"></i>
                                                             <!-- view -->
                                                         </button>
-                                                        <button type="button"
-                                                            class="btn btn-success btn-cirlce btn-sm edit-btn2"
+                                                        <button type="button" class="btn btn-success btn-sm edit-btn2"
                                                             data-id="<?= $item['client_id']; ?>" data-type="Student"
-                                                            data-bs-toggle="modal" data-bs-target="#StudentModal">
+                                                            data-bs-toggle="modal" data-bs-placement="top"
+                                                            data-bs-title="Edit Student" data-bs-target="#StudentModal">
                                                             <i class="fa-solid fa-pen-to-square"
                                                                 style="padding: 0;"></i>
                                                             <!-- edit -->
@@ -99,17 +127,27 @@
                                                         <?php
                                                         } else if($item['clientType'] == 'Employee') {
                                                         ?>
-                                                        <button type="button"
-                                                            class="btn btn-info btn-cirlce btn-sm view-btn"
+                                                        <a href="././uploads/employee/<?= $item['clientPhoto'] ?>"
+                                                            class="btn btn-info btn-sm download-btn"
                                                             data-id="<?= $item['client_id']; ?>" data-type="Employee"
-                                                            data-bs-toggle="modal" data-bs-target="#EmployeeIDView">
+                                                            data-bs-toggle="modal" data-bs-placement="top"
+                                                            data-bs-title="Employee Photo">
+                                                            <i class="fa-solid fa-download" style="padding: 0;"></i>
+                                                            <!-- download -->
+                                                        </a>
+                                                        <button type="button" class="btn btn-info btn-sm view-btn"
+                                                            data-id="<?= $item['client_id']; ?>" data-type="Employee"
+                                                            data-bs-toggle="modal" data-bs-placement="top"
+                                                            data-bs-title="View Employee ID"
+                                                            data-bs-target="#EmployeeIDView">
                                                             <i class="fa-solid fa-eye" style="padding: 0;"></i>
                                                             <!-- view -->
                                                         </button>
-                                                        <button type="button"
-                                                            class="btn btn-success btn-cirlce btn-sm edit-btn2"
+                                                        <button type="button" class="btn btn-success btn-sm edit-btn2"
                                                             data-id="<?= $item['client_id']; ?>" data-type="Employee"
-                                                            data-bs-toggle="modal" data-bs-target="#EmployeeModal">
+                                                            data-bs-toggle="modal" data-bs-placement="top"
+                                                            data-bs-title="Edit Employee"
+                                                            data-bs-target="#EmployeeModal">
                                                             <i class="fa-solid fa-pen-to-square"
                                                                 style="padding: 0;"></i>
                                                             <!-- edit -->
@@ -117,8 +155,7 @@
                                                         <?php
                                                         } else {
                                                         ?>
-                                                        <button type="button"
-                                                            class="btn btn-secondary btn-cirlce btn-sm edit-btn2"
+                                                        <button type="button" class="btn btn-secondary btn-sm edit-btn2"
                                                             disabled>
                                                             <i class="fa-solid fa-pen-to-square"
                                                                 style="padding: 0;"></i>
@@ -128,9 +165,9 @@
                                                         }
                                                         ?>
 
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-cirlce btn-sm delete-btn2"
-                                                            data-id="<?= $item['client_id']; ?>">
+                                                        <button type="button" class="btn btn-danger btn-sm delete-btn2"
+                                                            data-bs-toggle="modal" data-bs-placement="top"
+                                                            data-bs-title="Delete" data-id="<?= $item['client_id']; ?>">
                                                             <i class="fa-solid fa-trash" style="padding: 0;"></i>
                                                             <!-- delete -->
                                                         </button>
@@ -250,6 +287,19 @@
                                                 <select class="js-example-basic-single form-control" name="programs"
                                                     id="select-program">
                                                     <option value=""></option>
+                                                    <?php
+                                                        foreach($getSchoolProg as $sp=>$rsp){
+                                                            echo '<optgroup label="'.$rsp['programName'].'">';
+                                                                foreach($getProdCat[$sp] as $pc=>$rpc){
+                                                                    echo '<optgroup label="'.$rpc['programCatg'].'">';
+                                                                        foreach($getSpecialize[$rpc['id']] as $row){
+                                                                            echo '<option>'.$row['specialization'].'</option>';
+                                                                        }
+                                                                    echo '</optgroup>';
+                                                                }
+                                                            echo '</optgroup>';
+                                                        }
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -338,28 +388,30 @@
                                                 <input class="form-control" name="signature[]" type="file"
                                                     id="signature" required>
                                             </div>
-                                            <div class="mb-3">
-                                                <h5>Request the following files and verify</h5>
-                                            </div>
-                                            <div class="mb-1">
-                                                <h6><input class="form-check-input me-3" name="cor" type="checkbox"
-                                                        id="cor" required>Certificate of Registration</h6>
-                                            </div>
-                                            <div class="stud-replacement mb-1">
-                                                <h6><input class="form-check-input me-3" name="oldId" type="checkbox"
-                                                        id="frontId" required>Old ID Front</h6>
-                                            </div>
-                                            <div class="stud-replacement mb-1">
-                                                <h6><input class="form-check-input me-3" name="oldIdBack"
-                                                        type="checkbox" id="backId" required>Old ID Back</h6>
-                                            </div>
-                                            <div class="stud-affidavit mb-1">
-                                                <h6><input class="form-check-input me-3" name="aol" type="checkbox"
-                                                        id="affidavit" required>Affidavit of Loss</h6>
-                                            </div>
-                                            <div class="stud-dsa mb-1">
-                                                <h6><input class="form-check-input me-3" name="dsa" type="checkbox"
-                                                        id="dsa" required>DSA Form</h6>
+                                            <div class="attachs">
+                                                <div class="mb-3">
+                                                    <h5>Request the following files and verify</h5>
+                                                </div>
+                                                <div class="mb-1">
+                                                    <h6><input class="form-check-input me-3" name="cor" type="checkbox"
+                                                            id="cor">Certificate of Registration</h6>
+                                                </div>
+                                                <div class="stud-replacement mb-1">
+                                                    <h6><input class="form-check-input me-3" name="oldId"
+                                                            type="checkbox" id="frontId">Old ID Front</h6>
+                                                </div>
+                                                <div class="stud-replacement mb-1">
+                                                    <h6><input class="form-check-input me-3" name="oldIdBack"
+                                                            type="checkbox" id="backId">Old ID Back</h6>
+                                                </div>
+                                                <div class="stud-affidavit mb-1">
+                                                    <h6><input class="form-check-input me-3" name="aol" type="checkbox"
+                                                            id="affidavit" required>Affidavit of Loss</h6>
+                                                </div>
+                                                <div class="stud-dsa mb-1">
+                                                    <h6><input class="form-check-input me-3" name="dsa" type="checkbox"
+                                                            id="dsa" required>DSA Form</h6>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -670,20 +722,22 @@
                                                 <input class="form-control" name="signature[]" type="file"
                                                     id="signature1" required>
                                             </div>
-                                            <div class="mb-3">
-                                                <h5>Request the following files and verify</h5>
-                                            </div>
-                                            <div class="hrmo mb-1">
-                                                <h6><input class="form-check-input me-3" name="hrmoScanned"
-                                                        type="checkbox" id="hrmoScanned" required>HRMO Form</h6>
-                                            </div>
-                                            <div class="hrmo-lost mb-1">
-                                                <h6><input class="form-check-input me-3" name="hrmoNew" type="checkbox"
-                                                        id="hrmoNew" required>New HRMO Form</h6>
-                                            </div>
-                                            <div class="emp-affidavit mb-1">
-                                                <h6><input class="form-check-input me-3" name="aol" type="checkbox"
-                                                        id="aol" required>Affidavit of Loss</h6>
+                                            <div class="attachs">
+                                                <div class="mb-3">
+                                                    <h5>Request the following files and verify</h5>
+                                                </div>
+                                                <div class="hrmo mb-1">
+                                                    <h6><input class="form-check-input me-3" name="hrmoScanned"
+                                                            type="checkbox" id="hrmoScanned">HRMO Form</h6>
+                                                </div>
+                                                <div class="hrmo-lost mb-1">
+                                                    <h6><input class="form-check-input me-3" name="hrmoNew"
+                                                            type="checkbox" id="hrmoNew">New HRMO Form</h6>
+                                                </div>
+                                                <div class="emp-affidavit mb-1">
+                                                    <h6><input class="form-check-input me-3" name="aol" type="checkbox"
+                                                            id="aol">Affidavit of Loss</h6>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -701,7 +755,7 @@
             <!-- View Modals -->
             <div class="modal fade" id="StudentIDView" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-2" id="staticBackdropLabel"></h1>
@@ -710,8 +764,7 @@
                         <div class="modal-body" style="max-height: calc(100vh - 200px); overflow-y: auto;">
                             <div id="contentToPrint"
                                 class="container-fluid h-100 w-75 d-flex justify-content-center align-items-center">
-                                <div
-                                    class="row layout py-3 px-2 gap-4 justify-content-center text-center bg-info-subtle">
+                                <div class="row layout px-2 gap-5 justify-content-center text-center bg-info-subtle">
                                     <div class="col-md-12 text-center py-2">
                                         <div class="card-header no-print">
                                             <h2>Student ID</h2>
@@ -884,16 +937,24 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button id="printButton" name="" class="btn btn-primary"><i
+                            <button id="printButton1" name="" class="btn btn-primary"><i
                                     class="fa-solid fa-print"></i>Print</button>
                         </div>
                     </div>
                 </div>
             </div>
             <script>
-$('#printButton').click(function() {
+$('body').on('click', "#printButton1", function() {
+    printIds();
+});
+$(document).on('click', '#printButton', function() {
     // Find the currently visible modal
+    printIds();
+});
+
+function printIds() {
     var visibleModal = $('.modal.show').attr('id');
+
 
     if (!visibleModal) {
         alert('No modal is currently open.');
@@ -930,9 +991,41 @@ $('#printButton').click(function() {
     printWindow.document.close();
     printWindow.focus();
     printWindow.print();
-});
 
+    var checkPrintWindowClosed = setInterval(function() {
+        if (printWindow.closed) {
+            clearInterval(checkPrintWindowClosed);
+            if (confirm('Change status to complete?')) {
+                var formdata = new FormData(this);
+                formdata.append("submitType", "updateStatus");
+                formdata.append("ignoreHeaderFooter", 1);
 
+                $.ajax({
+                    url: '/update-status',
+                    type: 'POST',
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        var res = JSON.parse(response);
+                        if (res.status === 'success') {
+                            alert(res.message);
+                            location.reload();
+                        } else {
+                            alert(res.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('An error occurred: ' + error);
+                    }
+                });
+            } else {
+                // User canceled the status change
+                alert('Printing was canceled');
+            }
+        }
+    }, 1000); // Check every second
+}
 
 
 $(document).ready(function() {
@@ -984,6 +1077,7 @@ $(document).ready(function() {
         $('#StudentModal form').attr('id', 'insertStudent');
         console.log("Form ID: " + $('#StudentModal form').attr('id'));
         $('#StudentModal button[type="submit"]').attr('name', 'addStud').text('Add Student');
+        $('#StudentModal .attachs').attr('style', 'display: block;');
     });
     $(document).on('click', '.addbtn2', function() {
         $('#EmployeeModal').find('input, select, textarea').val('');
@@ -992,6 +1086,7 @@ $(document).ready(function() {
         $('#EmployeeModal form').attr('id', 'insertEmployee');
         console.log("Form ID: " + $('#EmployeeModal form').attr('id'));
         $('#EmployeeModal button[type="submit"]').attr('name', 'addEmploy').text('Add Employee');
+        $('#EmployeeModal .attachs').attr('style', 'display: block;');
     });
 
     $(document).on('click', '.edit-btn2', function(e) {
@@ -1001,6 +1096,7 @@ $(document).ready(function() {
             $('#StudentModal h1').text('Modify Student ID');
             $('#StudentModal button[type="submit"]').attr('name', 'updateStud').text('Save Student');
             $('#StudentModal form').attr('id', 'updateStudent');
+            $('#StudentModal .attachs').attr('style', 'display: none;');
             console.log("Form ID: " + $('#StudentModal form').attr('id'));
         } else if (clientType === 'Employee') {
             $('#EmployeeModal h1').text('Modify Employee ID');
@@ -1008,6 +1104,7 @@ $(document).ready(function() {
             console.log("Form ID: " + $('#EmployeeModal form').attr('id'));
             $('#EmployeeModal button[type="submit"]').attr('name', 'updateEmploy').text(
                 'Save Employee');
+            $('#EmployeeModal .attachs').attr('style', 'display: none;');
         }
     });
     // insert
@@ -1019,6 +1116,7 @@ $(document).ready(function() {
         formdata.append("ignoreHeaderFooter", 1);
         const checkedValue = $('#insertStudent input[name="formType"]:checked').attr('data-val');
         formdata.append('formType', checkedValue);
+
         $.ajax({
             type: 'post',
             url: "/add-student",
@@ -1082,7 +1180,8 @@ $(document).ready(function() {
         formdata.append("submitType", "updateStud");
         formdata.append("clientType", "Student");
         formdata.append("ignoreHeaderFooter", 1);
-
+        const checkedValue = $('#updateStudent input[name="formType"]:checked').attr('data-val');
+        formdata.append('formType', checkedValue);
         $.ajax({
             type: 'post',
             url: "/save-student",
@@ -1094,7 +1193,7 @@ $(document).ready(function() {
                 console.log(res);
                 if (res.status === 'success') {
                     alert(res.message);
-                    location.reload();
+                    // location.reload();
                 } else {
                     alert(res.message);
                 }
@@ -1113,7 +1212,8 @@ $(document).ready(function() {
         formdata.append("submitType", "updateEmploy");
         formdata.append("clientType", "Employee");
         formdata.append("ignoreHeaderFooter", 1);
-
+        const checkedValue = $('#updateEmployee input[name="formType"]:checked').attr('data-val');
+        formdata.append('formType', checkedValue);
         $.ajax({
             type: 'POST',
             url: "/save-employee",
@@ -1297,5 +1397,14 @@ $(document).ready(function() {
             });
         }
     });
+});
+            </script>
+
+            <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="modal"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 });
             </script>

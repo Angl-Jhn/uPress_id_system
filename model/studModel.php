@@ -73,16 +73,45 @@ class StudentModel{
 
         try {
             $db->beginTransaction(); // Begin a transaction
-
+            
             // Prepare the SQL statement for clients
-            $stmt = $db->prepare("
+            
+            // Initialize the query parts
+            $updateParts = [
+                'clientType = :clientType',
+                'formType = :formType',
+                'email = :email',
+                'firstName = :firstName',
+                'middleName = :middleName',
+                'lastName = :lastName',
+                'nameExt = :nameExt',
+                'emergencyFirstName = :emergencyfname',
+                'emergencyMiddleName = :emergencymname',
+                'emergencyLastName = :emergencylname',
+                'emergencyNameExt = :emergencyNameExt',
+                'emergencyAddress = :emergencyaddress',
+                'emergencyContactNum = :emergencycontact'
+            ];
+
+            // Add dynamic parts if needed
+            if ($photo != "") {
+                $updateParts[] = 'clientPhoto = :photo';
+            }
+            if ($signature != "") {
+                $updateParts[] = 'clientSignature = :signature';
+            }
+
+            // Join the parts to form the SET clause
+            $setClause = implode(', ', $updateParts);
+
+            // Prepare the SQL statement
+            $sql = "
                 UPDATE clients SET 
-                clientType = :clientType, formType = :formType, email = :email, firstName = :firstName, middleName = :middleName, 
-                lastName = :lastName, nameExt = :nameExt, emergencyFirstName = :emergencyfname, emergencyMiddleName = :emergencymname, 
-                emergencyLastName = :emergencylname, emergencyNameExt = :emergencyNameExt, emergencyAddress = :emergencyaddress, 
-                emergencyContactNum = :emergencycontact, clientSignature = :signature, clientPhoto = :photo
+                $setClause
                 WHERE id = :id
-            ");
+            ";
+
+            $stmt = $db->prepare($sql);
 
             // Bind the parameters for clients
             $stmt->bindParam(':id', $id);
@@ -99,30 +128,74 @@ class StudentModel{
             $stmt->bindParam(':emergencyNameExt', $emgNameExt);
             $stmt->bindParam(':emergencyaddress', $emgAddress);
             $stmt->bindParam(':emergencycontact', $emgContact);
-            $stmt->bindParam(':photo', $photo);
-            $stmt->bindParam(':signature', $signature);
 
-            // Execute the statement for clients
+            // Bind dynamic parameters if they exist
+            if ($photo != "") {
+                $stmt->bindParam(':photo', $photo);
+            }
+            if ($signature != "") {
+                $stmt->bindParam(':signature', $signature);
+            }
+
+            // Execute the statement
             $stmt->execute();
 
-            // Prepare the SQL statement for student
-            $stmt1 = $db->prepare("
-                UPDATE student SET 
-                studentNum = :studnum, progCategoryID = :progCategoryID, COR = :cor, oldIDFront = :oldId, oldIDBack = :oldIdBack, 
-                affidavitOfLoss = :aol, DSA = :DSAForm
-                WHERE clientIDStudent = :clientIDstud
-            ");
+            $updatePartsStudent = [
+                'studentNum = :studnum',
+                'progCategoryID = :progCategoryID'
+                
+            ];
 
+             // Add dynamic parts if needed
+             if ($cor != "") {
+                $updatePartsStudent[] = 'COR = :cor';
+            }
+            if ($oldId != "") {
+                $updatePartsStudent[] = 'oldIDFront = :oldId';
+            }
+            if ($oldIdBack != "") {
+                $updatePartsStudent[] = 'oldIDBack = :oldIdBack';
+            }
+            if ($aol != "") {
+                $updatePartsStudent[] = 'affidavitOfLoss = :aol';
+            }
+            if ($DSAForm != "") {
+                $updatePartsStudent[] = 'DSA = :DSAForm';
+            }
+            // Prepare the SQL statement for student
+
+            $setClauseStud = implode(', ', $updatePartsStudent);
+
+            $sqlStud = "
+                UPDATE student SET 
+                ".$setClauseStud."
+                WHERE clientIDStudent = :clientIDstud
+                ";
+            $stmt1 = $db->prepare($sqlStud);
             // Bind the parameters for student
             $stmt1->bindParam(':clientIDstud', $id);
             $stmt1->bindParam(':studnum', $studId);
             $stmt1->bindParam(':progCategoryID', $program);
-            $stmt1->bindParam(':cor', $cor);
-            $stmt1->bindParam(':oldId', $oldId);
-            $stmt1->bindParam(':oldIdBack', $oldIdBack);
-            $stmt1->bindParam(':aol', $aol);
-            $stmt1->bindParam(':DSAForm', $DSAForm);
+            if($cor != ""){
+                $stmt1->bindParam(':cor', $cor);
+            }
+            
+            if($oldId != ""){
+                $stmt1->bindParam(':oldId', $oldId);
+            }
 
+            if($oldIdBack !=""){
+                $stmt1->bindParam(':oldIdBack', $oldIdBack);
+            }
+
+            if($aol != ""){
+                $stmt1->bindParam(':aol', $aol);
+            }
+
+            if($DSAForm != ""){
+                $stmt1->bindParam(':DSAForm', $DSAForm);
+            }
+        
             // Execute the statement for student
             $stmt1->execute();
 
@@ -131,7 +204,7 @@ class StudentModel{
             return $id; // Return the ID of the updated row
 
         } catch (PDOException $e) {
-            $db->rollBack(); // Rollback the transaction in case of error
+           // $db->rollBack(); // Rollback the transaction in case of error
             echo "Error: " . $e->getMessage();
             return false;
         }

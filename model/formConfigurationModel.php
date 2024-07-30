@@ -66,9 +66,9 @@ class formConfigModel {
         $stmt = $db->prepare("SELECT * FROM schoolprog");
         $stmt->execute();
 
-        $fetch_acc = $stmt->fetchAll();
+        $fetch = $stmt->fetchAll();
         
-        return $fetch_acc;
+        return $fetch;
     }
     function getProgCat(){
         $conn = new PDOModel();
@@ -77,59 +77,129 @@ class formConfigModel {
         $stmt = $db->prepare("SELECT * FROM progcategory");
         $stmt->execute();
 
-        $fetch_acc = $stmt->fetchAll();
+        $fetch = $stmt->fetchAll();
         
-        return $fetch_acc;
+        return $fetch;
     }
-
-    function newProgCat($programCatg) {
+    function getall(){
         $conn = new PDOModel();
         $db = $conn->getDb();
 
-        $data = array(':programCatg' => $programCatg);
-        $stmt = $db->prepare("SELECT * FROM progcategory WHERE programCatg = :programCatg");
+        try{
+            $stmt = $db->prepare("SELECT 
+            schoolprog.id AS schoolprog_id, schoolprog.programName, 
+            progcategory.id AS progcategory_id, progcategory.schoolProgID, progcategory.programCatg,
+            specialization.id AS specialization_id, specialization.programID, specialization.specialization
+            FROM schoolprog
+            LEFT JOIN progcategory ON schoolprog.id = progcategory.schoolProgID
+            LEFT JOIN specialization ON progcategory.id = specialization.programID
+            ");
+      
+            $stmt->execute();
+            $fetch_acc = [];
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                // Check if the key already exists to avoid overwriting
+                if (!isset($fetch_acc[$row['schoolprog_id']])) {
+                    $fetch_acc[$row['schoolprog_id']] = [
+                        'programName' => $row['programName'],
+                        'progcategory' => [],
+                    ];
+                }
+                
+                if ($row['progcategory_id']) {
+                    $fetch_acc[$row['schoolprog_id']]['progcategory'][] = [
+                        'progcategory_id' => $row['progcategory_id'],
+                        'programCatg' => $row['programCatg'],
+                        'specialization' => []
+                    ];
+                    
+                    if ($row['specialization_id']) {
+                        $lastIndex = count($fetch_acc[$row['schoolprog_id']]['progcategory']) - 1;
+                        $fetch_acc[$row['schoolprog_id']]['progcategory'][$lastIndex]['specialization'][] = [
+                            'specialization_id' => $row['specialization_id'],
+                            'specialization' => $row['specialization']
+                        ];
+                    }
+                }
+            }
 
-        $stmt->execute($data);
+            return $fetch_acc;
+        }catch (PDOException $e){
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+    function getByID() {
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+
+        try{
+            $stmt = $db->prepare("SELECT 
+                schoolprog.id AS schoolprog_id, 
+                progcategory.id AS progcategory_id, 
+                specialization.id AS specialization_id
+                FROM schoolprog
+                LEFT JOIN progcategory ON schoolprog.id = progcategory.schoolProgID
+                LEFT JOIN specialization ON progcategory.id = specialization.programID
+                WHERE progcategory.schoolProgID = schoolprog.id
+                AND specialization.programID = progcategory.id
+            ");
+      
+      $stmt->execute();
+      $fetch_id = [];
+  
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+          // Check if the key already exists to avoid overwriting
+          if (!isset($fetch_id[$row['schoolprog_id']])) {
+              $fetch_id[$row['schoolprog_id']] = [
+                  'programName' => $row['programName'],
+                  'progcategory' => [],
+              ];
+          }
+  
+          if ($row['progcategory_id']) {
+              $fetch_id[$row['schoolprog_id']]['progcategory'][] = [
+                  'progcategory_id' => $row['progcategory_id'],
+                  'programCatg' => $row['programCatg'],
+                  'specialization' => []
+              ];
+  
+              if ($row['specialization_id']) {
+                  $lastIndex = count($fetch_id[$row['schoolprog_id']]['progcategory']) - 1;
+                  $fetch_id[$row['schoolprog_id']]['progcategory'][$lastIndex]['specialization'][] = [
+                      'specialization_id' => $row['specialization_id'],
+                      'specialization' => $row['specialization']
+                  ];
+              }
+          }
+      }
+            return $fetch_id;
+        }catch (PDOException $e){
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
     }
 
-    // function newProgram(){
-    //     $conn = new PDOModel();
-    //     $db = $conn->getDb();
-
-    //     try {
-    //         // Prepare the SQL statement
-    //         $stmt = $db->prepare("
-    //             INSERT INTO
-    //             progcategory
-    //         ");
-
-    //         // Bind the parameters
-    //         $stmt->bindParam(':clientType', $type);
-    //         // Execute the statement
-    //         $stmt->execute();
-    //         // Optionally, you can return the ID of the inserted row
-    //         // variable res as lastinsertid
-            
-    //         $res = $db->lastInsertId();
-    //         // var_dump($res);
-    //         if($res){
-    //             $stmt1 = $db->prepare("
-                
-    //             ");
-    //             $stmt1->bindParam(':clientIDstud', $res);
-                
-                
-    //             $stmt1->execute();
-    //             return $db->lastInsertId();
-    //         }
-            
-
-    //     } catch (PDOException $e) {
-    //         // Handle any errors
-    //         echo "Error: " . $e->getMessage();
-    //         return false;
-    //     }
-    // }
-
+    function newProgCat($programCatg,$programName,$specialization) {
+        $conn = new PDOModel();
+        $db = $conn->getDb();
+        if (is_numeric($programCatg)) {
+            $id = $programCatg;
+        } else {
+            $stmt = $db->prepare("INSERT INTO progcategory (programCatg,schoolProgID) VALUES (:programCatg,:schoolProgID)");
+            $stmt->bindParam(':programCatg', $programCatg);
+            $stmt->bindParam(':schoolProgID',$programName);
+            $stmt->execute();
+            $id = $db->lastInsertId();
+        }
+        
+        if($id){
+            $stmt1 = $db->prepare("INSERT INTO specialization (programID,specialization) VALUES (:programID,:specialization)");
+            $stmt1->bindParam(':programID',$id);
+            $stmt1->bindParam(':specialization',$specialization);
+            $stmt1->execute();
+            return $db->lastInsertId();
+        }
+    }
 }
 ?>
