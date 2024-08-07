@@ -5,6 +5,7 @@ include_once("model/transactionManageModel.php");
 $Stud = new StudentModel();
 $Employ = new EmployeeModel();
 $clients = new TransactionManageModel();
+
 $uploadedFiles = array();
 $uploadedFiles['userPhoto'] = array();
 $uploadedFiles['signature'] = array();
@@ -39,8 +40,6 @@ if(isset($_POST["submitType"])){
         case 'delete':
             handleDeleteClient($clients);
             break;
-
-        
     }
 }
 function handleStatus($updatedStatus){

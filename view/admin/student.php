@@ -153,7 +153,7 @@
                                                         if ($item['status'] == 'non-default') {
                                                         ?>
                                                         <button type="button" class="btn btn-primary btn-sm default-btn"
-                                                            data-bs-toggle="modal" data-bs-placement="top"
+                                                            onClick="makeDefault('<?= $item['id'] ?>');return false;"
                                                             data-bs-title="Make Default" data-id="<?= $item['id']; ?>">
                                                             <i class="fa-solid fa-house" style="padding: 0;"></i>
                                                             <!-- default -->
@@ -163,8 +163,8 @@
                                                         ?>
                                                         <button type="button"
                                                             class="btn btn-secondary btn-sm default-btn"
-                                                            data-bs-toggle="modal" data-bs-placement="top"
                                                             data-bs-title="Make Default" data-id="<?= $item['id']; ?>"
+                                                            onclick="makeDefault('<?= $item['id'] ?>');return false;"
                                                             disabled>
                                                             <i class="fa-solid fa-house" style="padding: 0;"></i>
                                                             <!-- default -->
@@ -217,14 +217,13 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form action="" method="post" id="" enctype="multipart/form-data">
-                            <div class="modal-body" style="height: calc(100vh - auto); overflow-y: auto;">
+                            <div class="modal-body" style="max-height: calc(100vh - 100px); overflow-y: auto;">
                                 <div class="container-fluid">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-sm-12">
                                             <div class="mb-1">
                                                 <label for="">Title</label>
-                                                <input type="text" class="form-control" name="title" id="title"
-                                                    required>
+                                                <input type="text" class="form-control" name="title" id="title">
                                             </div>
                                             <div class="mb-1">
                                                 <label for="">First Name</label>
@@ -258,11 +257,11 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" name="" class="btn btn-primary"></button>
+                            </div>
                         </form>
-                        <div class="modal-footer">
-                            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                            <button type="submit" name="" class="btn btn-primary"></button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -276,6 +275,33 @@ document.addEventListener('DOMContentLoaded', function() {
 });
             </script>
             <script>
+function makeDefault(val) {
+    var formData = new FormData();
+    formData.append("action", "makeDefault"); // Add the additional field
+    formData.append("ignoreHeaderFooter", 1);
+    formData.append("id", val);
+    $.ajax({
+        type: 'POST',
+        url: '/make-default',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            var res = JSON.parse(response);
+            if (res.status === 'success') {
+                alert(res.message);
+                console.log(res);
+                location.reload();
+            } else {
+                alert(res.message);
+            }
+        },
+        error: function(error) {
+            console.log('Error:', error);
+            alert('Error submitting form');
+        }
+    });
+}
 $(document).ready(function() {
     let table;
     $('#studentID').on('shown.bs.modal', function() {
@@ -308,6 +334,38 @@ $(document).ready(function() {
         console.log("Button 'name': " + $('#DSAModal button[type="submit"]').attr('name'));
     });
 
+
+
+    $(document).on('submit', '#insertDirector', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        formData.append("action", "addDirector"); // Add the additional field
+        formData.append("ignoreHeaderFooter", 1);
+        console.log(formData);
+
+        $.ajax({
+            type: 'POST',
+            url: '/add-director',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                var res = response;
+                if (res.status === 'success') {
+                    alert(res.message);
+                    console.log(res);
+                } else {
+                    alert(res.message);
+                }
+                $('#insertDirector').find('input').val('');
+                $('#insertDirector').find('select').val('');
+            },
+            error: function(error) {
+                console.log('Error:', error);
+                alert('Error submitting form');
+            }
+        });
+    });
     // $(document).on('click', '.default-btn', function(e) {
     //     // $('#studentID h1').text("wawaw");
     //     e.preventDefault();

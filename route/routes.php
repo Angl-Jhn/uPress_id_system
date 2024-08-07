@@ -62,11 +62,17 @@ if(isset($_SESSION["isLogin"]) == 1){
             case "my-profile":
                 require_once("view/admin/page-profile.php");
                 break;
+            case "add-director":
+                require_once("controller/layoutController.php");
+                break;
+            case 'make-default':
+                require_once("controller/layoutController.php");
+                break;
+            case "edit-director":
+                require_once("controller/layoutController.php");
+                break;
             case "form-configuration":
                 require_once("view/admin/form-config.php");
-                break;
-            case "admin":
-                include_once("view/login/index.php");
                 break; 
             case "update-config":
                 require_once("controller/formConfigController.php");
@@ -76,6 +82,9 @@ if(isset($_SESSION["isLogin"]) == 1){
                 break;
             case "insert-program":
                 require_once("controller/formConfigController.php");
+                break;
+            case "admin":
+                include_once("view/login/index.php");
                 break;
             case "logout":
                 session_destroy();
