@@ -15,7 +15,7 @@
                         </div>
                         <div class="col-md-5 py-3">
                             <div style="position: relative; left: 50%; transform: translateX(-50%); display: block; 
-                                background-image: url('../../assets/id_layouts/EMPLOYEE/CSM.png'); width:316px; height: 204px; 
+                                background-image: url('../../assets/id_layouts/EMPLOYEE/CoE_&_CCS.png'); width:316px; height: 204px; 
                                 background-size: 321px 204px; background-position: center; background-repeat: no-repeat; 
                                 border: 1px solid black; border-radius: 10px">
                                 <img src="../../assets/id_layouts/sample.png" style="position: absolute; left: 12px; 

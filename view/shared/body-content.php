@@ -93,7 +93,7 @@ $page_title="titi";
                     <h2>Employee ID</h2>
                     <div class="row justify-content-center py-5">
                         <div class="col-lg-6">
-                        <div style="position: relative; left: 50%; transform: translateX(-50%); display: block; background-image: url('../../assets/id_layouts/EMPLOYEE/CSM.png'); width:316px; height: 204px; background-size: 321px 204px; background-position: center; background-repeat: no-repeat; border: 1px solid black; border-radius: 10px">
+                        <div style="position: relative; left: 50%; transform: translateX(-50%); display: block; background-image: url('../../assets/id_layouts/EMPLOYEE/CoE_&_CCS.png'); width:316px; height: 204px; background-size: 321px 204px; background-position: center; background-repeat: no-repeat; border: 1px solid black; border-radius: 10px">
                                 <p
                                     style="position: absolute; left: 45px; bottom: -14px; color: black; text-align: center; z-index: 1; font-weight: bold; font-size: 9px">
                                     00149</p>
