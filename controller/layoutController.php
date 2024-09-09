@@ -2,8 +2,6 @@
 include_once("model/dsaListModel.php");
 $director = new DsaListModel();
 
-$uploadedFiles = array();
-$uploadedFiles['signature'] = array();
 
 if(isset($_POST['action'])){
     switch($_POST['action']) {
@@ -30,8 +28,10 @@ function handleAddDirector($objModel){
 
     global $uploadedFiles;
     $signature = !empty($uploadedFiles['signature'][0]) ? $uploadedFiles['signature'][0]:"";
+    
+    $year = htmlentities($_POST["year"]);
 
-    $res = $objModel->addNewDirector($title,$firstName,$middleName,$familyName,$nameExt,$year,$signature);
+    $res = $objModel->addNewDirector($title,$firstName,$middleName,$familyName,$nameExt,$signature, $year);
     if ($res){
         echo json_encode(['message'=>'Successfully added '.$firstName.' '.$familyName.' as Director','status'=>'success']);
     } else {
